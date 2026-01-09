@@ -30,7 +30,7 @@ object TextFieldHelper {
                 textAlign = TextAlign.Center,
                 color = POSTheme.colors.contentText
             )
-            Row(modifier = Modifier.padding(DP.marginStart, DP.paddingTop, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
+            Row(modifier = Modifier.padding(DP.marginStart, 0.dp, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
                 OutlinedTextField(
                     modifier = Modifier.weight(1.0f).fillMaxHeight(),
                     value = value,

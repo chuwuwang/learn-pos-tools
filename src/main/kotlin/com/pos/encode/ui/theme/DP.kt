@@ -4,6 +4,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 object DP {
+
+    val space_sm = 4.dp
+    val space = 8.dp
+    val space_x = 16.dp
+    val space_xx = 20.dp
+    val spacer_xxx = 24.dp
+
+    val mainSize = 16.sp
+    val secondarySize = 16.sp
+    val neutralSize = 12.sp
+    val tertiarySize = 12.sp
+
+
     val sidebarHeight = 56.dp
     val sidebarIconSize = 24.dp
 

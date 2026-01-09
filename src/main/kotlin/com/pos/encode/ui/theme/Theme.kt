@@ -52,6 +52,9 @@ class POSColors(
     val dialogBackground: Color,
     val button: Color,
     val divider: Color,
+
+
+
 )
 
 private val WeChat = POSColors(

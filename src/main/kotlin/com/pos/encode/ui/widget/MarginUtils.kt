@@ -14,7 +14,7 @@ fun horizontal(width: Dp) {
 }
 
 @Composable
-fun vertical(height: Dp) {
+fun Vertical(height: Dp) {
     val modifier = Modifier.height(height)
     Spacer(modifier = modifier)
 }
