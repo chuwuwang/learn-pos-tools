@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.pos.encode.com.pos.encode.ui.theme.MainBoldTextStyle
 import com.pos.encode.com.pos.encode.ui.theme.MainMediumTextStyle
-import com.pos.encode.com.pos.encode.ui.widget.Vertical
+import com.pos.encode.com.pos.encode.ui.theme.Vertical
 import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.mediumFontFamily

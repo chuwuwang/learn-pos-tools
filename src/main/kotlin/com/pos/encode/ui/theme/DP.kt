@@ -11,6 +11,7 @@ object DP {
     val space_xx = 20.dp
     val spacer_xxx = 24.dp
 
+    val titleSize = 18.sp
     val mainSize = 16.sp
     val secondarySize = 16.sp
     val neutralSize = 12.sp
@@ -46,7 +47,6 @@ object DP {
     val dividerHeight = 1.dp
 
 
-    val titleSize = 16.sp
     val contentSize = 14.sp
     val descriptionSize = 14.sp
     val wordLetterSpacing = 2.sp

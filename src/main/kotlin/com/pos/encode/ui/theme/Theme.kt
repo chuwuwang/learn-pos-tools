@@ -36,14 +36,12 @@ class POSColors(
     val topBarDivider: Color,
     val topBarDividerChecked: Color,
 
-    val icon: Color,
-    val iconChecked: Color,
+
 
     val contentText: Color,
     val contentBackground: Color,
 
-    val textMain: Color,
-    val textSecondary: Color,
+
 
     val border: Color,
     val borderError: Color,
@@ -54,34 +52,63 @@ class POSColors(
     val divider: Color,
 
 
+    val textMain: Color,
+    val textSecondary: Color,
+    val textNeutral: Color,
+    val textTertiary: Color,
+
+    val textError: Color,
+
+    val icon: Color,
+    val iconChecked: Color,
+
+    val mainTheme: Color,
+
+
+
+
 
 )
 
 private val WeChat = POSColors(
-    sidebar = WeColor.green,
+    sidebar = WeColor.mainTheme,
     sidebarBackground = WeColor.black,
-    topBar = WeColor.green,
+    topBar = WeColor.mainTheme,
     topBarBackground = whiteColor,
     topBarText = WeColor.black,
-    topBarTextChecked = WeColor.green,
+    topBarTextChecked = WeColor.mainTheme,
     topBarDivider = transparentColor,
-    topBarDividerChecked = WeColor.green,
-    icon = whiteColor,
-    iconChecked = WeColor.green,
+    topBarDividerChecked = WeColor.mainTheme,
+
 
     contentText = WeColor.black,
     contentBackground = whiteColor,
 
-    textMain = text_main,
-    textSecondary = text_secondary,
+
 
     border = WeColor.gray,
     borderError = WeColor.danger,
     borderChecked = WeColor.success,
     dialogText = whiteColor,
     dialogBackground = whiteColor,
-    button = WeColor.green,
+    button = WeColor.mainTheme,
     divider = WeColor.gray,
+
+        ////////////
+
+    textMain = text_main,
+    textNeutral = text_neutral,
+    textTertiary = text_tertiary,
+    textSecondary = text_secondary,
+
+    textError = text_error,
+
+
+    icon = whiteColor,
+    iconChecked = WeColor.mainTheme,
+
+    mainTheme = WeColor.mainTheme,
+
 )
 
 @Suppress("DuplicatedCode")
@@ -100,13 +127,11 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
     val topBarTextChecked = animateColorAsState(targetColors.topBarTextChecked, animationSpec)
     val topBarDivider = animateColorAsState(targetColors.topBarDivider, animationSpec)
     val topBarDividerChecked = animateColorAsState(targetColors.topBarDividerChecked, animationSpec)
-    val icon = animateColorAsState(targetColors.icon, animationSpec)
-    val iconChecked = animateColorAsState(targetColors.iconChecked, animationSpec)
+
 
     val contentText = animateColorAsState(targetColors.contentText, animationSpec)
     val contentBackground = animateColorAsState(targetColors.contentBackground, animationSpec)
-    val textMain = animateColorAsState(targetColors.textMain, animationSpec)
-    val textSecondary = animateColorAsState(targetColors.textSecondary, animationSpec)
+
 
     val border = animateColorAsState(targetColors.border, animationSpec)
     val borderError = animateColorAsState(targetColors.borderError, animationSpec)
@@ -115,6 +140,20 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
     val dialogBackground = animateColorAsState(targetColors.dialogBackground, animationSpec)
     val button = animateColorAsState(targetColors.button, animationSpec)
     val divider = animateColorAsState(targetColors.divider, animationSpec)
+
+
+    val textMain = animateColorAsState(targetColors.textMain, animationSpec)
+    val textSecondary = animateColorAsState(targetColors.textSecondary, animationSpec)
+    val textNeutral = animateColorAsState(targetColors.textNeutral, animationSpec)
+    val textTertiary = animateColorAsState(targetColors.textTertiary, animationSpec)
+
+    val textError = animateColorAsState(targetColors.textError, animationSpec)
+
+    val icon = animateColorAsState(targetColors.icon, animationSpec)
+    val iconChecked = animateColorAsState(targetColors.iconChecked, animationSpec)
+
+    val mainTheme = animateColorAsState(targetColors.mainTheme, animationSpec)
+
     val colors = POSColors(
         sidebar = sidebar.value,
         sidebarBackground = sidebarBackground.value,
@@ -124,14 +163,12 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
         topBarTextChecked = topBarTextChecked.value,
         topBarDivider = topBarDivider.value,
         topBarDividerChecked = topBarDividerChecked.value,
-        icon = icon.value,
-        iconChecked = iconChecked.value,
+
 
         contentText = contentText.value,
         contentBackground = contentBackground.value,
 
-        textMain = textMain.value,
-        textSecondary = textSecondary.value,
+
 
         border = border.value,
         borderError = borderError.value,
@@ -140,6 +177,20 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
         dialogBackground = dialogBackground.value,
         button = button.value,
         divider = divider.value,
+
+        /////////////
+        textMain = textMain.value,
+        textSecondary = textSecondary.value,
+        textNeutral = textNeutral.value,
+        textTertiary = textTertiary.value,
+
+        textError = textError.value,
+
+        icon = icon.value,
+        iconChecked = iconChecked.value,
+
+        mainTheme = mainTheme.value,
+
     )
     // Use the font family to define a custom typography
     val craneTypography = Typography(

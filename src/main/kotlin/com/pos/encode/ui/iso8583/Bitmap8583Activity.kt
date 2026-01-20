@@ -18,19 +18,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.pos.encode.com.pos.encode.ui.CommonUiUtil
+import com.pos.encode.com.pos.encode.ui.common.RwInput
+import com.pos.encode.com.pos.encode.ui.theme.Vertical
 import com.pos.encode.com.pos.encode.ui.widget.decryptButton
 import com.pos.encode.com.pos.encode.ui.widget.errorButton
 import com.pos.encode.com.pos.encode.ui.widget.horizontal
 import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.POSTheme
-import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.theme.mediumFontFamily
 import com.pos.encode.ui.widget.DialogHelper
-import com.pos.encode.ui.widget.TextFieldHelper
 import com.pos.encode.util.ByteUtil
 
 @Composable
-fun parserIso8583Bitmap(modifier: Modifier) {
+fun Bitmap8583Screen(modifier: Modifier) {
     val bitmapString = remember { mutableStateOf("0000000000000000") }
     val bitmapBooleans = remember {
         val bitmapBytes = ByteUtil.hexString2Bytes(bitmapString.value)
@@ -73,10 +73,14 @@ fun parserIso8583Bitmap(modifier: Modifier) {
             items(bitmapBooleans.value.size - 1, itemContent = itemContent)
         }
 
-        TextFieldHelper.inputTextField(Modifier.padding(top = DP.marginTop).height(72.dp), "Bitmap", bitmapString.value, maxBitmapLength.value) { bitmapString.value = it }
 
-        val modifierRow = Modifier.padding(DP.marginTop)
-        Row(modifierRow) {
+        Vertical(DP.marginTop)
+
+        RwInput.InputField("Bitmap", 72.dp, bitmapString.value, maxBitmapLength.value) { bitmapString.value = it }
+
+        Vertical(DP.marginTop)
+
+        Row {
             val reset = {
                 val bitmapBytes = getInitializeBitmap()
                 bitmapString.value = ByteUtil.bytes2HexString(bitmapBytes)

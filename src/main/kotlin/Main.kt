@@ -19,7 +19,7 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.pos.encode.com.pos.encode.ui.home.Sidebar
 import com.pos.encode.com.pos.encode.ui.home.showSidebar
-import com.pos.encode.com.pos.encode.ui.iso8583.parserIso8583Bitmap
+import com.pos.encode.com.pos.encode.ui.iso8583.Bitmap8583Screen
 import com.pos.encode.ui.encrypt.EncryptionAlgorithmActivity
 import com.pos.encode.ui.encrypt.HashAlgorithmActivity
 import com.pos.encode.ui.theme.POSTheme
@@ -48,7 +48,7 @@ private fun switchScreen(index: MutableState<Int>, modifier: Modifier) {
     } else if (index.value == Sidebar.MENU_ENCRYPTION_ALGORITHM) {
         EncryptionAlgorithmActivity.preview(modifier)
     } else if (index.value == Sidebar.MENU_ISO8583_BITMAP) {
-        parserIso8583Bitmap(modifier)
+        Bitmap8583Screen(modifier)
     }
 }
 

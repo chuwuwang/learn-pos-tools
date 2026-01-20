@@ -26,13 +26,17 @@ val descriptionColor = Color(0xFF999999)
 
 val white_color_f5f5f5 = Color(0xFFF5F5F5)
 
-val text_main =  Color(0xFF1A1A1A)
-val text_error =  Color(0xFFEC5447)
-val text_secondary =  Color(0xFF80868B)
+val text_main = Color(0xFF1A1A1A)
+val text_secondary = Color(0xFF80868B)
+val text_neutral = Color(0xFF7D7D80)
+val text_tertiary = Color(0xFF999999)
+val text_error = Color(0xFFEC5447)
 
 
-object WeColor {
-    val green = Color(0xFF1AB84E).convert(ColorSpaces.CieXyz)
+internal object WeColor {
+
+    val mainTheme = Color(0xFF1AB84E).convert(ColorSpaces.CieXyz)
+
     val black = Color(0xFF2E2E2E).convert(ColorSpaces.CieXyz)
     val gray = Color(0xFFD7D7D7).convert(ColorSpaces.CieXyz)
     val info = Color(0xFF909399).convert(ColorSpaces.CieXyz)
