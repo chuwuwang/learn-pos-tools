@@ -15,8 +15,8 @@ import com.pos.encode.com.pos.encode.ui.widget.ButtonUtil
 import com.pos.encode.com.pos.encode.ui.widget.InputTextFieldUtil
 import com.pos.encode.ui.TopBar
 import com.pos.encode.ui.TopBar.topBarItemView
-import com.pos.encode.ui.helper.valid
-import com.pos.encode.ui.theme.DP
+import com.pos.encode.extension.valid
+import com.pos.encode.ui.theme.Dimens
 import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.widget.DialogHelper
 import com.pos.encode.util.ByteUtil
@@ -49,11 +49,11 @@ object HashAlgorithmActivity {
             CommonUiUtil.showInputDataFormatView(formatterText)
 
             CommonUiUtil.showHintText(Strings.data_input)
-            val inputModifier = Modifier.weight(3.0f).padding(start = DP.marginStart, top = DP.paddingTop)
+            val inputModifier = Modifier.weight(3.0f).padding(start = Dimens.marginStart, top = Dimens.paddingTop)
             InputTextFieldUtil.showInputTextFieldWithLength(inputModifier, inputText.value) { inputText.value = it }
 
             CommonUiUtil.showHintText(Strings.data_output)
-            val outputModifier = Modifier.weight(1.0f).padding(start = DP.marginStart, top = DP.paddingTop)
+            val outputModifier = Modifier.weight(1.0f).padding(start = Dimens.marginStart, top = Dimens.paddingTop)
             InputTextFieldUtil.showInputTextFieldWithLength(outputModifier, outputText.value) { outputText.value = it }
 
             val onButtonClickListener = {
@@ -64,7 +64,7 @@ object HashAlgorithmActivity {
                     visibleDialog.value = true
                 }
             }
-            val buttonModifier = Modifier.padding(DP.marginStart, DP.marginTop, DP.marginEnd, DP.marginBottom)
+            val buttonModifier = Modifier.padding(Dimens.marginStart, Dimens.marginTop, Dimens.marginEnd, Dimens.marginBottom)
             ButtonUtil.encryptButton(buttonModifier, onButtonClickListener)
 
             DialogHelper.errorDialog(Strings.error_data, visibleDialog)

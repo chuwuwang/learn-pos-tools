@@ -12,8 +12,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.pos.encode.com.pos.encode.ui.theme.MainBoldTextStyle
 import com.pos.encode.com.pos.encode.ui.theme.MainMediumTextStyle
-import com.pos.encode.com.pos.encode.ui.theme.Vertical
-import com.pos.encode.ui.theme.DP
+import com.pos.encode.ui.common.Vertical
+import com.pos.encode.ui.theme.Dimens
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.mediumFontFamily
 
@@ -26,7 +26,7 @@ internal object RwInput {
 
             LeadText(lead)
 
-            Vertical(DP.space)
+            Vertical(Dimens.space_norm)
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Input(Modifier.weight(1.0f).fillMaxHeight(), value, onValueChange)
@@ -44,7 +44,7 @@ internal object RwInput {
             unfocusedBorderColor = POSTheme.colors.border,
             focusedBorderColor = POSTheme.colors.borderChecked
         )
-        val textStyle = MainMediumTextStyle().copy(letterSpacing = DP.wordLetterSpacing)
+        val textStyle = MainMediumTextStyle().copy(letterSpacing = Dimens.wordLetterSpacing)
         OutlinedTextField(modifier = modifier, value = value, onValueChange = onValueChange, textStyle = textStyle, colors = textFieldColors)
     }
 
@@ -59,7 +59,7 @@ internal object RwInput {
         val modifier = Modifier.width(56.dp)
         val text = "[" + value.length.toString() + "]"
         val color = if (value.length > maxLength) POSTheme.colors.borderError else POSTheme.colors.borderChecked
-        Text(modifier = modifier, text = text, color = color, textAlign = TextAlign.Center, fontFamily = mediumFontFamily, fontSize = DP.secondarySize)
+        Text(modifier = modifier, text = text, color = color, textAlign = TextAlign.Center, fontFamily = mediumFontFamily, fontSize = Dimens.secondarySize)
     }
 
 }

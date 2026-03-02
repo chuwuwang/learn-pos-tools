@@ -37,10 +37,8 @@ class POSColors(
     val topBarDividerChecked: Color,
 
 
-
     val contentText: Color,
     val contentBackground: Color,
-
 
 
     val border: Color,
@@ -50,6 +48,10 @@ class POSColors(
     val dialogBackground: Color,
     val button: Color,
     val divider: Color,
+
+
+    val bgSidebar: Color,
+    val bgContent: Color,
 
 
     val textMain: Color,
@@ -65,10 +67,7 @@ class POSColors(
     val mainTheme: Color,
 
 
-
-
-
-)
+    )
 
 private val WeChat = POSColors(
     sidebar = WeColor.mainTheme,
@@ -85,7 +84,6 @@ private val WeChat = POSColors(
     contentBackground = whiteColor,
 
 
-
     border = WeColor.gray,
     borderError = WeColor.danger,
     borderChecked = WeColor.success,
@@ -94,7 +92,10 @@ private val WeChat = POSColors(
     button = WeColor.mainTheme,
     divider = WeColor.gray,
 
-        ////////////
+    ////////////
+
+    bgSidebar = WeColor.black,
+    bgContent = whiteColor,
 
     textMain = text_main,
     textNeutral = text_neutral,
@@ -109,11 +110,10 @@ private val WeChat = POSColors(
 
     mainTheme = WeColor.mainTheme,
 
-)
+    )
 
-@Suppress("DuplicatedCode")
 @Composable
-fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable () -> Unit) {
+fun SeaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable () -> Unit) {
     val targetColors = when (theme) {
         POSTheme.Theme.WeChat -> WeChat
         else -> WeChat
@@ -169,7 +169,6 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
         contentBackground = contentBackground.value,
 
 
-
         border = border.value,
         borderError = borderError.value,
         borderChecked = borderChecked.value,
@@ -191,7 +190,7 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
 
         mainTheme = mainTheme.value,
 
-    )
+        )
     // Use the font family to define a custom typography
     val craneTypography = Typography(
         defaultFontFamily = POSFontFamily,

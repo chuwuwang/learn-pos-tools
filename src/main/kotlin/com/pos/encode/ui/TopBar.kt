@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.pos.encode.ui.theme.DP
+import com.pos.encode.ui.theme.Dimens
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.boldFontFamily
 
@@ -19,7 +19,7 @@ object TopBar {
 
     @Composable
     fun showTopBar(content: @Composable RowScope.() -> Unit) {
-        val modifier = Modifier.fillMaxWidth().height(DP.topBarHeight).background(POSTheme.colors.topBarBackground)
+        val modifier = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(POSTheme.colors.topBarBackground)
         Row(modifier = modifier, content = content)
     }
 
@@ -28,7 +28,7 @@ object TopBar {
         BoxWithConstraints(Modifier.weight(1.0f).fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
             val textColor = getTextColor(index, selectIndex)
             val dividerColor = getDividerColor(index, selectIndex)
-            Text(textAlign = TextAlign.Center, color = textColor, fontSize = DP.contentSize, text = text, fontFamily = boldFontFamily)
+            Text(textAlign = TextAlign.Center, color = textColor, fontSize = Dimens.contentSize, text = text, fontFamily = boldFontFamily)
             Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) { itemDivider(dividerColor) }
         }
     }
@@ -57,7 +57,7 @@ object TopBar {
             Text(
                 textAlign = TextAlign.Center,
                 color = textColor,
-                fontSize = DP.contentSize,
+                fontSize = Dimens.contentSize,
                 text = text,
                 fontFamily = boldFontFamily
             )
@@ -67,7 +67,7 @@ object TopBar {
 
     @Composable
     fun divider() {
-        Divider(modifier = Modifier.fillMaxWidth().height(DP.dividerHeight), color = POSTheme.colors.divider)
+        Divider(modifier = Modifier.fillMaxWidth().height(Dimens.dividerHeight), color = POSTheme.colors.divider)
     }
 
 

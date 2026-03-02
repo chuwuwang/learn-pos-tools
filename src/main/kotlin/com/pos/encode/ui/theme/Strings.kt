@@ -2,6 +2,12 @@ package com.pos.encode.ui.theme
 
 object Strings {
 
+    val common_algorithm: String
+        get() = "Common Algorithm"
+
+
+
+
     val data_input: String
         get() = "Input Data"
     val data_output: String

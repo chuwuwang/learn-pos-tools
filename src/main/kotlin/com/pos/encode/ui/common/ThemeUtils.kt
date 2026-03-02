@@ -1,10 +1,10 @@
-package com.pos.encode.com.pos.encode.ui.helper
+package com.pos.encode.ui.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.pos.encode.ui.theme.POSTheme
 
-object ThemeUtil {
+object ThemeUtils {
 
     @Composable
     fun getIconColor(index: Int, default: Int): Color {

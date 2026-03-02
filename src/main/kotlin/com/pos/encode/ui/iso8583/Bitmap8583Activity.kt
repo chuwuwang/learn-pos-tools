@@ -19,11 +19,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.pos.encode.com.pos.encode.ui.CommonUiUtil
 import com.pos.encode.com.pos.encode.ui.common.RwInput
-import com.pos.encode.com.pos.encode.ui.theme.Vertical
+import com.pos.encode.ui.common.Vertical
 import com.pos.encode.com.pos.encode.ui.widget.decryptButton
 import com.pos.encode.com.pos.encode.ui.widget.errorButton
 import com.pos.encode.com.pos.encode.ui.widget.horizontal
-import com.pos.encode.ui.theme.DP
+import com.pos.encode.ui.theme.Dimens
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.mediumFontFamily
 import com.pos.encode.ui.widget.DialogHelper
@@ -42,8 +42,8 @@ fun Bitmap8583Screen(modifier: Modifier) {
 
     Column(modifier) {
         val modifierBitmap = Modifier.fillMaxWidth()
-            .padding(start = DP.marginStart, top = DP.marginTop, end = DP.marginEnd)
-            .border(DP.dividerHeight, POSTheme.colors.divider, CommonUiUtil.roundedCornerShapeWith8)
+            .padding(start = Dimens.marginStart, top = Dimens.marginTop, end = Dimens.marginEnd)
+            .border(Dimens.dividerHeight, POSTheme.colors.divider, CommonUiUtil.roundedCornerShapeWith8)
         val columns = GridCells.Fixed(16)
         LazyVerticalGrid(columns, modifier = modifierBitmap) {
             val itemContent: @Composable (LazyGridItemScope.(Int) -> Unit) = { i ->
@@ -74,11 +74,11 @@ fun Bitmap8583Screen(modifier: Modifier) {
         }
 
 
-        Vertical(DP.marginTop)
+        Vertical(Dimens.marginTop)
 
         RwInput.InputField("Bitmap", 72.dp, bitmapString.value, maxBitmapLength.value) { bitmapString.value = it }
 
-        Vertical(DP.marginTop)
+        Vertical(Dimens.marginTop)
 
         Row {
             val reset = {
@@ -130,9 +130,9 @@ private fun getDynamicBitmap(index: Int, booleans: BooleanArray): ByteArray {
 
 @Composable
 private fun RowScope.bind(text: String, position: Int) {
-    val textStyle = TextStyle(color = POSTheme.colors.textSecondary, fontFamily = mediumFontFamily, fontSize = DP.titleSize, textAlign = TextAlign.Center)
+    val textStyle = TextStyle(color = POSTheme.colors.textSecondary, fontFamily = mediumFontFamily, fontSize = Dimens.titleSize, textAlign = TextAlign.Center)
     Text(text, modifier = Modifier.wrapContentHeight(Alignment.CenterVertically).weight(1f), style = textStyle)
     if (position != 16 && position != 32 && position != 48 && position != 64 && position != 80 && position != 96 && position != 112 && position != 128) {
-        Divider(modifier = Modifier.fillMaxHeight().width(DP.dividerHeight), color = POSTheme.colors.divider)
+        Divider(modifier = Modifier.fillMaxHeight().width(Dimens.dividerHeight), color = POSTheme.colors.divider)
     }
 }

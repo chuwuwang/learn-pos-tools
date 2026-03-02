@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.pos.encode.ui.theme.DP
+import com.pos.encode.ui.theme.Dimens
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.boldFontFamily
 import com.pos.encode.ui.theme.whiteColor
@@ -37,7 +37,7 @@ internal object RwButton {
         val buttonColors = ButtonDefaults.buttonColors(POSTheme.colors.textError)
         Button(modifier = modifier, colors = buttonColors, onClick = onClick) {
             val textStyle = TextStyle(
-                color = whiteColor, fontFamily = boldFontFamily, fontSize = DP.titleSize, textAlign = TextAlign.Center
+                color = whiteColor, fontFamily = boldFontFamily, fontSize = Dimens.titleSize, textAlign = TextAlign.Center
             )
             Text(text, style = textStyle)
         }

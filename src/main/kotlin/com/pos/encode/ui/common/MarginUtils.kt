@@ -1,4 +1,4 @@
-package com.pos.encode.com.pos.encode.ui.theme
+package com.pos.encode.ui.common
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

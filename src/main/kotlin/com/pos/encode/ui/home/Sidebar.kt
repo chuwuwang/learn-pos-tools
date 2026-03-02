@@ -1,4 +1,4 @@
-package com.pos.encode.com.pos.encode.ui.home
+package com.pos.encode.ui.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,40 +11,63 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.pos.encode.com.pos.encode.ui.helper.ThemeUtil
-import com.pos.encode.com.pos.encode.ui.home.Sidebar.MENU_ENCRYPTION_ALGORITHM
-import com.pos.encode.com.pos.encode.ui.home.Sidebar.MENU_HASH_ALGORITHM
-import com.pos.encode.com.pos.encode.ui.home.Sidebar.MENU_ISO8583_BITMAP
+import com.pos.encode.ui.common.Horizontal
+import com.pos.encode.ui.common.ThemeUtils
+import com.pos.encode.ui.common.Vertical
+import com.pos.encode.ui.home.Sidebar.MENU_COMMON_ALGORITHM
+import com.pos.encode.ui.home.Sidebar.MENU_ENCRYPTION_ALGORITHM
+import com.pos.encode.ui.home.Sidebar.MENU_HASH_ALGORITHM
+import com.pos.encode.ui.home.Sidebar.MENU_ISO8583_BITMAP
+import com.pos.encode.ui.theme.Dimens
 import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.theme.boldFontFamily
 
 object Sidebar {
 
     const val MENU_HASH_ALGORITHM = 0
+
     const val MENU_ENCRYPTION_ALGORITHM = 1
-    const val MENU_ISO8583_BITMAP = 2
+
+    const val MENU_COMMON_ALGORITHM = 2
+
+    const val MENU_ISO8583_BITMAP = 3
 
 }
 
 @Composable
-fun showSidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
+fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
     Column(modifier) {
-        val modifierHashAlgo = Modifier.clickable { onClick(MENU_HASH_ALGORITHM) }
-        itemView(modifierHashAlgo, Strings.hash_algorithm, ThemeUtil.getIconColor(index, MENU_HASH_ALGORITHM), resourcePath = "images/ic_ago_sha_black.png")
+        Vertical(Dimens.space_x)
 
-        val modifierEncryptionAlgo = Modifier.clickable { onClick(MENU_ENCRYPTION_ALGORITHM) }
-        itemView(modifierEncryptionAlgo, Strings.encryption_algorithm, ThemeUtil.getIconColor(index, MENU_ENCRYPTION_ALGORITHM), resourcePath = "images/ic_ago_des_black.png")
+        ItemView(Strings.hash_algorithm, ThemeUtils.getIconColor(index, MENU_HASH_ALGORITHM), resourcePath = "images/ic_menu_hash_algo_black.png") {
+            onClick(MENU_HASH_ALGORITHM)
+        }
 
-        val modifierISO8583Bitmap = Modifier.clickable { onClick(MENU_ISO8583_BITMAP) }
-        itemView(modifierISO8583Bitmap, Strings.iso8583_bitmap, ThemeUtil.getIconColor(index, MENU_ISO8583_BITMAP), resourcePath = "images/ic_menu_bitmap_black.png")
+        ItemView(Strings.encryption_algorithm, ThemeUtils.getIconColor(index, MENU_ENCRYPTION_ALGORITHM), resourcePath = "images/ic_menu_des_ago_black.png") {
+            onClick(MENU_ENCRYPTION_ALGORITHM)
+        }
+
+        ItemView(Strings.common_algorithm, ThemeUtils.getIconColor(index, MENU_COMMON_ALGORITHM), resourcePath = "images/ic_menu_common_algo_black.png") {
+            onClick(MENU_COMMON_ALGORITHM)
+        }
+
+        ItemView(Strings.iso8583_bitmap, ThemeUtils.getIconColor(index, MENU_ISO8583_BITMAP), resourcePath = "images/ic_menu_bitmap_black.png") {
+            onClick(MENU_ISO8583_BITMAP)
+        }
+
     }
 }
 
 @Composable
-private fun itemView(modifier: Modifier, text: String, tint: Color, resourcePath: String) {
-    Row(modifier.fillMaxWidth().height(56.dp).padding(start = 24.dp), verticalAlignment = Alignment.CenterVertically) {
+private fun ItemView(text: String, tint: Color, resourcePath: String, onClick: () -> Unit) {
+    val modifier = Modifier.fillMaxWidth().height(Dimens.space_norm).clickable(onClick = onClick)
+    Row(modifier, verticalAlignment = Alignment.CenterVertically) {
+        Horizontal(Dimens.space_x)
+
         Icon(painter = painterResource(resourcePath), contentDescription = null, modifier = Modifier.size(24.dp), tint = tint)
-        Text(modifier = Modifier.padding(start = 12.dp), color = tint, textAlign = TextAlign.Start, fontSize = 16.sp, fontFamily = boldFontFamily, text = text)
+
+        Horizontal(Dimens.space_norm)
+
+        Text(color = tint, textAlign = TextAlign.Start, fontSize = Dimens.sp_title, fontFamily = boldFontFamily, text = text)
     }
 }

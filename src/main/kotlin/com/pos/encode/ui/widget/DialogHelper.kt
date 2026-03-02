@@ -27,26 +27,26 @@ object DialogHelper {
                 val modifier = Modifier.fillMaxSize().background(POSTheme.colors.dialogBackground)
                 Column(modifier) {
                     Text(
-                        modifier = Modifier.padding(DP.dialogPadding, DP.dialogPadding, DP.dialogPadding, 0.dp),
+                        modifier = Modifier.padding(Dimens.dialogPadding, Dimens.dialogPadding, Dimens.dialogPadding, 0.dp),
                         textAlign = TextAlign.Start,
-                        fontSize = DP.contentSize,
+                        fontSize = Dimens.contentSize,
                         color = POSTheme.colors.contentText,
                         text = message,
                         fontFamily = mediumFontFamily
                     )
                     Column(
-                        modifier = Modifier.fillMaxSize().padding(DP.dialogPadding),
+                        modifier = Modifier.fillMaxSize().padding(Dimens.dialogPadding),
                         horizontalAlignment = Alignment.End,
                         verticalArrangement = Arrangement.Bottom
                     ) {
                         Column(
-                            modifier = Modifier.size(DP.dialogButtonWidth, DP.dialogButtonHeight).background(shape = RoundedCornerShape(DP.radius), color = POSTheme.colors.button).clickable { visible.value = false },
+                            modifier = Modifier.size(Dimens.dialogButtonWidth, Dimens.dialogButtonHeight).background(shape = RoundedCornerShape(Dimens.radius), color = POSTheme.colors.button).clickable { visible.value = false },
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center
                         ) {
                             Text(
                                 textAlign = TextAlign.Center,
-                                fontSize = DP.contentSize,
+                                fontSize = Dimens.contentSize,
                                 color = POSTheme.colors.dialogText,
                                 text = Strings.ok.uppercase(),
                                 fontFamily = boldFontFamily

@@ -23,7 +23,7 @@ object ButtonHelper {
     @Composable
     fun encryptButton(onClick: () -> Unit) {
         Button(
-            modifier = Modifier.size(DP.buttonWidth, DP.buttonHeight).padding(0.dp, 0.dp, DP.marginEnd, 0.dp),
+            modifier = Modifier.size(Dimens.buttonWidth, Dimens.buttonHeight).padding(0.dp, 0.dp, Dimens.marginEnd, 0.dp),
             colors = ButtonDefaults.buttonColors(POSTheme.colors.button),
             onClick = onClick
         ) {
@@ -39,7 +39,7 @@ object ButtonHelper {
     @Composable
     fun decryptButton(onClick: () -> Unit) {
         Button(
-            modifier = Modifier.size(DP.buttonWidth, DP.buttonHeight).padding(0.dp, 0.dp, DP.marginEnd, 0.dp),
+            modifier = Modifier.size(Dimens.buttonWidth, Dimens.buttonHeight).padding(0.dp, 0.dp, Dimens.marginEnd, 0.dp),
             colors = ButtonDefaults.buttonColors(POSTheme.colors.button),
             onClick = onClick
         ) {
@@ -56,19 +56,19 @@ object ButtonHelper {
     fun radioButton(text: String, selected: Boolean, onClick: () -> Unit) {
         Row(modifier = Modifier.width(192.dp).fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
             RadioButton(onClick = onClick, selected = selected, colors = RadioButtonDefaults.colors(POSTheme.colors.button))
-            Text(text = text, fontSize = DP.contentSize, fontFamily = mediumFontFamily, color = POSTheme.colors.contentText)
+            Text(text = text, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, color = POSTheme.colors.contentText)
         }
     }
 
     @Composable
     fun radioGroup(modifier: Modifier, text: String, height: Dp = RADIO_GROUP_HEIGHT, content: @Composable () -> Unit) {
-        val borderWidth = DP.borderWidth
+        val borderWidth = Dimens.borderWidth
         val borderColor = POSTheme.colors.borderChecked
         Box(modifier = modifier.height(height), contentAlignment = Alignment.Center) {
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Divider(modifier = Modifier.width(24.dp).height(borderWidth), color = borderColor)
-                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = DP.contentSize, color = POSTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
+                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = Dimens.contentSize, color = POSTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
                     Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
                 }
                 val params = Modifier.weight(1.0f)

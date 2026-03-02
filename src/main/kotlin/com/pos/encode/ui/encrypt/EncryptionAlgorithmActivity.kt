@@ -12,8 +12,8 @@ import com.pos.encode.Algorithm
 import com.pos.encode.com.pos.encode.ui.CommonUiUtil
 import com.pos.encode.ui.TopBar
 import com.pos.encode.ui.TopBar.topBarItemView
-import com.pos.encode.ui.helper.valid
-import com.pos.encode.ui.theme.DP
+import com.pos.encode.extension.valid
+import com.pos.encode.ui.theme.Dimens
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.widget.ButtonHelper
@@ -49,7 +49,7 @@ object EncryptionAlgorithmActivity {
         val visibleDialog = remember { mutableStateOf(false) }
 
         Column(modifier) {
-            var params = Modifier.fillMaxWidth().height(DP.topBarHeight).background(POSTheme.colors.topBarBackground)
+            var params = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(POSTheme.colors.topBarBackground)
 
             showTopBar(algorithmText)
 
@@ -60,7 +60,7 @@ object EncryptionAlgorithmActivity {
             CommonUiUtil.showInputDataFormatView(formatterText)
 
             ButtonHelper.radioGroup(
-                Modifier.fillMaxWidth().padding(DP.marginStart, DP.marginTop, TextFieldHelper.HINT_TEXT_WIDTH, 0.dp),
+                Modifier.fillMaxWidth().padding(Dimens.marginStart, Dimens.marginTop, TextFieldHelper.HINT_TEXT_WIDTH, 0.dp),
                 Strings.padding,
                 ButtonHelper.RADIO_GROUP_HEIGHT + 64.dp
             ) {
@@ -111,7 +111,7 @@ object EncryptionAlgorithmActivity {
             }
 
             ButtonHelper.radioGroup(
-                Modifier.fillMaxWidth().padding(DP.marginStart, DP.marginTop, TextFieldHelper.HINT_TEXT_WIDTH, 0.dp),
+                Modifier.fillMaxWidth().padding(Dimens.marginStart, Dimens.marginTop, TextFieldHelper.HINT_TEXT_WIDTH, 0.dp),
                 Strings.data_format
             ) {
                 params = Modifier.fillMaxWidth().padding(0.dp, ButtonHelper.TEXT_MARGIN_BORDER, 0.dp, 0.dp)
@@ -128,20 +128,20 @@ object EncryptionAlgorithmActivity {
             }
 
             TextFieldHelper.inputTextField(
-                Modifier.weight(3.0f).padding(0.dp, DP.paddingTop, 0.dp, 0.dp),
+                Modifier.weight(3.0f).padding(0.dp, Dimens.paddingTop, 0.dp, 0.dp),
                 Strings.data_input,
                 inputText.value,
                 Int.MAX_VALUE
             ) { inputText.value = it }
 
             TextFieldHelper.inputTextField(
-                Modifier.weight(1.0f).padding(0.dp, DP.paddingTop, 0.dp, 0.dp),
+                Modifier.weight(1.0f).padding(0.dp, Dimens.paddingTop, 0.dp, 0.dp),
                 Strings.data_output,
                 outputText.value,
                 Int.MAX_VALUE
             ) { outputText.value = it }
 
-            params = Modifier.fillMaxWidth().padding(DP.marginStart, DP.marginTop, DP.marginEnd, DP.marginBottom)
+            params = Modifier.fillMaxWidth().padding(Dimens.marginStart, Dimens.marginTop, Dimens.marginEnd, Dimens.marginBottom)
             Row(params) {
                 ButtonHelper.encryptButton {
                     val text = inputText.value

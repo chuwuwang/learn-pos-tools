@@ -17,32 +17,37 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import com.pos.encode.com.pos.encode.ui.home.Sidebar
-import com.pos.encode.com.pos.encode.ui.home.showSidebar
 import com.pos.encode.com.pos.encode.ui.iso8583.Bitmap8583Screen
 import com.pos.encode.ui.encrypt.EncryptionAlgorithmActivity
 import com.pos.encode.ui.encrypt.HashAlgorithmActivity
+import com.pos.encode.ui.home.Sidebar
 import com.pos.encode.ui.theme.POSTheme
-import com.pos.encode.ui.theme.seaTheme
+import com.pos.encode.ui.theme.SeaTheme
+
+fun main() = application {
+    val position = WindowPosition.Aligned(Alignment.Center)
+    // val windowState = WindowState(size = DpSize.Unspecified, position = position)
+    val windowState = WindowState(size = DpSize(1400.dp, 1000.dp), position = position)
+    Window(title = "POS Tools", state = windowState, onCloseRequest = ::exitApplication) { app() }
+}
 
 @Composable
 @Preview
 fun app() {
     val current = remember { mutableStateOf(0) }
-    seaTheme {
+    SeaTheme {
         Row {
-            val onSidebarClick: (Int) -> Unit = { current.value = it }
-            val modifierSidebar = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.sidebarBackground)
-            showSidebar(modifierSidebar, current.value, onSidebarClick)
+            val modifierSidebar = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.bgSidebar)
+            Sidebar(modifierSidebar, current.value) { current.value = it }
 
-            val modifierContent = Modifier.weight(3f).fillMaxHeight().background(POSTheme.colors.contentBackground)
-            BoxWithConstraints(modifierContent) { switchScreen(current, modifierContent) }
+            val modifierContent = Modifier.weight(3f).fillMaxHeight().background(POSTheme.colors.bgContent)
+            BoxWithConstraints(modifierContent) { SwitchScreen(current, modifierContent) }
         }
     }
 }
 
 @Composable
-private fun switchScreen(index: MutableState<Int>, modifier: Modifier) {
+private fun SwitchScreen(index: MutableState<Int>, modifier: Modifier) {
     if (index.value == Sidebar.MENU_HASH_ALGORITHM) {
         HashAlgorithmActivity.preview(modifier)
     } else if (index.value == Sidebar.MENU_ENCRYPTION_ALGORITHM) {
@@ -50,11 +55,4 @@ private fun switchScreen(index: MutableState<Int>, modifier: Modifier) {
     } else if (index.value == Sidebar.MENU_ISO8583_BITMAP) {
         Bitmap8583Screen(modifier)
     }
-}
-
-fun main() = application {
-    val position = WindowPosition.Aligned(Alignment.Center)
-    // val windowState = WindowState(size = DpSize.Unspecified, position = position)
-    val windowState = WindowState(size = DpSize(1400.dp, 1000.dp), position = position)
-    Window(title = "POS Tools", state = windowState, onCloseRequest = ::exitApplication) { app() }
 }

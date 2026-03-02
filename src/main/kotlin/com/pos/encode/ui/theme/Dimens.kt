@@ -3,13 +3,22 @@ package com.pos.encode.ui.theme
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-object DP {
+object Dimens {
 
     val space_sm = 4.dp
-    val space = 8.dp
+    val space_norm = 8.dp
     val space_x = 16.dp
     val space_xx = 20.dp
     val spacer_xxx = 24.dp
+
+    val item_sm = 48.dp
+    val item_norm = 60.dp
+    val item_lg = 56.dp
+
+    val sp_title = 16.sp
+    val sp_text = 14.sp
+    val sp_secondary = 12.sp
+
 
     val titleSize = 18.sp
     val mainSize = 16.sp
@@ -17,8 +26,6 @@ object DP {
     val neutralSize = 12.sp
     val tertiarySize = 12.sp
 
-
-    val sidebarHeight = 56.dp
     val sidebarIconSize = 24.dp
 
     val topBarHeight = 60.dp
