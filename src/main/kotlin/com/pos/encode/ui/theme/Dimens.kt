@@ -13,7 +13,7 @@ object Dimens {
 
     val item_sm = 48.dp
     val item_norm = 56.dp
-    val item_lg = 60.dp
+    val item_lg = 64.dp
 
     val sp_title = 16.sp
     val sp_text = 14.sp

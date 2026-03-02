@@ -19,6 +19,8 @@ class ThemeColors(
     val icon: Color,
     val iconChecked: Color,
 
+    val divider: Color,
+
     ///
     val topBarText: Color,
     val topBarTextChecked: Color,
@@ -32,5 +34,4 @@ class ThemeColors(
     val dialogText: Color,
     val dialogBackground: Color,
     val button: Color,
-    val divider: Color,
 )

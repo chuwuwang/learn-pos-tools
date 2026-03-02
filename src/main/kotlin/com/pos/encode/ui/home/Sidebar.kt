@@ -19,8 +19,8 @@ import com.pos.encode.ui.home.Sidebar.MENU_ENCRYPTION_ALGORITHM
 import com.pos.encode.ui.home.Sidebar.MENU_HASH_ALGORITHM
 import com.pos.encode.ui.home.Sidebar.MENU_ISO8583_BITMAP
 import com.pos.encode.ui.theme.Dimens
+import com.pos.encode.ui.theme.Fonts
 import com.pos.encode.ui.theme.Strings
-import com.pos.encode.ui.theme.boldFontFamily
 
 object Sidebar {
 
@@ -47,7 +47,7 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
             onClick(MENU_ENCRYPTION_ALGORITHM)
         }
 
-        ItemView(Strings.common_algorithm, UiUtils.getIconColor(index, MENU_COMMON_ALGORITHM), resourcePath = "images/ic_menu_common_algo_black.png") {
+        ItemView(Strings.common_algo, UiUtils.getIconColor(index, MENU_COMMON_ALGORITHM), resourcePath = "images/ic_menu_common_algo_black.png") {
             onClick(MENU_COMMON_ALGORITHM)
         }
 
@@ -68,6 +68,6 @@ private fun ItemView(text: String, tint: Color, resourcePath: String, onClick: (
 
         Horizontal(Dimens.space_norm)
 
-        Text(color = tint, textAlign = TextAlign.Start, fontSize = Dimens.sp_title, fontFamily = boldFontFamily, text = text)
+        Text(color = tint, textAlign = TextAlign.Start, fontSize = Dimens.sp_title, fontFamily = Fonts.bold, text = text)
     }
 }

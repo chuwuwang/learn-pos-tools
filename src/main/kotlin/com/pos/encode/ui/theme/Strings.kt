@@ -2,10 +2,16 @@ package com.pos.encode.ui.theme
 
 object Strings {
 
-    val common_algorithm: String
+    val common_algo: String
         get() = "Common Algorithm"
-
-
+    val common_algo_xor: String
+        get() = "XOR"
+    val common_algo_xor_bitwise: String
+        get() = "Bitwise XOR"
+    val common_algo_base64_encode: String
+        get() = "Base64 Encode"
+    val common_algo_base64_decode: String
+        get() = "Base64 Decode"
 
 
     val data_input: String

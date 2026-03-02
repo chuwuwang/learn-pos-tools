@@ -16,3 +16,11 @@ val POSFontFamily = FontFamily(lightFont, regularFont, mediumFont, boldFont)
 
 val boldFontFamily = FontFamily(boldFont)
 val mediumFontFamily = FontFamily(mediumFont)
+
+object Fonts {
+
+    val bold = FontFamily(boldFont)
+
+    val medium = FontFamily(mediumFont)
+
+}

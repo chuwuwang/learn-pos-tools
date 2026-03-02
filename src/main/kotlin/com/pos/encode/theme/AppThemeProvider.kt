@@ -30,6 +30,7 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
     val icon = animateColorAsState(targetColors.icon, animationSpec)
     val iconChecked = animateColorAsState(targetColors.iconChecked, animationSpec)
 
+    val divider = animateColorAsState(targetColors.divider, animationSpec)
 
     val topBarText = animateColorAsState(targetColors.topBarText, animationSpec)
     val topBarTextChecked = animateColorAsState(targetColors.topBarTextChecked, animationSpec)
@@ -47,7 +48,6 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
     val dialogText = animateColorAsState(targetColors.dialogText, animationSpec)
     val dialogBackground = animateColorAsState(targetColors.dialogBackground, animationSpec)
     val button = animateColorAsState(targetColors.button, animationSpec)
-    val divider = animateColorAsState(targetColors.divider, animationSpec)
 
     val colors = ThemeColors(
         textMain = textMain.value,
@@ -64,6 +64,8 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
 
         icon = icon.value,
         iconChecked = iconChecked.value,
+
+        divider = divider.value,
 
         /////////////
 
@@ -82,8 +84,7 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
         borderChecked = borderChecked.value,
         dialogText = dialogText.value,
         dialogBackground = dialogBackground.value,
-        button = button.value,
-        divider = divider.value
+        button = button.value
     )
 
     // Use the font family to define a custom typography

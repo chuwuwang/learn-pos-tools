@@ -20,7 +20,7 @@ object AppTheme {
     val defaultLocalColors = staticCompositionLocalOf { wechatColors }
 
     val wechatColors = ThemeColors(
-        textMain = Colors.text_main,
+        textMain = WeChatColors.black,
         textNeutral = Colors.text_neutral,
         textTertiary = Colors.text_tertiary,
         textSecondary = Colors.text_secondary,
@@ -33,6 +33,8 @@ object AppTheme {
 
         icon = Colors.white,
         iconChecked = WeChatColors.main_theme,
+
+        divider = WeChatColors.gray,
 
         ///
 
@@ -52,7 +54,6 @@ object AppTheme {
         dialogText = Colors.white,
         dialogBackground = Colors.white,
         button = WeChatColors.main_theme,
-        divider = WeChatColors.gray
     )
 
 }
