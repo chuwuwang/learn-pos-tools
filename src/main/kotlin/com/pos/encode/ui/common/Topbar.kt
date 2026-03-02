@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -14,19 +16,27 @@ import com.pos.encode.ui.theme.Dimens
 import com.pos.encode.ui.theme.Fonts
 
 @Composable
-fun Topbar(content: @Composable RowScope.() -> Unit) {
+fun Topbar(list: List<String>, selection: Int = 0, onClick: (String) -> Unit) {
+    val selected = remember { mutableStateOf(list[selection]) }
     val modifier = Modifier.fillMaxWidth().height(Dimens.item_lg)
-    Row(modifier = modifier, content = content)
+    Row(modifier = modifier) {
+        for (item in list) {
+            ItemView(item, selected.value) {
+                selected.value = item
+                onClick(item)
+            }
+        }
+    }
 }
 
 @Composable
-fun RowScope.TopbarItemView(text: String, index: Int, selectIndex: Int, onClick: () -> Unit) {
+private fun RowScope.ItemView(text: String, selected: String, onClick: () -> Unit) {
     BoxWithConstraints(Modifier.weight(1.0f).fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
-        val textColor = if (selectIndex == index) AppTheme.colors.mainTheme else AppTheme.colors.textMain
-        Text(textAlign = TextAlign.Center, color = textColor, fontSize = Dimens.sp_title, text = text, fontFamily = Fonts.bold)
+        val textColor = if (text == selected) AppTheme.colors.mainTheme else AppTheme.colors.textMain
+        Text(textAlign = TextAlign.Center, color = textColor, fontSize = Dimens.sp_text, text = text, fontFamily = Fonts.bold)
 
         Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
-            if (selectIndex == index) Indicator()
+            if (text == selected) Indicator()
         }
     }
 }
