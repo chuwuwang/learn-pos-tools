@@ -12,8 +12,8 @@ object Dimens {
     val spacer_xxx = 24.dp
 
     val item_sm = 48.dp
-    val item_norm = 60.dp
-    val item_lg = 56.dp
+    val item_norm = 56.dp
+    val item_lg = 60.dp
 
     val sp_title = 16.sp
     val sp_text = 14.sp
