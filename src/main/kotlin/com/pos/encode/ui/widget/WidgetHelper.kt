@@ -12,34 +12,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pos.encode.ui.theme.primaryColor
-import com.pos.encode.ui.theme.primaryColor_white70
-import com.pos.encode.ui.theme.titleColor
-import com.pos.encode.ui.theme.transparentColor
+import com.pos.encode.ui.theme.Colors
 
 @Composable
 fun radioSelectView(modifier: Modifier, text: String, selected: Boolean, onClick: () -> Unit) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        RadioButton(selected = selected, colors = RadioButtonDefaults.colors(primaryColor), onClick = onClick)
-        Text(fontSize = 14.sp, color = titleColor, text = text)
+        RadioButton(selected = selected, colors = RadioButtonDefaults.colors(Colors.primary), onClick = onClick)
+        Text(fontSize = 14.sp, color = Colors.text_main, text = text)
     }
 }
 
 @Composable
 fun tabView(text: String, tab: Int, currentTab: Int, onClick: () -> Unit) {
     whiteRectangleButton(modifier = Modifier.height(56.dp).fillMaxWidth(), onClick = onClick) {
-        Text(fontSize = 16.sp, color = titleColor, text = text)
+        Text(fontSize = 16.sp, color = Colors.text_main, text = text)
     }
     divider(tab, currentTab)
 }
 
 @Composable
-fun textRectangleBorder(text: String, height: Dp = 72.dp, lineColor: Color = primaryColor_white70, lineSize: Dp = 1.5.dp, content: @Composable () -> Unit) {
+fun textRectangleBorder(text: String, height: Dp = 72.dp, lineColor: Color = Colors.primary_70, lineSize: Dp = 1.5.dp, content: @Composable () -> Unit) {
     Box(modifier = Modifier.padding(16.dp, 16.dp, 16.dp, 0.dp).height(height), contentAlignment = Alignment.Center) {
         Column {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Divider(Modifier.width(16.dp).height(lineSize), color = lineColor)
-                Text(modifier = Modifier.height(20.dp).padding(4.dp, 0.dp), fontSize = 16.sp, color = titleColor, text = text)
+                Text(modifier = Modifier.height(20.dp).padding(4.dp, 0.dp), fontSize = 16.sp, color = Colors.text_main, text = text)
                 Divider(Modifier.fillMaxWidth().height(lineSize), color = lineColor)
             }
             val allHeight = Modifier.weight(1.0f)
@@ -60,8 +57,8 @@ fun textRectangleBorder(text: String, height: Dp = 72.dp, lineColor: Color = pri
 @Composable
 private fun divider(tab: Int, currentTab: Int) {
     if (tab == currentTab) {
-        Divider(Modifier.fillMaxWidth().height(3.dp), color = primaryColor)
+        Divider(Modifier.fillMaxWidth().height(3.dp), color = Colors.primary)
     } else {
-        Divider(Modifier.fillMaxWidth().height(3.dp), color = transparentColor)
+        Divider(Modifier.fillMaxWidth().height(3.dp), color = Colors.transparent)
     }
 }

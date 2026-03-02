@@ -12,7 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.pos.encode.ui.theme.*
+import com.pos.encode.theme.AppTheme
+import com.pos.encode.ui.theme.Dimens
+import com.pos.encode.ui.theme.Strings
+import com.pos.encode.ui.theme.boldFontFamily
+import com.pos.encode.ui.theme.mediumFontFamily
 
 object DialogHelper {
 
@@ -24,13 +28,13 @@ object DialogHelper {
             resizable = false,
             title = Strings.error.toUpperCase(),
             content = {
-                val modifier = Modifier.fillMaxSize().background(POSTheme.colors.dialogBackground)
+                val modifier = Modifier.fillMaxSize().background(AppTheme.colors.dialogBackground)
                 Column(modifier) {
                     Text(
                         modifier = Modifier.padding(Dimens.dialogPadding, Dimens.dialogPadding, Dimens.dialogPadding, 0.dp),
                         textAlign = TextAlign.Start,
                         fontSize = Dimens.contentSize,
-                        color = POSTheme.colors.contentText,
+                        color = AppTheme.colors.contentText,
                         text = message,
                         fontFamily = mediumFontFamily
                     )
@@ -40,14 +44,14 @@ object DialogHelper {
                         verticalArrangement = Arrangement.Bottom
                     ) {
                         Column(
-                            modifier = Modifier.size(Dimens.dialogButtonWidth, Dimens.dialogButtonHeight).background(shape = RoundedCornerShape(Dimens.radius), color = POSTheme.colors.button).clickable { visible.value = false },
+                            modifier = Modifier.size(Dimens.dialogButtonWidth, Dimens.dialogButtonHeight).background(shape = RoundedCornerShape(Dimens.radius), color = AppTheme.colors.button).clickable { visible.value = false },
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center
                         ) {
                             Text(
                                 textAlign = TextAlign.Center,
                                 fontSize = Dimens.contentSize,
-                                color = POSTheme.colors.dialogText,
+                                color = AppTheme.colors.dialogText,
                                 text = Strings.ok.uppercase(),
                                 fontFamily = boldFontFamily
                             )

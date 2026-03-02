@@ -11,15 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.pos.encode.theme.AppTheme
 import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.boldFontFamily
 
 object TopBar {
 
     @Composable
     fun showTopBar(content: @Composable RowScope.() -> Unit) {
-        val modifier = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(POSTheme.colors.topBarBackground)
+        val modifier = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(AppTheme.colors.bgContent)
         Row(modifier = modifier, content = content)
     }
 
@@ -40,12 +40,12 @@ object TopBar {
 
     @Composable
     private fun getTextColor(index: Int, selectIndex: Int): Color {
-        return if (selectIndex == index) POSTheme.colors.topBarTextChecked else POSTheme.colors.topBarText
+        return if (selectIndex == index) AppTheme.colors.topBarTextChecked else AppTheme.colors.topBarText
     }
 
     @Composable
     private fun getDividerColor(index: Int, selectIndex: Int): Color {
-        return if (selectIndex == index) POSTheme.colors.topBarDividerChecked else POSTheme.colors.topBarDivider
+        return if (selectIndex == index) AppTheme.colors.topBarDividerChecked else AppTheme.colors.topBarDivider
     }
 
 
@@ -67,7 +67,7 @@ object TopBar {
 
     @Composable
     fun divider() {
-        Divider(modifier = Modifier.fillMaxWidth().height(Dimens.dividerHeight), color = POSTheme.colors.divider)
+        Divider(modifier = Modifier.fillMaxWidth().height(Dimens.dividerHeight), color = AppTheme.colors.divider)
     }
 
 

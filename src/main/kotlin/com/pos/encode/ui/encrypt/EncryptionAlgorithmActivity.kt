@@ -13,8 +13,8 @@ import com.pos.encode.com.pos.encode.ui.CommonUiUtil
 import com.pos.encode.ui.TopBar
 import com.pos.encode.ui.TopBar.topBarItemView
 import com.pos.encode.extension.valid
+import com.pos.encode.theme.AppTheme
 import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.widget.ButtonHelper
 import com.pos.encode.ui.widget.TextFieldHelper
@@ -49,7 +49,7 @@ object EncryptionAlgorithmActivity {
         val visibleDialog = remember { mutableStateOf(false) }
 
         Column(modifier) {
-            var params = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(POSTheme.colors.topBarBackground)
+            var params = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(AppTheme.colors.bgContent)
 
             showTopBar(algorithmText)
 

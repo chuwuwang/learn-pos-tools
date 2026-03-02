@@ -12,9 +12,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.pos.encode.com.pos.encode.ui.theme.MainBoldTextStyle
 import com.pos.encode.com.pos.encode.ui.theme.MainMediumTextStyle
+import com.pos.encode.theme.AppTheme
 import com.pos.encode.ui.common.Vertical
 import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.mediumFontFamily
 
 internal object RwInput {
@@ -39,10 +39,10 @@ internal object RwInput {
     @Composable
     private fun Input(modifier: Modifier, value: String, onValueChange: (String) -> Unit) {
         val textFieldColors = TextFieldDefaults.outlinedTextFieldColors(
-            textColor = POSTheme.colors.contentText,
-            cursorColor = POSTheme.colors.borderChecked,
-            unfocusedBorderColor = POSTheme.colors.border,
-            focusedBorderColor = POSTheme.colors.borderChecked
+            textColor = AppTheme.colors.contentText,
+            cursorColor = AppTheme.colors.borderChecked,
+            unfocusedBorderColor = AppTheme.colors.border,
+            focusedBorderColor = AppTheme.colors.borderChecked
         )
         val textStyle = MainMediumTextStyle().copy(letterSpacing = Dimens.wordLetterSpacing)
         OutlinedTextField(modifier = modifier, value = value, onValueChange = onValueChange, textStyle = textStyle, colors = textFieldColors)
@@ -58,7 +58,7 @@ internal object RwInput {
     private fun LengthText(value: String, maxLength: Int) {
         val modifier = Modifier.width(56.dp)
         val text = "[" + value.length.toString() + "]"
-        val color = if (value.length > maxLength) POSTheme.colors.borderError else POSTheme.colors.borderChecked
+        val color = if (value.length > maxLength) AppTheme.colors.borderError else AppTheme.colors.borderChecked
         Text(modifier = modifier, text = text, color = color, textAlign = TextAlign.Center, fontFamily = mediumFontFamily, fontSize = Dimens.secondarySize)
     }
 

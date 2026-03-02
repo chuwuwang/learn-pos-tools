@@ -8,13 +8,13 @@ import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.pos.encode.ui.theme.lineColor
+import com.pos.encode.ui.theme.Colors
 
 @Composable
 fun dividerLightGray() {
     Divider(
         Modifier.fillMaxWidth().height(1.dp),
-        color = lineColor,
+        color = Colors.line_fill,
     )
 }
 
@@ -22,7 +22,7 @@ fun dividerLightGray() {
 fun dividerVerticalLightGray() {
     Divider(
         Modifier.fillMaxHeight().width(1.dp),
-        color = lineColor,
+        color = Colors.line_fill,
     )
 }
 

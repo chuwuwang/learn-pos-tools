@@ -10,8 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.pos.encode.theme.AppTheme
 import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.boldFontFamily
 import com.pos.encode.ui.theme.mediumFontFamily
 import com.pos.encode.ui.widget.ButtonHelper.RADIO_GROUP_HEIGHT
@@ -21,9 +21,9 @@ object RadioGroupUtil {
     @Composable
     fun showRadioButton(text: String, selected: Boolean, onClick: () -> Unit) {
         Row(modifier = Modifier.width(192.dp).fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
-            val radioButtonColors = RadioButtonDefaults.colors(POSTheme.colors.button)
+            val radioButtonColors = RadioButtonDefaults.colors(AppTheme.colors.button)
             RadioButton(onClick = onClick, selected = selected, colors = radioButtonColors)
-            Text(text = text, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, color = POSTheme.colors.contentText)
+            Text(text = text, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, color = AppTheme.colors.contentText)
         }
     }
 
@@ -33,7 +33,7 @@ object RadioGroupUtil {
         Box(modifier = modifier, contentAlignment = Alignment.Center) {
             val leftWidth = 24.dp
             val borderWidth = Dimens.borderWidth
-            val borderColor = POSTheme.colors.borderChecked
+            val borderColor = AppTheme.colors.borderChecked
             // 从上到下绘制 divider
             Column {
                 // top view
@@ -41,7 +41,7 @@ object RadioGroupUtil {
                     // top left divider
                     Divider(modifier = Modifier.width(leftWidth).height(borderWidth), color = borderColor)
                     // hint text
-                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = Dimens.contentSize, color = POSTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
+                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = Dimens.contentSize, color = AppTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
                     // top right divider
                     Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
                 }

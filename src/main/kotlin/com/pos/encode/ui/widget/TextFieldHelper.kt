@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.pos.encode.theme.AppTheme
 import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.boldFontFamily
 import com.pos.encode.ui.theme.mediumFontFamily
 
@@ -28,15 +28,15 @@ object TextFieldHelper {
                 fontSize = Dimens.contentSize,
                 fontFamily = boldFontFamily,
                 textAlign = TextAlign.Center,
-                color = POSTheme.colors.contentText
+                color = AppTheme.colors.contentText
             )
             Row(modifier = Modifier.padding(Dimens.marginStart, 0.dp, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
                 OutlinedTextField(
                     modifier = Modifier.weight(1.0f).fillMaxHeight(),
                     value = value,
                     onValueChange = onValueChange,
-                    textStyle = TextStyle(color = POSTheme.colors.contentText, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, letterSpacing = Dimens.wordLetterSpacing),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(textColor = POSTheme.colors.contentText, cursorColor = POSTheme.colors.borderChecked, unfocusedBorderColor = POSTheme.colors.border, focusedBorderColor = POSTheme.colors.borderChecked)
+                    textStyle = TextStyle(color = AppTheme.colors.contentText, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, letterSpacing = Dimens.wordLetterSpacing),
+                    colors = TextFieldDefaults.outlinedTextFieldColors(textColor = AppTheme.colors.contentText, cursorColor = AppTheme.colors.borderChecked, unfocusedBorderColor = AppTheme.colors.border, focusedBorderColor = AppTheme.colors.borderChecked)
                 )
                 Text(
                     modifier = Modifier.width(HINT_TEXT_WIDTH),
@@ -44,7 +44,7 @@ object TextFieldHelper {
                     textAlign = TextAlign.Center,
                     fontFamily = mediumFontFamily,
                     text = "[" + value.length.toString() + "]",
-                    color = if (value.length > maxLength) POSTheme.colors.borderError else POSTheme.colors.borderChecked
+                    color = if (value.length > maxLength) AppTheme.colors.borderError else AppTheme.colors.borderChecked
                 )
             }
         }

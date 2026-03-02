@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.pos.encode.theme.AppTheme
 import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.mediumFontFamily
 
 object InputTextFieldUtil {
@@ -21,10 +21,10 @@ object InputTextFieldUtil {
 
     @Composable
     fun showInputTextFieldWithLength(modifier: Modifier, value: String, maxLength: Int = Int.MAX_VALUE, onValueChange: (String) -> Unit) {
-        val textStyle = TextStyle(color = POSTheme.colors.contentText, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, letterSpacing = Dimens.wordLetterSpacing)
+        val textStyle = TextStyle(color = AppTheme.colors.contentText, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, letterSpacing = Dimens.wordLetterSpacing)
         Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
             OutlinedTextField(modifier = Modifier.weight(1.0f).fillMaxHeight(), value = value, onValueChange = onValueChange, textStyle = textStyle, colors = BackgroundUtil.inputTextFieldColor)
-            Text(modifier = Modifier.width(TEXT_LENGTH_WIDTH), fontSize = Dimens.contentSize, textAlign = TextAlign.Center, fontFamily = mediumFontFamily, text = "[" + value.length.toString() + "]", color = if (value.length > maxLength) POSTheme.colors.borderError else POSTheme.colors.borderChecked)
+            Text(modifier = Modifier.width(TEXT_LENGTH_WIDTH), fontSize = Dimens.contentSize, textAlign = TextAlign.Center, fontFamily = mediumFontFamily, text = "[" + value.length.toString() + "]", color = if (value.length > maxLength) AppTheme.colors.borderError else AppTheme.colors.borderChecked)
         }
     }
 

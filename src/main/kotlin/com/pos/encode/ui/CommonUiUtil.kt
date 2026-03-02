@@ -13,8 +13,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.pos.encode.Algorithm
 import com.pos.encode.com.pos.encode.ui.widget.RadioGroupUtil
+import com.pos.encode.theme.AppTheme
 import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.theme.boldFontFamily
 import com.pos.encode.ui.widget.ButtonHelper
@@ -50,12 +50,12 @@ object CommonUiUtil {
     @Composable
     fun showHintText(text: String) {
         val modifier = Modifier.padding(start = Dimens.marginStart, top = Dimens.marginTop)
-        Text(modifier = modifier, text = text, fontSize = Dimens.descriptionSize, fontFamily = boldFontFamily, textAlign = TextAlign.Center, color = POSTheme.colors.contentText)
+        Text(modifier = modifier, text = text, fontSize = Dimens.descriptionSize, fontFamily = boldFontFamily, textAlign = TextAlign.Center, color = AppTheme.colors.contentText)
     }
 
     @Composable
     fun horizontalDivider() {
-        Divider(thickness = Dimens.dividerHeight, color = POSTheme.colors.divider)
+        Divider(thickness = Dimens.dividerHeight, color = AppTheme.colors.divider)
     }
 
     val roundedCornerShapeWith4: RoundedCornerShape

@@ -18,11 +18,11 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.pos.encode.com.pos.encode.ui.iso8583.Bitmap8583Screen
+import com.pos.encode.theme.AppTheme
+import com.pos.encode.theme.SeaTheme
 import com.pos.encode.ui.encrypt.EncryptionAlgorithmActivity
 import com.pos.encode.ui.encrypt.HashAlgorithmActivity
 import com.pos.encode.ui.home.Sidebar
-import com.pos.encode.ui.theme.POSTheme
-import com.pos.encode.ui.theme.SeaTheme
 
 fun main() = application {
     val position = WindowPosition.Aligned(Alignment.Center)
@@ -37,10 +37,10 @@ fun app() {
     val current = remember { mutableStateOf(0) }
     SeaTheme {
         Row {
-            val modifierSidebar = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.bgSidebar)
+            val modifierSidebar = Modifier.weight(1f).fillMaxHeight().background(AppTheme.colors.bgSidebar)
             Sidebar(modifierSidebar, current.value) { current.value = it }
 
-            val modifierContent = Modifier.weight(3f).fillMaxHeight().background(POSTheme.colors.bgContent)
+            val modifierContent = Modifier.weight(3f).fillMaxHeight().background(AppTheme.colors.bgContent)
             BoxWithConstraints(modifierContent) { SwitchScreen(current, modifierContent) }
         }
     }

@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.pos.encode.theme.AppTheme
 import com.pos.encode.ui.theme.*
 
 object ButtonHelper {
@@ -24,13 +25,13 @@ object ButtonHelper {
     fun encryptButton(onClick: () -> Unit) {
         Button(
             modifier = Modifier.size(Dimens.buttonWidth, Dimens.buttonHeight).padding(0.dp, 0.dp, Dimens.marginEnd, 0.dp),
-            colors = ButtonDefaults.buttonColors(POSTheme.colors.button),
+            colors = ButtonDefaults.buttonColors(AppTheme.colors.button),
             onClick = onClick
         ) {
             Icon(
                 painter = painterResource("images/ic_encrypt.png"),
                 modifier = Modifier.size(36.dp),
-                tint = POSTheme.colors.icon,
+                tint = AppTheme.colors.icon,
                 contentDescription = null
             )
         }
@@ -40,13 +41,13 @@ object ButtonHelper {
     fun decryptButton(onClick: () -> Unit) {
         Button(
             modifier = Modifier.size(Dimens.buttonWidth, Dimens.buttonHeight).padding(0.dp, 0.dp, Dimens.marginEnd, 0.dp),
-            colors = ButtonDefaults.buttonColors(POSTheme.colors.button),
+            colors = ButtonDefaults.buttonColors(AppTheme.colors.button),
             onClick = onClick
         ) {
             Icon(
                 painter = painterResource("images/ic_decrypt.png"),
                 modifier = Modifier.size(36.dp),
-                tint = POSTheme.colors.icon,
+                tint = AppTheme.colors.icon,
                 contentDescription = null
             )
         }
@@ -55,20 +56,20 @@ object ButtonHelper {
     @Composable
     fun radioButton(text: String, selected: Boolean, onClick: () -> Unit) {
         Row(modifier = Modifier.width(192.dp).fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
-            RadioButton(onClick = onClick, selected = selected, colors = RadioButtonDefaults.colors(POSTheme.colors.button))
-            Text(text = text, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, color = POSTheme.colors.contentText)
+            RadioButton(onClick = onClick, selected = selected, colors = RadioButtonDefaults.colors(AppTheme.colors.button))
+            Text(text = text, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, color = AppTheme.colors.contentText)
         }
     }
 
     @Composable
     fun radioGroup(modifier: Modifier, text: String, height: Dp = RADIO_GROUP_HEIGHT, content: @Composable () -> Unit) {
         val borderWidth = Dimens.borderWidth
-        val borderColor = POSTheme.colors.borderChecked
+        val borderColor = AppTheme.colors.borderChecked
         Box(modifier = modifier.height(height), contentAlignment = Alignment.Center) {
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Divider(modifier = Modifier.width(24.dp).height(borderWidth), color = borderColor)
-                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = Dimens.contentSize, color = POSTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
+                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = Dimens.contentSize, color = AppTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
                     Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
                 }
                 val params = Modifier.weight(1.0f)
@@ -94,7 +95,7 @@ fun posButton(
     enabled: Boolean = true,
     elevation: Dp = 0.dp,
     cornerRadius: Dp = 0.dp,
-    backgroundColor: Color = whiteColor,
+    backgroundColor: Color = com.pos.encode.ui.theme.Colors.white,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     border: BorderStroke ? = null,
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
@@ -132,7 +133,7 @@ fun whiteRectangleButton(
         elevation = ButtonDefaults.elevation(0.dp),
         shape = RoundedCornerShape(0.dp),
         border = border,
-        colors = ButtonDefaults.buttonColors(whiteColor),
+        colors = ButtonDefaults.buttonColors(com.pos.encode.ui.theme.Colors.white),
         contentPadding = contentPadding,
         content = content
     )
