@@ -1,4 +1,4 @@
-package com.pos.encode.ui.theme
+package com.sea.pos.resource
 
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -11,13 +11,15 @@ private val semiBoldFont = Font("font/gy_semi_bold.otf", FontWeight.W600)
 private val boldFont = Font("font/gy_bold.ttf", FontWeight.W700)
 private val heavyFont = Font("font/gy_heavy.ttf", FontWeight.W900)
 
-// Create a font family to use in TextStyles
-val POSFontFamily = FontFamily(lightFont, regularFont, mediumFont, boldFont)
+
 
 val boldFontFamily = FontFamily(boldFont)
 val mediumFontFamily = FontFamily(mediumFont)
 
 object Fonts {
+
+    // Create a font family to use in TextStyles
+    val defaultFontFamily = FontFamily(lightFont, regularFont, mediumFont, boldFont)
 
     val bold = FontFamily(boldFont)
 

@@ -7,13 +7,14 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.pos.encode.theme.AppTheme
-import com.pos.encode.ui.theme.*
+import com.sea.pos.theme.AppTheme
+import com.sea.pos.resource.Colors
+import com.sea.pos.resource.Dimens
+import com.sea.pos.resource.boldFontFamily
 
 object ButtonUtil {
 

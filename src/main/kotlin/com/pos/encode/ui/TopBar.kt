@@ -11,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.pos.encode.theme.AppTheme
-import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.boldFontFamily
+import com.sea.pos.theme.AppTheme
+import com.sea.pos.resource.Dimens
+import com.sea.pos.resource.boldFontFamily
 
 object TopBar {
 

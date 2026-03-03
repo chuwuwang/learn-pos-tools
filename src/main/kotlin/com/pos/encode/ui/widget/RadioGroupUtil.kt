@@ -10,10 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.pos.encode.theme.AppTheme
-import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.boldFontFamily
-import com.pos.encode.ui.theme.mediumFontFamily
+import com.sea.pos.theme.AppTheme
+import com.sea.pos.resource.Dimens
+import com.sea.pos.resource.boldFontFamily
+import com.sea.pos.resource.mediumFontFamily
 import com.pos.encode.ui.widget.ButtonHelper.RADIO_GROUP_HEIGHT
 
 object RadioGroupUtil {

@@ -1,4 +1,4 @@
-package com.pos.encode.theme
+package com.sea.pos.theme
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.colorspace.ColorSpaces

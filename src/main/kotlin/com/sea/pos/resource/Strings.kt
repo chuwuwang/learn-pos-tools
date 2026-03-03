@@ -1,4 +1,4 @@
-package com.pos.encode.ui.theme
+package com.sea.pos.resource
 
 object Strings {
 

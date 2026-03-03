@@ -11,10 +11,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.pos.encode.theme.AppTheme
-import com.pos.encode.ui.theme.Colors
-import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.boldFontFamily
+import com.sea.pos.theme.AppTheme
+import com.sea.pos.resource.Colors
+import com.sea.pos.resource.Dimens
+import com.sea.pos.resource.boldFontFamily
 
 internal object RwButton {
 

@@ -1,9 +1,9 @@
-package com.pos.encode.theme
+package com.sea.pos.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.pos.encode.ui.theme.Colors
+import com.sea.pos.resource.Colors
 
 @Stable
 object AppTheme {

@@ -1,4 +1,4 @@
-package com.pos.encode.ui.common
+package com.sea.pos.ui.util
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

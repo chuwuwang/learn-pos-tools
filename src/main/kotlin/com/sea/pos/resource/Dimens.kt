@@ -1,4 +1,4 @@
-package com.pos.encode.ui.theme
+package com.sea.pos.resource
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp

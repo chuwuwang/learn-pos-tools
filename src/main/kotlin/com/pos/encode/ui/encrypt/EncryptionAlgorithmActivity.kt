@@ -13,9 +13,9 @@ import com.pos.encode.com.pos.encode.ui.CommonUiUtil
 import com.pos.encode.ui.TopBar
 import com.pos.encode.ui.TopBar.topBarItemView
 import com.pos.encode.extension.valid
-import com.pos.encode.theme.AppTheme
-import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.Strings
+import com.sea.pos.theme.AppTheme
+import com.sea.pos.resource.Dimens
+import com.sea.pos.resource.Strings
 import com.pos.encode.ui.widget.ButtonHelper
 import com.pos.encode.ui.widget.TextFieldHelper
 

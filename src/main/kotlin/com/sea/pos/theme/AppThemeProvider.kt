@@ -1,4 +1,4 @@
-package com.pos.encode.theme
+package com.sea.pos.theme
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.TweenSpec
@@ -7,7 +7,7 @@ import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
-import com.pos.encode.ui.theme.POSFontFamily
+import com.sea.pos.resource.Fonts
 
 @Composable
 fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable () -> Unit) {
@@ -89,7 +89,7 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
 
     // Use the font family to define a custom typography
     val craneTypography = Typography(
-        defaultFontFamily = POSFontFamily,
+        defaultFontFamily = Fonts.defaultFontFamily,
         /* ... */
     )
     CompositionLocalProvider(AppTheme.defaultLocalColors provides colors) {

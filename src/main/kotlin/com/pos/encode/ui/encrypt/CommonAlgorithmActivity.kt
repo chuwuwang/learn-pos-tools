@@ -3,9 +3,9 @@ package com.pos.encode.ui.encrypt
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.pos.encode.ui.common.HorizontalDivider
+import com.sea.pos.ui.util.HorizontalDivider
 import com.pos.encode.ui.common.Topbar
-import com.pos.encode.ui.theme.Strings
+import com.sea.pos.resource.Strings
 
 @Composable
 fun CommonAlgorithmActivity(modifier: Modifier) {

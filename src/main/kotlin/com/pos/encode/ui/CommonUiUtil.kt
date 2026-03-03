@@ -13,10 +13,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.pos.encode.Algorithm
 import com.pos.encode.com.pos.encode.ui.widget.RadioGroupUtil
-import com.pos.encode.theme.AppTheme
-import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.Strings
-import com.pos.encode.ui.theme.boldFontFamily
+import com.sea.pos.theme.AppTheme
+import com.sea.pos.resource.Dimens
+import com.sea.pos.resource.Strings
+import com.sea.pos.resource.boldFontFamily
 import com.pos.encode.ui.widget.ButtonHelper
 
 object CommonUiUtil {

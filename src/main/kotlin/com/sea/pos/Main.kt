@@ -1,4 +1,4 @@
-package com.pos.encode
+package com.sea.pos
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
@@ -18,12 +18,12 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.pos.encode.com.pos.encode.ui.iso8583.Bitmap8583Screen
-import com.pos.encode.theme.AppTheme
-import com.pos.encode.theme.SeaTheme
 import com.pos.encode.ui.encrypt.CommonAlgorithmActivity
 import com.pos.encode.ui.encrypt.EncryptionAlgorithmActivity
 import com.pos.encode.ui.encrypt.HashAlgorithmActivity
-import com.pos.encode.ui.home.Sidebar
+import com.sea.pos.theme.AppTheme
+import com.sea.pos.theme.SeaTheme
+import com.sea.pos.ui.home.Sidebar
 
 fun main() = application {
     val position = WindowPosition.Aligned(Alignment.Center)

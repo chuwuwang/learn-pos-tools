@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.pos.encode.theme.AppTheme
-import com.pos.encode.ui.theme.Dimens
-import com.pos.encode.ui.theme.Strings
-import com.pos.encode.ui.theme.boldFontFamily
-import com.pos.encode.ui.theme.mediumFontFamily
+import com.sea.pos.theme.AppTheme
+import com.sea.pos.resource.Dimens
+import com.sea.pos.resource.Strings
+import com.sea.pos.resource.boldFontFamily
+import com.sea.pos.resource.mediumFontFamily
 
 object DialogHelper {
 

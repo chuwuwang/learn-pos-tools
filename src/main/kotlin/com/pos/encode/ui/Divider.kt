@@ -8,7 +8,7 @@ import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.pos.encode.ui.theme.Colors
+import com.sea.pos.resource.Colors
 
 @Composable
 fun dividerLightGray() {
