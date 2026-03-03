@@ -1,4 +1,4 @@
-package com.sea.pos.resource
+package com.sea.pos.ui.resource
 
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -10,7 +10,6 @@ private val mediumFont = Font("font/gy_medium.otf", FontWeight.W500)
 private val semiBoldFont = Font("font/gy_semi_bold.otf", FontWeight.W600)
 private val boldFont = Font("font/gy_bold.ttf", FontWeight.W700)
 private val heavyFont = Font("font/gy_heavy.ttf", FontWeight.W900)
-
 
 
 val boldFontFamily = FontFamily(boldFont)

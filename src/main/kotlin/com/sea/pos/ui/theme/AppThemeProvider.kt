@@ -1,4 +1,4 @@
-package com.sea.pos.theme
+package com.sea.pos.ui.theme
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.TweenSpec
@@ -7,7 +7,7 @@ import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
-import com.sea.pos.resource.Fonts
+import com.sea.pos.ui.resource.Fonts
 
 @Composable
 fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable () -> Unit) {

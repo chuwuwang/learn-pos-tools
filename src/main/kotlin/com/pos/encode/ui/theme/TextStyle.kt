@@ -2,10 +2,10 @@ package com.pos.encode.com.pos.encode.ui.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
-import com.sea.pos.theme.AppTheme
-import com.sea.pos.resource.Dimens
-import com.sea.pos.resource.boldFontFamily
-import com.sea.pos.resource.mediumFontFamily
+import com.sea.pos.ui.theme.AppTheme
+import com.sea.pos.ui.resource.Dimens
+import com.sea.pos.ui.resource.boldFontFamily
+import com.sea.pos.ui.resource.mediumFontFamily
 
 @Composable
 fun MainBoldTextStyle(): TextStyle {

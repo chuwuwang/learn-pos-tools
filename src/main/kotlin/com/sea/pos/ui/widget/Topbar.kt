@@ -1,4 +1,4 @@
-package com.pos.encode.ui.common
+package com.sea.pos.ui.widget
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,9 +11,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.sea.pos.theme.AppTheme
-import com.sea.pos.resource.Dimens
-import com.sea.pos.resource.Fonts
+import com.sea.pos.ui.resource.Dimens
+import com.sea.pos.ui.resource.Fonts
+import com.sea.pos.ui.theme.AppTheme
 
 @Composable
 fun Topbar(list: List<String>, selection: Int = 0, onClick: (String) -> Unit) {

@@ -1,4 +1,4 @@
-package com.sea.pos.ui.util
+package com.sea.pos.ui.widget
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

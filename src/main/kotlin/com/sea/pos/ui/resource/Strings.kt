@@ -1,4 +1,4 @@
-package com.sea.pos.resource
+package com.sea.pos.ui.resource
 
 object Strings {
 

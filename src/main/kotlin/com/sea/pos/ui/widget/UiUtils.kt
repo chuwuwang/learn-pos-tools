@@ -1,8 +1,8 @@
-package com.sea.pos.ui.util
+package com.sea.pos.ui.widget
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.sea.pos.theme.AppTheme
+import com.sea.pos.ui.theme.AppTheme
 
 object UiUtils {
 

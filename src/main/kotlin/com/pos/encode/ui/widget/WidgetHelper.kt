@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.sea.pos.resource.Colors
+import com.sea.pos.ui.resource.Colors
 
 @Composable
 fun radioSelectView(modifier: Modifier, text: String, selected: Boolean, onClick: () -> Unit) {

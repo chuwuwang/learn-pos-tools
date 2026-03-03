@@ -1,4 +1,4 @@
-package com.sea.pos.ui.home
+package com.sea.pos.ui.widget
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,16 +11,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.sea.pos.resource.Dimens
-import com.sea.pos.resource.Fonts
-import com.sea.pos.resource.Strings
-import com.sea.pos.ui.home.Sidebar.MENU_COMMON_ALGORITHM
-import com.sea.pos.ui.home.Sidebar.MENU_ENCRYPTION_ALGORITHM
-import com.sea.pos.ui.home.Sidebar.MENU_HASH_ALGORITHM
-import com.sea.pos.ui.home.Sidebar.MENU_ISO8583_BITMAP
-import com.sea.pos.ui.util.Horizontal
-import com.sea.pos.ui.util.UiUtils
-import com.sea.pos.ui.util.Vertical
+import com.sea.pos.ui.resource.Dimens
+import com.sea.pos.ui.resource.Fonts
+import com.sea.pos.ui.resource.Strings
+import com.sea.pos.ui.widget.Sidebar.MENU_COMMON_ALGORITHM
+import com.sea.pos.ui.widget.Sidebar.MENU_ENCRYPTION_ALGORITHM
+import com.sea.pos.ui.widget.Sidebar.MENU_HASH_ALGORITHM
+import com.sea.pos.ui.widget.Sidebar.MENU_ISO8583_BITMAP
 
 object Sidebar {
 

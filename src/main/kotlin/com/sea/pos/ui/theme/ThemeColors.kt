@@ -1,4 +1,4 @@
-package com.sea.pos.theme
+package com.sea.pos.ui.theme
 
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color

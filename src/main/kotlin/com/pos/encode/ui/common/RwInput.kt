@@ -12,10 +12,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.pos.encode.com.pos.encode.ui.theme.MainBoldTextStyle
 import com.pos.encode.com.pos.encode.ui.theme.MainMediumTextStyle
-import com.sea.pos.theme.AppTheme
-import com.sea.pos.ui.util.Vertical
-import com.sea.pos.resource.Dimens
-import com.sea.pos.resource.mediumFontFamily
+import com.sea.pos.ui.theme.AppTheme
+import com.sea.pos.ui.widget.Vertical
+import com.sea.pos.ui.resource.Dimens
+import com.sea.pos.ui.resource.mediumFontFamily
 
 internal object RwInput {
 

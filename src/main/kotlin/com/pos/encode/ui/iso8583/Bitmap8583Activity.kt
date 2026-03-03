@@ -22,10 +22,10 @@ import com.pos.encode.com.pos.encode.ui.common.RwInput
 import com.pos.encode.com.pos.encode.ui.widget.decryptButton
 import com.pos.encode.com.pos.encode.ui.widget.errorButton
 import com.pos.encode.com.pos.encode.ui.widget.horizontal
-import com.sea.pos.theme.AppTheme
-import com.sea.pos.ui.util.Vertical
-import com.sea.pos.resource.Dimens
-import com.sea.pos.resource.mediumFontFamily
+import com.sea.pos.ui.theme.AppTheme
+import com.sea.pos.ui.widget.Vertical
+import com.sea.pos.ui.resource.Dimens
+import com.sea.pos.ui.resource.mediumFontFamily
 import com.pos.encode.ui.widget.DialogHelper
 import com.pos.encode.util.ByteUtil
 

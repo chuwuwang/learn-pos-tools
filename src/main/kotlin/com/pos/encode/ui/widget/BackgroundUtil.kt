@@ -3,7 +3,7 @@ package com.pos.encode.com.pos.encode.ui.widget
 import androidx.compose.material.TextFieldColors
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import com.sea.pos.theme.AppTheme
+import com.sea.pos.ui.theme.AppTheme
 
 object BackgroundUtil {
 
