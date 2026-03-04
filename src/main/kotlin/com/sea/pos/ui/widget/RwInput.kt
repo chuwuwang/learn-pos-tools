@@ -20,7 +20,7 @@ import com.sea.pos.ui.theme.AppTheme
 
 @Composable
 fun RwInputField(height: Dp, value: String, maxLength: Int, onValueChange: (String) -> Unit) {
-    Row(modifier = UiUtils.spaceModifier.height(height), verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = UiUtils.modifierSpace.height(height), verticalAlignment = Alignment.CenterVertically) {
         InputText(Modifier.weight(1.0f).fillMaxHeight(), value, onValueChange)
         LengthText(value.length, maxLength)
     }

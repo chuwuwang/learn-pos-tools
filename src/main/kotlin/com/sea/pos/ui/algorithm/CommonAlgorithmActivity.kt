@@ -53,5 +53,5 @@ private fun XORScreen() {
         outputText.value = it
     }
 
-    RwTextButton(UiUtils.spaceXxxModifier, "Done") {}
+    RwTextButton(UiUtils.modifierSpace_xxx, "Done") {}
 }

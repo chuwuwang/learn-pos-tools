@@ -15,7 +15,7 @@ import com.pos.encode.com.pos.encode.ui.widget.ButtonUtil
 import com.pos.encode.com.pos.encode.ui.widget.InputTextFieldUtil
 import com.pos.encode.ui.TopBar
 import com.pos.encode.ui.TopBar.topBarItemView
-import com.pos.encode.extension.valid
+import com.sea.pos.extension.valid
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Strings
 import com.pos.encode.ui.widget.DialogHelper

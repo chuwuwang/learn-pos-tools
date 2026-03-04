@@ -1,4 +1,4 @@
-package com.pos.encode.extension
+package com.sea.pos.extension
 
 val String.valid: Boolean
     get() = isNotBlank()

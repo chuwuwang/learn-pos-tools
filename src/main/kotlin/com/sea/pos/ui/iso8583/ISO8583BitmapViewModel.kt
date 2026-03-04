@@ -1,0 +1,41 @@
+package com.sea.pos.ui.iso8583
+
+import com.pos.encode.util.ByteUtil
+import com.sea.pos.ui.BaseViewModel
+
+class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
+
+    override fun initialState(): ISO8583BitmapState {
+        val bitmapString = "0000000000000000"
+        val bytes = ByteUtil.hexString2Bytes(bitmapString)
+        val binaryBytes = ByteUtil.bytes2BinaryBytes(bytes)
+        return ISO8583BitmapState(bitmapString, binaryBytes)
+    }
+
+    private fun getDynamicBitmap(bitmaps: BooleanArray, index: Int): ByteArray {
+        val item = bitmaps[index]
+        bitmaps[index] = ! item
+        if (index != 1) return ByteUtil.binaryBytes2Bytes(bitmaps)
+        if (item) {
+            val temp = ByteArray(8)
+            val oldBytes = ByteUtil.binaryBytes2Bytes(bitmaps)
+            System.arraycopy(oldBytes, 0, temp, 0, temp.size)
+            return temp
+        } else {
+            val temp = ByteArray(16)
+            val oldBytes = ByteUtil.binaryBytes2Bytes(bitmaps)
+            System.arraycopy(oldBytes, 0, temp, 0, oldBytes.size)
+            return temp
+        }
+    }
+
+}
+
+data class ISO8583BitmapState(
+    val bitmapString: String,
+    val bitmaps: BooleanArray,
+)
+
+sealed class ISO8583BitmapIntent {
+
+}
