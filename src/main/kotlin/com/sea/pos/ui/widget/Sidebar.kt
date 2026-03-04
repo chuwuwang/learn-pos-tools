@@ -36,19 +36,19 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
     Column(modifier) {
         Vertical(Dimens.space_x)
 
-        ItemView(Strings.hash_algorithm, UiUtils.getIconColor(index, MENU_HASH_ALGORITHM), resourcePath = "images/ic_menu_hash_algo_black.png") {
+        ItemView(Strings.hash_algorithm, UiUtils.IconColor(index, MENU_HASH_ALGORITHM), resourcePath = "images/ic_menu_hash_algo_black.png") {
             onClick(MENU_HASH_ALGORITHM)
         }
 
-        ItemView(Strings.encryption_algorithm, UiUtils.getIconColor(index, MENU_ENCRYPTION_ALGORITHM), resourcePath = "images/ic_menu_des_ago_black.png") {
+        ItemView(Strings.encryption_algorithm, UiUtils.IconColor(index, MENU_ENCRYPTION_ALGORITHM), resourcePath = "images/ic_menu_des_ago_black.png") {
             onClick(MENU_ENCRYPTION_ALGORITHM)
         }
 
-        ItemView(Strings.common_algo, UiUtils.getIconColor(index, MENU_COMMON_ALGORITHM), resourcePath = "images/ic_menu_common_algo_black.png") {
+        ItemView(Strings.common_algo, UiUtils.IconColor(index, MENU_COMMON_ALGORITHM), resourcePath = "images/ic_menu_common_algo_black.png") {
             onClick(MENU_COMMON_ALGORITHM)
         }
 
-        ItemView(Strings.iso8583_bitmap, UiUtils.getIconColor(index, MENU_ISO8583_BITMAP), resourcePath = "images/ic_menu_bitmap_black.png") {
+        ItemView(Strings.iso8583_bitmap, UiUtils.IconColor(index, MENU_ISO8583_BITMAP), resourcePath = "images/ic_menu_bitmap_black.png") {
             onClick(MENU_ISO8583_BITMAP)
         }
 

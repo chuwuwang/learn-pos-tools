@@ -34,8 +34,12 @@ object AppTheme {
 
         icon = Colors.white,
         iconChecked = WeChatColors.main_theme,
-
+        button = WeChatColors.main_theme,
+        buttonText = Colors.white,
+        buttonChecked = WeChatColors.main_theme,
+        buttonCheckedText = Colors.white,
         divider = WeChatColors.gray,
+        dividerChecked = WeChatColors.main_theme,
 
         ///
 
@@ -54,7 +58,6 @@ object AppTheme {
         borderChecked = WeChatColors.success,
         dialogText = Colors.white,
         dialogBackground = Colors.white,
-        button = WeChatColors.main_theme,
     )
 
 }

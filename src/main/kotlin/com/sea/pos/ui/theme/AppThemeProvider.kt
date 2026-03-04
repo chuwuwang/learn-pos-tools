@@ -30,8 +30,12 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
 
     val icon = animateColorAsState(targetColors.icon, animationSpec)
     val iconChecked = animateColorAsState(targetColors.iconChecked, animationSpec)
-
+    val button = animateColorAsState(targetColors.button, animationSpec)
+    val buttonText = animateColorAsState(targetColors.buttonText, animationSpec)
+    val buttonChecked = animateColorAsState(targetColors.buttonChecked, animationSpec)
+    val buttonCheckedText = animateColorAsState(targetColors.buttonCheckedText, animationSpec)
     val divider = animateColorAsState(targetColors.divider, animationSpec)
+    val dividerChecked = animateColorAsState(targetColors.dividerChecked, animationSpec)
 
     val topBarText = animateColorAsState(targetColors.topBarText, animationSpec)
     val topBarTextChecked = animateColorAsState(targetColors.topBarTextChecked, animationSpec)
@@ -48,7 +52,7 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
     val borderChecked = animateColorAsState(targetColors.borderChecked, animationSpec)
     val dialogText = animateColorAsState(targetColors.dialogText, animationSpec)
     val dialogBackground = animateColorAsState(targetColors.dialogBackground, animationSpec)
-    val button = animateColorAsState(targetColors.button, animationSpec)
+
 
     val colors = ThemeColors(
         textMain = textMain.value,
@@ -65,8 +69,12 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
 
         icon = icon.value,
         iconChecked = iconChecked.value,
-
+        button = button.value,
+        buttonText = buttonText.value,
+        buttonChecked = buttonChecked.value,
+        buttonCheckedText = buttonCheckedText.value,
         divider = divider.value,
+        dividerChecked = dividerChecked.value,
 
         /////////////
 
@@ -85,7 +93,6 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
         borderChecked = borderChecked.value,
         dialogText = dialogText.value,
         dialogBackground = dialogBackground.value,
-        button = button.value
     )
 
     // Use the font family to define a custom typography
