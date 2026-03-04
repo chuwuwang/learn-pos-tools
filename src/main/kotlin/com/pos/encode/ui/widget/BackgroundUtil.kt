@@ -8,6 +8,6 @@ import com.sea.pos.ui.theme.AppTheme
 object BackgroundUtil {
 
     val inputTextFieldColor: TextFieldColors
-        @Composable get() = TextFieldDefaults.outlinedTextFieldColors(textColor = AppTheme.colors.contentText, cursorColor = AppTheme.colors.borderChecked, unfocusedBorderColor = AppTheme.colors.border, focusedBorderColor = AppTheme.colors.borderChecked)
+        @Composable get() = TextFieldDefaults.outlinedTextFieldColors(textColor = AppTheme.AppColors.contentText, cursorColor = AppTheme.AppColors.borderChecked, unfocusedBorderColor = AppTheme.AppColors.border, focusedBorderColor = AppTheme.AppColors.borderChecked)
 
 }

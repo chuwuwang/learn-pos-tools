@@ -38,10 +38,10 @@ fun app() {
     val current = remember { mutableStateOf(0) }
     SeaTheme {
         Row {
-            val modifierSidebar = Modifier.weight(1f).fillMaxHeight().background(AppTheme.colors.bgSidebar)
+            val modifierSidebar = Modifier.weight(1f).fillMaxHeight().background(AppTheme.AppColors.bgSidebar)
             Sidebar(modifierSidebar, current.value) { current.value = it }
 
-            val modifierContent = Modifier.weight(3f).fillMaxHeight().background(AppTheme.colors.bgContent)
+            val modifierContent = Modifier.weight(3f).fillMaxHeight().background(AppTheme.AppColors.bgContent)
             BoxWithConstraints(modifierContent) { SwitchScreen(current, modifierContent) }
         }
     }

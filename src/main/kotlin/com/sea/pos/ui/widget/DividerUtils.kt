@@ -7,5 +7,5 @@ import com.sea.pos.ui.theme.AppTheme
 
 @Composable
 fun HorizontalDivider() {
-    Divider(thickness = 1.dp, color = AppTheme.colors.divider)
+    Divider(thickness = 1.dp, color = AppTheme.AppColors.divider)
 }

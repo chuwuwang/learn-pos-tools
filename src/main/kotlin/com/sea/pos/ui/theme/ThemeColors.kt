@@ -7,7 +7,6 @@ import androidx.compose.ui.graphics.Color
 class ThemeColors(
     val textMain: Color,
     val textSecondary: Color,
-    val textNeutral: Color,
     val textTertiary: Color,
     val textError: Color,
     val textChecked: Color,

@@ -21,8 +21,8 @@ object ButtonUtil {
     @Composable
     fun encryptButton(modifier: Modifier, onClick: () -> Unit) {
         Button(modifier = modifier.size(Dimens.buttonWidth, Dimens.buttonHeight), colors = ButtonDefaults.buttonColors(
-            AppTheme.colors.button), onClick = onClick) {
-            Icon(painter = painterResource("images/ic_encrypt.png"), modifier = Modifier.size(36.dp), tint = AppTheme.colors.icon, contentDescription = null)
+            AppTheme.AppColors.button), onClick = onClick) {
+            Icon(painter = painterResource("images/ic_encrypt.png"), modifier = Modifier.size(36.dp), tint = AppTheme.AppColors.icon, contentDescription = null)
         }
     }
 
@@ -34,8 +34,8 @@ object ButtonUtil {
 
 @Composable
 fun decryptButton(onClick: () -> Unit) {
-    Button(modifier = Modifier.size(Dimens.buttonWidth, Dimens.buttonHeight), colors = ButtonDefaults.buttonColors(AppTheme.colors.button), onClick = onClick) {
-        Icon(painter = painterResource("images/ic_decrypt.png"), modifier = Modifier.size(36.dp), tint = AppTheme.colors.icon, contentDescription = null)
+    Button(modifier = Modifier.size(Dimens.buttonWidth, Dimens.buttonHeight), colors = ButtonDefaults.buttonColors(AppTheme.AppColors.button), onClick = onClick) {
+        Icon(painter = painterResource("images/ic_decrypt.png"), modifier = Modifier.size(36.dp), tint = AppTheme.AppColors.icon, contentDescription = null)
     }
 }
 

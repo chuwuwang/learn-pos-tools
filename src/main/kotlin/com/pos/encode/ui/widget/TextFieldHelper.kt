@@ -28,15 +28,15 @@ object TextFieldHelper {
                 fontSize = Dimens.contentSize,
                 fontFamily = boldFontFamily,
                 textAlign = TextAlign.Center,
-                color = AppTheme.colors.contentText
+                color = AppTheme.AppColors.contentText
             )
             Row(modifier = Modifier.padding(Dimens.marginStart, 0.dp, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
                 OutlinedTextField(
                     modifier = Modifier.weight(1.0f).fillMaxHeight(),
                     value = value,
                     onValueChange = onValueChange,
-                    textStyle = TextStyle(color = AppTheme.colors.contentText, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, letterSpacing = Dimens.wordLetterSpacing),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(textColor = AppTheme.colors.contentText, cursorColor = AppTheme.colors.borderChecked, unfocusedBorderColor = AppTheme.colors.border, focusedBorderColor = AppTheme.colors.borderChecked)
+                    textStyle = TextStyle(color = AppTheme.AppColors.contentText, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, letterSpacing = Dimens.wordLetterSpacing),
+                    colors = TextFieldDefaults.outlinedTextFieldColors(textColor = AppTheme.AppColors.contentText, cursorColor = AppTheme.AppColors.borderChecked, unfocusedBorderColor = AppTheme.AppColors.border, focusedBorderColor = AppTheme.AppColors.borderChecked)
                 )
                 Text(
                     modifier = Modifier.width(HINT_TEXT_WIDTH),
@@ -44,7 +44,7 @@ object TextFieldHelper {
                     textAlign = TextAlign.Center,
                     fontFamily = mediumFontFamily,
                     text = "[" + value.length.toString() + "]",
-                    color = if (value.length > maxLength) AppTheme.colors.borderError else AppTheme.colors.borderChecked
+                    color = if (value.length > maxLength) AppTheme.AppColors.borderError else AppTheme.AppColors.borderChecked
                 )
             }
         }

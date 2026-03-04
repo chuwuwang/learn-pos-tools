@@ -50,12 +50,12 @@ object CommonUiUtil {
     @Composable
     fun showHintText(text: String) {
         val modifier = Modifier.padding(start = Dimens.marginStart, top = Dimens.marginTop)
-        Text(modifier = modifier, text = text, fontSize = Dimens.descriptionSize, fontFamily = boldFontFamily, textAlign = TextAlign.Center, color = AppTheme.colors.contentText)
+        Text(modifier = modifier, text = text, fontSize = Dimens.descriptionSize, fontFamily = boldFontFamily, textAlign = TextAlign.Center, color = AppTheme.AppColors.contentText)
     }
 
     @Composable
     fun horizontalDivider() {
-        Divider(thickness = Dimens.dividerHeight, color = AppTheme.colors.divider)
+        Divider(thickness = Dimens.dividerHeight, color = AppTheme.AppColors.divider)
     }
 
     val roundedCornerShapeWith4: RoundedCornerShape

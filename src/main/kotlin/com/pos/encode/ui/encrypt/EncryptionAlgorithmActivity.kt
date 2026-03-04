@@ -49,7 +49,7 @@ object EncryptionAlgorithmActivity {
         val visibleDialog = remember { mutableStateOf(false) }
 
         Column(modifier) {
-            var params = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(AppTheme.colors.bgContent)
+            var params = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(AppTheme.AppColors.bgContent)
 
             showTopBar(algorithmText)
 

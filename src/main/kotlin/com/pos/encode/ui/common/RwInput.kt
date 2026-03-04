@@ -39,10 +39,10 @@ internal object RwInput {
     @Composable
     private fun Input(modifier: Modifier, value: String, onValueChange: (String) -> Unit) {
         val textFieldColors = TextFieldDefaults.outlinedTextFieldColors(
-            textColor = AppTheme.colors.contentText,
-            cursorColor = AppTheme.colors.borderChecked,
-            unfocusedBorderColor = AppTheme.colors.border,
-            focusedBorderColor = AppTheme.colors.borderChecked
+            textColor = AppTheme.AppColors.contentText,
+            cursorColor = AppTheme.AppColors.borderChecked,
+            unfocusedBorderColor = AppTheme.AppColors.border,
+            focusedBorderColor = AppTheme.AppColors.borderChecked
         )
         val textStyle = MainMediumTextStyle().copy(letterSpacing = Dimens.wordLetterSpacing)
         OutlinedTextField(modifier = modifier, value = value, onValueChange = onValueChange, textStyle = textStyle, colors = textFieldColors)
@@ -58,7 +58,7 @@ internal object RwInput {
     private fun LengthText(value: String, maxLength: Int) {
         val modifier = Modifier.width(56.dp)
         val text = "[" + value.length.toString() + "]"
-        val color = if (value.length > maxLength) AppTheme.colors.borderError else AppTheme.colors.borderChecked
+        val color = if (value.length > maxLength) AppTheme.AppColors.borderError else AppTheme.AppColors.borderChecked
         Text(modifier = modifier, text = text, color = color, textAlign = TextAlign.Center, fontFamily = mediumFontFamily, fontSize = Dimens.secondarySize)
     }
 

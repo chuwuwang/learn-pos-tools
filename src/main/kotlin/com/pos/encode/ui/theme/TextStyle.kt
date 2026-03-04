@@ -9,10 +9,10 @@ import com.sea.pos.ui.resource.mediumFontFamily
 
 @Composable
 fun MainBoldTextStyle(): TextStyle {
-    return TextStyle(fontFamily = boldFontFamily, fontSize = Dimens.mainSize, color = AppTheme.colors.textMain)
+    return TextStyle(fontFamily = boldFontFamily, fontSize = Dimens.mainSize, color = AppTheme.AppColors.textMain)
 }
 
 @Composable
 fun MainMediumTextStyle(): TextStyle {
-    return TextStyle(fontFamily = mediumFontFamily, fontSize = Dimens.mainSize, color = AppTheme.colors.textMain)
+    return TextStyle(fontFamily = mediumFontFamily, fontSize = Dimens.mainSize, color = AppTheme.AppColors.textMain)
 }

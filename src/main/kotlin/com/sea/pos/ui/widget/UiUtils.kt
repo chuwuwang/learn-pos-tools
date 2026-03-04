@@ -17,7 +17,7 @@ object UiUtils {
 
     @Composable
     fun IconColor(index: Int, default: Int): Color {
-        return if (index == default) AppTheme.colors.iconChecked else AppTheme.colors.icon
+        return if (index == default) AppTheme.AppColors.iconChecked else AppTheme.AppColors.icon
     }
 
 }

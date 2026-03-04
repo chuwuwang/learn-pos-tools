@@ -28,13 +28,13 @@ object DialogHelper {
             resizable = false,
             title = Strings.error.toUpperCase(),
             content = {
-                val modifier = Modifier.fillMaxSize().background(AppTheme.colors.dialogBackground)
+                val modifier = Modifier.fillMaxSize().background(AppTheme.AppColors.dialogBackground)
                 Column(modifier) {
                     Text(
                         modifier = Modifier.padding(Dimens.dialogPadding, Dimens.dialogPadding, Dimens.dialogPadding, 0.dp),
                         textAlign = TextAlign.Start,
                         fontSize = Dimens.contentSize,
-                        color = AppTheme.colors.contentText,
+                        color = AppTheme.AppColors.contentText,
                         text = message,
                         fontFamily = mediumFontFamily
                     )
@@ -44,14 +44,14 @@ object DialogHelper {
                         verticalArrangement = Arrangement.Bottom
                     ) {
                         Column(
-                            modifier = Modifier.size(Dimens.dialogButtonWidth, Dimens.dialogButtonHeight).background(shape = RoundedCornerShape(Dimens.radius), color = AppTheme.colors.button).clickable { visible.value = false },
+                            modifier = Modifier.size(Dimens.dialogButtonWidth, Dimens.dialogButtonHeight).background(shape = RoundedCornerShape(Dimens.radius), color = AppTheme.AppColors.button).clickable { visible.value = false },
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center
                         ) {
                             Text(
                                 textAlign = TextAlign.Center,
                                 fontSize = Dimens.contentSize,
-                                color = AppTheme.colors.dialogText,
+                                color = AppTheme.AppColors.dialogText,
                                 text = Strings.ok.uppercase(),
                                 fontFamily = boldFontFamily
                             )

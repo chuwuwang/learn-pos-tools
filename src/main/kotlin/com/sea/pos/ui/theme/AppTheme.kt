@@ -14,14 +14,13 @@ object AppTheme {
 
     }
 
-    val colors: ThemeColors
+    val AppColors: ThemeColors
         @Composable get() = defaultLocalColors.current
 
     val defaultLocalColors = staticCompositionLocalOf { wechatColors }
 
     val wechatColors = ThemeColors(
         textMain = WeChatColors.black,
-        textNeutral = Colors.text_neutral,
         textTertiary = Colors.text_tertiary,
         textSecondary = Colors.text_secondary,
         textError = Colors.text_error,

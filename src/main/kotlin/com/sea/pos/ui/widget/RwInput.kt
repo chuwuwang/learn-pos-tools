@@ -29,17 +29,17 @@ fun RwInputField(height: Dp, value: String, maxLength: Int, onValueChange: (Stri
 @Composable
 private fun InputText(modifier: Modifier, value: String, onValueChange: (String) -> Unit) {
     val textFieldColors = TextFieldDefaults.outlinedTextFieldColors(
-        textColor = AppTheme.colors.textMain,
-        cursorColor = AppTheme.colors.textChecked,
-        unfocusedBorderColor = AppTheme.colors.divider,
-        focusedBorderColor = AppTheme.colors.textChecked,
+        textColor = AppTheme.AppColors.textMain,
+        cursorColor = AppTheme.AppColors.textChecked,
+        unfocusedBorderColor = AppTheme.AppColors.divider,
+        focusedBorderColor = AppTheme.AppColors.textChecked,
     )
-    val textStyle = TextStyle(fontFamily = Fonts.medium, fontSize = Dimens.sp_text, color = AppTheme.colors.textMain, letterSpacing = 3.sp)
+    val textStyle = TextStyle(fontFamily = Fonts.medium, fontSize = Dimens.sp_text, color = AppTheme.AppColors.textMain, letterSpacing = 3.sp)
     OutlinedTextField(modifier = modifier, value = value, onValueChange = onValueChange, textStyle = textStyle, colors = textFieldColors)
 }
 
 @Composable
 private fun LengthText(length: Int, maxLength: Int) {
-    val color = if (length > maxLength) AppTheme.colors.textError else AppTheme.colors.textChecked
+    val color = if (length > maxLength) AppTheme.AppColors.textError else AppTheme.AppColors.textChecked
     Text(modifier = Modifier.width(Dimens.item_norm), text = "[$length]", color = color, textAlign = TextAlign.Center, fontFamily = Fonts.medium, fontSize = Dimens.sp_text)
 }

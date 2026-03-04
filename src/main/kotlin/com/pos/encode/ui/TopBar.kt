@@ -19,7 +19,7 @@ object TopBar {
 
     @Composable
     fun showTopBar(content: @Composable RowScope.() -> Unit) {
-        val modifier = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(AppTheme.colors.bgContent)
+        val modifier = Modifier.fillMaxWidth().height(Dimens.topBarHeight).background(AppTheme.AppColors.bgContent)
         Row(modifier = modifier, content = content)
     }
 
@@ -40,12 +40,12 @@ object TopBar {
 
     @Composable
     private fun getTextColor(index: Int, selectIndex: Int): Color {
-        return if (selectIndex == index) AppTheme.colors.topBarTextChecked else AppTheme.colors.topBarText
+        return if (selectIndex == index) AppTheme.AppColors.topBarTextChecked else AppTheme.AppColors.topBarText
     }
 
     @Composable
     private fun getDividerColor(index: Int, selectIndex: Int): Color {
-        return if (selectIndex == index) AppTheme.colors.topBarDividerChecked else AppTheme.colors.topBarDivider
+        return if (selectIndex == index) AppTheme.AppColors.topBarDividerChecked else AppTheme.AppColors.topBarDivider
     }
 
 
@@ -67,7 +67,7 @@ object TopBar {
 
     @Composable
     fun divider() {
-        Divider(modifier = Modifier.fillMaxWidth().height(Dimens.dividerHeight), color = AppTheme.colors.divider)
+        Divider(modifier = Modifier.fillMaxWidth().height(Dimens.dividerHeight), color = AppTheme.AppColors.divider)
     }
 
 

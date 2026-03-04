@@ -18,7 +18,6 @@ object Colors {
 
     val text_main = Color(0xFF1A1A1A)
     val text_secondary = Color(0xFF80868B)
-    val text_neutral = Color(0xFF7D7D80)
     val text_tertiary = Color(0xFF999999)
     val text_error = Color(0xFFEC5447)
 

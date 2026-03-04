@@ -28,13 +28,13 @@ object ButtonHelper {
     fun encryptButton(onClick: () -> Unit) {
         Button(
             modifier = Modifier.size(Dimens.buttonWidth, Dimens.buttonHeight).padding(0.dp, 0.dp, Dimens.marginEnd, 0.dp),
-            colors = ButtonDefaults.buttonColors(AppTheme.colors.button),
+            colors = ButtonDefaults.buttonColors(AppTheme.AppColors.button),
             onClick = onClick
         ) {
             Icon(
                 painter = painterResource("images/ic_encrypt.png"),
                 modifier = Modifier.size(36.dp),
-                tint = AppTheme.colors.icon,
+                tint = AppTheme.AppColors.icon,
                 contentDescription = null
             )
         }
@@ -44,13 +44,13 @@ object ButtonHelper {
     fun decryptButton(onClick: () -> Unit) {
         Button(
             modifier = Modifier.size(Dimens.buttonWidth, Dimens.buttonHeight).padding(0.dp, 0.dp, Dimens.marginEnd, 0.dp),
-            colors = ButtonDefaults.buttonColors(AppTheme.colors.button),
+            colors = ButtonDefaults.buttonColors(AppTheme.AppColors.button),
             onClick = onClick
         ) {
             Icon(
                 painter = painterResource("images/ic_decrypt.png"),
                 modifier = Modifier.size(36.dp),
-                tint = AppTheme.colors.icon,
+                tint = AppTheme.AppColors.icon,
                 contentDescription = null
             )
         }
@@ -59,20 +59,20 @@ object ButtonHelper {
     @Composable
     fun radioButton(text: String, selected: Boolean, onClick: () -> Unit) {
         Row(modifier = Modifier.width(192.dp).fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
-            RadioButton(onClick = onClick, selected = selected, colors = RadioButtonDefaults.colors(AppTheme.colors.button))
-            Text(text = text, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, color = AppTheme.colors.contentText)
+            RadioButton(onClick = onClick, selected = selected, colors = RadioButtonDefaults.colors(AppTheme.AppColors.button))
+            Text(text = text, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, color = AppTheme.AppColors.contentText)
         }
     }
 
     @Composable
     fun radioGroup(modifier: Modifier, text: String, height: Dp = RADIO_GROUP_HEIGHT, content: @Composable () -> Unit) {
         val borderWidth = Dimens.borderWidth
-        val borderColor = AppTheme.colors.borderChecked
+        val borderColor = AppTheme.AppColors.borderChecked
         Box(modifier = modifier.height(height), contentAlignment = Alignment.Center) {
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Divider(modifier = Modifier.width(24.dp).height(borderWidth), color = borderColor)
-                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = Dimens.contentSize, color = AppTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
+                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = Dimens.contentSize, color = AppTheme.AppColors.contentText, text = text, fontFamily = boldFontFamily)
                     Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
                 }
                 val params = Modifier.weight(1.0f)

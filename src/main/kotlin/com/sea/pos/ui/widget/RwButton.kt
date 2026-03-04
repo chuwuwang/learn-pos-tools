@@ -1,10 +1,7 @@
 package com.sea.pos.ui.widget
 
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -20,18 +17,31 @@ private val height = 80.dp
 
 @Composable
 fun RwDecryptButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
-    val buttonColors = ButtonDefaults.buttonColors(AppTheme.colors.button)
-    Button(modifier = modifier.size(width, height), colors = buttonColors, onClick = onClick) {
+    Button(modifier = modifier.size(width, height), colors = ButtonColors, onClick = onClick) {
         val painter = painterResource("images/ic_decrypt.png")
-        Icon(painter = painter, modifier = Modifier.size(32.dp), tint = AppTheme.colors.icon, contentDescription = null)
+        Icon(painter = painter, modifier = Modifier.size(32.dp), tint = AppTheme.AppColors.icon, contentDescription = null)
     }
 }
 
 @Composable
 fun RwTextButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit) {
-    val buttonColors = ButtonDefaults.buttonColors(AppTheme.colors.button)
-    Button(modifier = modifier.size(width, height), colors = buttonColors, onClick = onClick) {
-        val textStyle = TextStyle(color = AppTheme.colors.buttonText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center)
-        Text(text, style = textStyle)
+    Button(modifier = modifier.size(width, height), colors = ButtonColors, onClick = onClick) {
+        Text(text, style = ButtonTextStyle)
     }
 }
+
+@Composable
+fun RwErrorButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit) {
+    Button(modifier = modifier.size(width, height), colors = ErrorButtonColors, onClick = onClick) {
+        Text(text, style = ButtonTextStyle)
+    }
+}
+
+private val ButtonColors: ButtonColors
+    @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.button)
+
+private val ErrorButtonColors: ButtonColors
+    @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.textError)
+
+private val ButtonTextStyle: TextStyle
+    @Composable get() = TextStyle(color = AppTheme.AppColors.buttonText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center)

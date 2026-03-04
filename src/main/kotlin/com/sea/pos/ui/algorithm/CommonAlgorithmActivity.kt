@@ -10,7 +10,7 @@ import com.sea.pos.ui.widget.*
 import com.sea.pos.utils.I18nUtils
 
 @Composable
-fun CommonAlgorithmActivity(modifier: Modifier) {
+fun CommonAlgorithmActivity(modifier: Modifier = Modifier) {
     val algoList = listOf(
         I18nUtils.string("common_algo_xor"),
         I18nUtils.string("common_algo_xor_bitwise"),

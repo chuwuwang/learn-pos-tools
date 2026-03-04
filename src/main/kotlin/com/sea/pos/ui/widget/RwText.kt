@@ -9,5 +9,5 @@ import com.sea.pos.ui.theme.AppTheme
 
 @Composable
 fun RwHintText(text: String) {
-    Text(modifier = UiUtils.spaceXxxModifier, text = text, fontSize = Dimens.sp_text, fontFamily = Fonts.bold, textAlign = TextAlign.Center, color = AppTheme.colors.textMain)
+    Text(modifier = UiUtils.spaceXxxModifier, text = text, fontSize = Dimens.sp_text, fontFamily = Fonts.bold, textAlign = TextAlign.Center, color = AppTheme.AppColors.textMain)
 }

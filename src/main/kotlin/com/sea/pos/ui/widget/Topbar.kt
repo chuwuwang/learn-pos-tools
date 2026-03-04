@@ -32,7 +32,7 @@ fun Topbar(list: List<String>, selection: Int = 0, onClick: (String) -> Unit) {
 @Composable
 private fun RowScope.ItemView(text: String, selected: String, onClick: () -> Unit) {
     BoxWithConstraints(Modifier.weight(1.0f).fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
-        val textColor = if (text == selected) AppTheme.colors.mainTheme else AppTheme.colors.textMain
+        val textColor = if (text == selected) AppTheme.AppColors.textChecked else AppTheme.AppColors.textMain
         Text(textAlign = TextAlign.Center, color = textColor, fontSize = Dimens.sp_text, text = text, fontFamily = Fonts.bold)
 
         Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
@@ -43,5 +43,5 @@ private fun RowScope.ItemView(text: String, selected: String, onClick: () -> Uni
 
 @Composable
 private fun Indicator() {
-    Divider(modifier = Modifier.height(3.dp).padding(horizontal = Dimens.space_x), color = AppTheme.colors.mainTheme)
+    Divider(modifier = Modifier.height(3.dp).padding(horizontal = Dimens.space_x), color = AppTheme.AppColors.dividerChecked)
 }

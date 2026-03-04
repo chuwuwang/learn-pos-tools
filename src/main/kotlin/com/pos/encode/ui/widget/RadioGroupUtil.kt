@@ -21,9 +21,9 @@ object RadioGroupUtil {
     @Composable
     fun showRadioButton(text: String, selected: Boolean, onClick: () -> Unit) {
         Row(modifier = Modifier.width(192.dp).fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
-            val radioButtonColors = RadioButtonDefaults.colors(AppTheme.colors.button)
+            val radioButtonColors = RadioButtonDefaults.colors(AppTheme.AppColors.button)
             RadioButton(onClick = onClick, selected = selected, colors = radioButtonColors)
-            Text(text = text, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, color = AppTheme.colors.contentText)
+            Text(text = text, fontSize = Dimens.contentSize, fontFamily = mediumFontFamily, color = AppTheme.AppColors.contentText)
         }
     }
 
@@ -33,7 +33,7 @@ object RadioGroupUtil {
         Box(modifier = modifier, contentAlignment = Alignment.Center) {
             val leftWidth = 24.dp
             val borderWidth = Dimens.borderWidth
-            val borderColor = AppTheme.colors.borderChecked
+            val borderColor = AppTheme.AppColors.borderChecked
             // 从上到下绘制 divider
             Column {
                 // top view
@@ -41,7 +41,7 @@ object RadioGroupUtil {
                     // top left divider
                     Divider(modifier = Modifier.width(leftWidth).height(borderWidth), color = borderColor)
                     // hint text
-                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = Dimens.contentSize, color = AppTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
+                    Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = Dimens.contentSize, color = AppTheme.AppColors.contentText, text = text, fontFamily = boldFontFamily)
                     // top right divider
                     Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
                 }
