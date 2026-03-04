@@ -25,6 +25,7 @@ object AppTheme {
         textTertiary = Colors.text_tertiary,
         textSecondary = Colors.text_secondary,
         textError = Colors.text_error,
+        textChecked = WeChatColors.main_theme,
 
         mainTheme = WeChatColors.main_theme,
 

@@ -10,6 +10,7 @@ class ThemeColors(
     val textNeutral: Color,
     val textTertiary: Color,
     val textError: Color,
+    val textChecked: Color,
 
     val mainTheme: Color,
 
