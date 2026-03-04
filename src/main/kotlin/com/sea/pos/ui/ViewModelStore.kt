@@ -25,6 +25,6 @@ inline fun <reified T : BaseViewModel<*, *> > viewModel(key: String, store: View
 }
 
 @Composable
-inline fun <reified T : BaseViewModel<*, *> > viewModel(container: AppController, key: String = T::class.simpleName !!, noinline factory: () -> T): T {
+inline fun <reified T : BaseViewModel<*, *> > viewModel(container: AppController, key: String = T::class.simpleName ?: "ViewModel", noinline factory: () -> T): T {
     return remember { container.viewModelStore.get(key, factory) }
 }

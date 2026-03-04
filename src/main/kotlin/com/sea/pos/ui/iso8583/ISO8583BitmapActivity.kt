@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import com.sea.pos.AppController
+import com.sea.pos.flow.Event
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
@@ -33,17 +34,15 @@ fun ISO8583BitmapActivity(modifier: Modifier = Modifier, controller: AppControll
 
     LaunchedEffect(Unit) {
         vm.event.collect { event ->
-            when (event) {
-                ISO8583BitmapEvent.ShowToast -> {
+            if (event is Event.ShowToast) {
 
-                }
             }
         }
     }
 
     Column(modifier) {
         BitmapView(state.bitmapBooleans) {
-            val intent = ISO8583BitmapIntent.ClickItem(it)
+            val intent = ISO8583BitmapIntent.ClickBitmapItem(it)
             vm.dispatch(intent)
         }
 

@@ -1,6 +1,9 @@
 package com.sea.pos.ui.iso8583
 
 import com.pos.encode.util.ByteUtil
+import com.sea.pos.flow.Event
+import com.sea.pos.flow.ToastEntity
+import com.sea.pos.flow.ToastType
 import com.sea.pos.ui.BaseViewModel
 import kotlinx.coroutines.launch
 
@@ -15,14 +18,14 @@ class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
 
     fun dispatch(intent: ISO8583BitmapIntent) {
         when (intent) {
-            is ISO8583BitmapIntent.ClickItem -> clickItem(intent)
+            is ISO8583BitmapIntent.ClickBitmapItem -> clickItem(intent)
             is ISO8583BitmapIntent.InputBitmap -> inputBitmap(intent)
             ISO8583BitmapIntent.GenerateBitmap -> generateBitmap()
-            ISO8583BitmapIntent.Reset -> reset()
+            ISO8583BitmapIntent.ResetBitmap -> reset()
         }
     }
 
-    private fun clickItem(intent: ISO8583BitmapIntent.ClickItem) {
+    private fun clickItem(intent: ISO8583BitmapIntent.ClickBitmapItem) {
         val bytes = getDynamicBitmap(state.value.bitmapBooleans, intent.index)
         val hexString = ByteUtil.bytes2HexString(bytes)
         val booleans = ByteUtil.bytes2BinaryBytes(bytes)
@@ -37,7 +40,11 @@ class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
         val bitmapString = state.value.bitmapString
         val length = bitmapString.length
         if (length != 16 && length != 32) {
-            viewModelScope.launch { sendEvent(ISO8583BitmapEvent.ShowToast)}
+            viewModelScope.launch {
+                val entity = ToastEntity(message = "The size of the Bitmap can only be 16 or 32", type = ToastType.ERROR)
+                val event = Event.ShowToast(entity)
+                sendEvent(event)
+            }
         } else {
             val bytes = ByteUtil.hexString2Bytes(bitmapString)
             val booleans = ByteUtil.bytes2BinaryBytes(bytes)
@@ -76,18 +83,12 @@ data class ISO8583BitmapState(
 
 sealed class ISO8583BitmapIntent {
 
-    class ClickItem(val index: Int) : ISO8583BitmapIntent()
+    class ClickBitmapItem(val index: Int) : ISO8583BitmapIntent()
 
     class InputBitmap(val bitmap: String) : ISO8583BitmapIntent()
 
     object GenerateBitmap : ISO8583BitmapIntent()
 
-    object Reset : ISO8583BitmapIntent()
-
-}
-
-sealed class ISO8583BitmapEvent {
-
-    object ShowToast : ISO8583BitmapEvent()
+    object ResetBitmap : ISO8583BitmapIntent()
 
 }
