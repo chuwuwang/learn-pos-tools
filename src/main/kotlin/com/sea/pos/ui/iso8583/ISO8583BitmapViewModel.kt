@@ -2,14 +2,52 @@ package com.sea.pos.ui.iso8583
 
 import com.pos.encode.util.ByteUtil
 import com.sea.pos.ui.BaseViewModel
+import kotlinx.coroutines.launch
 
 class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
 
     override fun initialState(): ISO8583BitmapState {
-        val bitmapString = "0000000000000000"
-        val bytes = ByteUtil.hexString2Bytes(bitmapString)
-        val binaryBytes = ByteUtil.bytes2BinaryBytes(bytes)
-        return ISO8583BitmapState(bitmapString, binaryBytes)
+        val bitmap = "0000000000000000"
+        val bytes = ByteUtil.hexString2Bytes(bitmap)
+        val booleans = ByteUtil.bytes2BinaryBytes(bytes)
+        return ISO8583BitmapState(bitmap, booleans)
+    }
+
+    fun dispatch(intent: ISO8583BitmapIntent) {
+        when (intent) {
+            is ISO8583BitmapIntent.ClickItem -> clickItem(intent)
+            is ISO8583BitmapIntent.InputBitmap -> inputBitmap(intent)
+            ISO8583BitmapIntent.GenerateBitmap -> generateBitmap()
+            ISO8583BitmapIntent.Reset -> reset()
+        }
+    }
+
+    private fun clickItem(intent: ISO8583BitmapIntent.ClickItem) {
+        val bytes = getDynamicBitmap(state.value.bitmapBooleans, intent.index)
+        val hexString = ByteUtil.bytes2HexString(bytes)
+        val booleans = ByteUtil.bytes2BinaryBytes(bytes)
+        setState { copy(bitmapString = hexString, bitmapBooleans = booleans) }
+    }
+
+    private fun inputBitmap(intent: ISO8583BitmapIntent.InputBitmap) {
+        setState { copy(bitmapString = intent.bitmap) }
+    }
+
+    private fun generateBitmap() {
+        val bitmapString = state.value.bitmapString
+        val length = bitmapString.length
+        if (length != 16 && length != 32) {
+            viewModelScope.launch { sendEvent(ISO8583BitmapEvent.ShowToast)}
+        } else {
+            val bytes = ByteUtil.hexString2Bytes(bitmapString)
+            val booleans = ByteUtil.bytes2BinaryBytes(bytes)
+            setState { copy(bitmapBooleans = booleans) }
+        }
+    }
+
+    private fun reset() {
+        val initialState = initialState()
+        setState { copy(bitmapString = initialState.bitmapString, bitmapBooleans = initialState.bitmapBooleans) }
     }
 
     private fun getDynamicBitmap(bitmaps: BooleanArray, index: Int): ByteArray {
@@ -33,9 +71,23 @@ class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
 
 data class ISO8583BitmapState(
     val bitmapString: String,
-    val bitmaps: BooleanArray,
+    val bitmapBooleans: BooleanArray,
 )
 
 sealed class ISO8583BitmapIntent {
+
+    class ClickItem(val index: Int) : ISO8583BitmapIntent()
+
+    class InputBitmap(val bitmap: String) : ISO8583BitmapIntent()
+
+    object GenerateBitmap : ISO8583BitmapIntent()
+
+    object Reset : ISO8583BitmapIntent()
+
+}
+
+sealed class ISO8583BitmapEvent {
+
+    object ShowToast : ISO8583BitmapEvent()
 
 }

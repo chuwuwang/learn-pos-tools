@@ -8,6 +8,6 @@ import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
 
 @Composable
-fun RwHintText(text: String) {
+fun RwSubtitleText(text: String) {
     Text(modifier = UiUtils.modifierSpace_xxx, text = text, fontSize = Dimens.sp_text, fontFamily = Fonts.bold, textAlign = TextAlign.Center, color = AppTheme.AppColors.textMain)
 }

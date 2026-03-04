@@ -2,6 +2,7 @@ package com.sea.pos.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import com.sea.pos.AppController
 
 class ViewModelStore {
 
@@ -23,7 +24,7 @@ inline fun <reified T : BaseViewModel<*, *> > viewModel(key: String, store: View
     return remember { store.get(key, factory) }
 }
 
-// @Composable
-// inline fun <reified T : BaseViewModel<*, *> > viewModel(container: ScreenContainer, key: String = T::class.simpleName !!, noinline factory: () -> T): T {
-//     return remember { container.viewModelStore.get(key, factory) }
-// }
+@Composable
+inline fun <reified T : BaseViewModel<*, *> > viewModel(container: AppController, key: String = T::class.simpleName !!, noinline factory: () -> T): T {
+    return remember { container.viewModelStore.get(key, factory) }
+}

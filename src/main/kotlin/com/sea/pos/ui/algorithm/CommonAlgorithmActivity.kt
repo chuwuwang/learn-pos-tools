@@ -35,19 +35,19 @@ private fun XORScreen() {
     val component1Text = remember { mutableStateOf("") }
     val component2Text = remember { mutableStateOf("") }
 
-    RwHintText("Component 1")
+    RwSubtitleText("Component 1")
 
     RwInputField(120.dp, component1Text.value, Int.MAX_VALUE) {
         component1Text.value = it
     }
 
-    RwHintText("Component 2")
+    RwSubtitleText("Component 2")
 
     RwInputField(120.dp, component2Text.value, Int.MAX_VALUE) {
         component2Text.value = it
     }
 
-    RwHintText("Output")
+    RwSubtitleText("Output")
 
     RwInputField(120.dp, outputText.value, Int.MAX_VALUE) {
         outputText.value = it

@@ -10,25 +10,63 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import com.sea.pos.AppController
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
-import com.sea.pos.ui.widget.HorizontalDivider
-import com.sea.pos.ui.widget.UiUtils
+import com.sea.pos.ui.viewModel
+import com.sea.pos.ui.widget.*
 
 @Composable
-fun ISO8583BitmapActivity(modifier: Modifier = Modifier) {
+fun ISO8583BitmapActivity(modifier: Modifier = Modifier, controller: AppController) {
+    val vm = viewModel(controller) {
+        ISO8583BitmapViewModel()
+    }
+    val state by vm.state.collectAsState()
+
+    LaunchedEffect(Unit) {
+        vm.event.collect { event ->
+            when (event) {
+                ISO8583BitmapEvent.ShowToast -> {
+
+                }
+            }
+        }
+    }
+
     Column(modifier) {
-        BitmapView()
+        BitmapView(state.bitmapBooleans) {
+            val intent = ISO8583BitmapIntent.ClickItem(it)
+            vm.dispatch(intent)
+        }
+
+        RwSubtitleText("Bitmap")
+
+        RwInputField(Dimens.item_norm, state.bitmapString, state.bitmapString.length, true) {
+            val intent = ISO8583BitmapIntent.InputBitmap(it)
+            vm.dispatch(intent)
+        }
+
+        Row(UiUtils.modifierSpace_xxx) {
+            RwDecryptButton { }
+
+            Horizontal(Dimens.space_x)
+
+            RwErrorButton(text = "RESET") { }
+        }
+
     }
 }
 
 @Composable
-private fun BitmapView(bitmaps: BooleanArray, onItemClick: () -> Unit) {
+private fun BitmapView(bitmaps: BooleanArray, onItemClick: (Int) -> Unit) {
     val modifier = Modifier.fillMaxWidth()
         .padding(start = Dimens.space_xxx, top = Dimens.space_xxx, end = Dimens.space_xxx)
         .border(Dimens.divider, AppTheme.AppColors.divider, UiUtils.roundedCornerShape_8)
@@ -42,7 +80,7 @@ private fun BitmapView(bitmaps: BooleanArray, onItemClick: () -> Unit) {
                 } else {
                     Modifier.height(Dimens.item_norm)
                 }
-                Row(modifier.clickable(onClick = onItemClick), verticalAlignment = Alignment.CenterVertically) {
+                Row(modifier.clickable { onItemClick(index) }, verticalAlignment = Alignment.CenterVertically) {
                     ItemView("$index", index)
                 }
                 val is128Bit = bitmaps[1]
