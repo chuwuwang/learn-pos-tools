@@ -18,7 +18,6 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import com.pos.encode.com.pos.encode.ui.iso8583.Bitmap8583Screen
 import com.pos.encode.ui.encrypt.EncryptionAlgorithmActivity
 import com.pos.encode.ui.encrypt.HashAlgorithmActivity
 import com.sea.pos.ui.iso8583.ISO8583BitmapActivity
@@ -32,13 +31,13 @@ fun main() = application {
     val position = WindowPosition.Aligned(Alignment.Center)
     // val windowState = WindowState(size = DpSize.Unspecified, position = position)
     val windowState = WindowState(size = DpSize(1400.dp, 1000.dp), position = position)
-    Window(title = "POS Tools", state = windowState, onCloseRequest = ::exitApplication) { app() }
+    Window(title = "POS Tools", state = windowState, onCloseRequest = ::exitApplication) { App() }
 }
 
 @ExperimentalMaterial3Api
 @Composable
 @Preview
-fun app() {
+fun App() {
     val appController = remember { AppController() }
     val current = remember { mutableStateOf(0) }
     SeaTheme {
@@ -47,10 +46,7 @@ fun app() {
             Sidebar(modifierSidebar, current.value) { current.value = it }
 
             val modifierContent = Modifier.weight(3f).fillMaxHeight().background(AppTheme.AppColors.bgContent)
-            BoxWithConstraints(modifierContent) {
-                OverlayHost{ SwitchScreen(appController, current, modifierContent) } }
-
-
+            BoxWithConstraints(modifierContent) { OverlayHost { SwitchScreen(appController, current, modifierContent) } }
         }
     }
 }
@@ -62,9 +58,8 @@ private fun SwitchScreen(controller: AppController, index: MutableState<Int>, mo
     } else if (index.value == Sidebar.MENU_ENCRYPTION_ALGORITHM) {
         EncryptionAlgorithmActivity.preview(modifier)
     } else if (index.value == Sidebar.MENU_ISO8583_BITMAP) {
-        Bitmap8583Screen(modifier)
+        ISO8583BitmapActivity(modifier, controller)
     } else if (index.value == Sidebar.MENU_COMMON_ALGORITHM) {
         ISO8583BitmapActivity(modifier, controller)
     }
-
 }

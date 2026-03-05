@@ -38,9 +38,7 @@ class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
         val bitmapString = state.value.bitmapString
         val length = bitmapString.length
         if (length != 16 && length != 32) {
-            val dialog = AppDialog.Error(message = "The size of the Bitmap can only be 16 or 32") {
-                DialogManager.dismiss()
-            }
+            val dialog = AppDialog.Error(message = "The size of the Bitmap can only be 16 or 32")
             DialogManager.show(dialog)
         } else {
             val bytes = ByteUtil.hexString2Bytes(bitmapString)

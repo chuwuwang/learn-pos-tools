@@ -21,7 +21,7 @@ object Dimens {
     val sp_title = 16.sp
     val sp_text = 14.sp
     val sp_secondary = 12.sp
-
+    val sp_letter = 2.sp
 
     val titleSize = 18.sp
     val mainSize = 16.sp

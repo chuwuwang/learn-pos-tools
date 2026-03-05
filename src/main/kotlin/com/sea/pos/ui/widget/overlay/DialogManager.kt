@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 object DialogManager {
 
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     private val _dialogFlow = MutableSharedFlow<AppDialog>(extraBufferCapacity = 10)
     val dialogFlow: SharedFlow<AppDialog> = _dialogFlow.asSharedFlow()

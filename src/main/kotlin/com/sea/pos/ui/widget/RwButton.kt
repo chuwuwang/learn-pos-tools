@@ -33,7 +33,7 @@ fun RwTextButton(modifier: Modifier = Modifier, text: String, onClick: () -> Uni
 @Composable
 fun RwErrorButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit) {
     Button(modifier = modifier.size(width, height), colors = RwButton.ErrorButtonColors, onClick = onClick) {
-        Text(text, style = RwButton.ButtonTextStyle)
+        Text(text, style = RwButton.ButtonCheckedTextStyle)
     }
 }
 
@@ -42,12 +42,12 @@ object RwButton {
     val ButtonColors: ButtonColors
         @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.button)
     val ButtonTextStyle: TextStyle
-        @Composable get() = TextStyle(color = AppTheme.AppColors.buttonText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center)
+        @Composable get() = TextStyle(color = AppTheme.AppColors.buttonText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center, letterSpacing = Dimens.sp_letter)
 
     val ButtonCheckedColors: ButtonColors
         @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.buttonChecked)
     val ButtonCheckedTextStyle: TextStyle
-        @Composable get() = TextStyle(color = AppTheme.AppColors.buttonCheckedText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center)
+        @Composable get() = TextStyle(color = AppTheme.AppColors.buttonCheckedText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center, letterSpacing = Dimens.sp_letter)
 
     val ErrorButtonColors: ButtonColors
         @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.textError)

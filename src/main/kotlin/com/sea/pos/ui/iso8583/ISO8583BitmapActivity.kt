@@ -44,13 +44,11 @@ fun ISO8583BitmapActivity(modifier: Modifier = Modifier, controller: AppControll
         }
 
         Row(UiUtils.modifierSpace_xxx) {
-            RwDecryptButton {
-                vm.dispatch(ISO8583BitmapIntent.GenerateBitmap)
-            }
+            RwDecryptButton { vm.dispatch(ISO8583BitmapIntent.GenerateBitmap) }
 
             Horizontal(Dimens.space_x)
 
-            RwErrorButton(text = "RESET") { }
+            RwErrorButton(text = "RESET") { vm.dispatch(ISO8583BitmapIntent.ResetBitmap) }
         }
     }
 }

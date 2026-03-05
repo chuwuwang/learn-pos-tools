@@ -12,10 +12,10 @@ import com.sea.pos.ui.theme.AppTheme
 object UiUtils {
 
     val modifierSpace: Modifier
-        get() = Modifier.padding(start = Dimens.space_xxx, top = Dimens.space_norm)
+        get() = Modifier.padding(start = Dimens.space_xxx, top = Dimens.space_norm, end = Dimens.space_xxx)
 
     val modifierSpace_xxx: Modifier
-        get() = Modifier.padding(start = Dimens.space_xxx, top = Dimens.space_xxx)
+        get() = Modifier.padding(start = Dimens.space_xxx, top = Dimens.space_xxx, end = Dimens.space_xxx)
 
     val roundedCornerShape_8: RoundedCornerShape
         get() = RoundedCornerShape(8.dp)

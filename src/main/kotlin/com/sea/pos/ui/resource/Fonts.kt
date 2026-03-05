@@ -24,4 +24,6 @@ object Fonts {
 
     val medium = FontFamily(mediumFont)
 
+    val regular = FontFamily(regularFont)
+
 }

@@ -1,8 +1,6 @@
 package com.sea.pos.ui.widget.overlay
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -10,8 +8,10 @@ import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.sea.pos.extension.valid
@@ -25,49 +25,49 @@ import com.sea.pos.ui.widget.Vertical
 @ExperimentalMaterial3Api
 @Composable
 fun RwErrorDialog(dialog: AppDialog) {
-    BasicAlertDialog(onDismissRequest = dialog.onConfirm) {
+    val onDismiss = {
+        DialogManager.dismiss()
+        dialog.onConfirm.invoke()
+    }
+    BasicAlertDialog(onDismissRequest = onDismiss) {
 
         Surface(shape = UiUtils.roundedCornerShape_16) {
 
-            Column {
-
-                Vertical(32.dp)
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Vertical(48.dp)
 
                 val painter = painterResource("images/ic_dialog_error.png")
-                Icon(painter = painter, modifier = Modifier.size(32.dp), contentDescription = null)
+                Icon(painter = painter, modifier = Modifier.size(60.dp), contentDescription = null, tint = AppTheme.AppColors.textError)
 
-                Vertical(16.dp)
+                Vertical(Dimens.space_xxx)
 
                 if (dialog.title.valid) {
-                    Text(color = AppTheme.AppColors.textMain, textAlign = TextAlign.Start, fontSize = Dimens.sp_title, fontFamily = Fonts.bold, text = dialog.title)
-                    Vertical(8.dp)
+                    Text(modifier = Modifier.padding(horizontal = Dimens.space_xxx), style = RwDialog.TitleTextStyle, text = dialog.title)
+                    Vertical(Dimens.space_x)
                 }
 
-                Text(color = AppTheme.AppColors.textSecondary, textAlign = TextAlign.Start, fontSize = Dimens.sp_title, fontFamily = Fonts.medium, text = dialog.message)
+                Text(modifier = Modifier.padding(horizontal = Dimens.space_xxx), style = RwDialog.ContentTextStyle, text = dialog.message)
 
+                Vertical(Dimens.space_xxx)
 
-                Vertical(24.dp)
-
-
-                Button(modifier = Modifier.fillMaxWidth(), colors = RwButton.ButtonCheckedColors, onClick = dialog.onConfirm) {
+                Button(modifier = UiUtils.modifierSpace_xxx.fillMaxWidth().height(Dimens.item_lg), colors = RwButton.ButtonCheckedColors, onClick = dialog.onConfirm) {
                     Text(dialog.confirmText, style = RwButton.ButtonCheckedTextStyle)
                 }
 
-                Vertical(32.dp)
-
+                Vertical(48.dp)
             }
 
         }
 
     }
-
 }
 
-//Button(
-//onClick = dialog.onDismiss,
-//modifier = Modifier.weight(1f),
-//border = BorderStroke(2.dp, AppTheme.AppColors.divider),
-//colors = ButtonDefaults.buttonColors(contentColor = AppTheme.AppColors.button)
-//) {
-//    Text(dialog.dismissText, style = RwButton.ButtonTextStyle)
-//}
+object RwDialog {
+
+    val TitleTextStyle: TextStyle
+        @Composable get() = TextStyle(color = AppTheme.AppColors.textMain, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Start)
+
+    val ContentTextStyle: TextStyle
+        @Composable get() = TextStyle(color = AppTheme.AppColors.textSecondary, fontFamily = Fonts.medium, fontSize = Dimens.sp_title, textAlign = TextAlign.Start)
+
+}

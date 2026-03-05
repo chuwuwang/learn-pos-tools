@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.*
 
 abstract class BaseViewModel<S : Any, E : Any> {
 
-    val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     // UI State
     abstract fun initialState(): S
