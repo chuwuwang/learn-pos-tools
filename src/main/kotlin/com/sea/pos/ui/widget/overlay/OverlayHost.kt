@@ -8,25 +8,16 @@ import androidx.compose.runtime.*
 @Composable
 fun OverlayHost(content: @Composable () -> Unit) {
     var dialog by remember { mutableStateOf<AppDialog>(AppDialog.None) }
-    var toast by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
         DialogManager.dialogFlow.collect { dialog = it }
     }
 
-    LaunchedEffect(Unit) {
-        ToastManager.toastFlow.collect {
-            toast = it
-        }
-    }
-
     Box {
         content()
-
         when (dialog) {
-            is AppDialog.Error -> RwErrorDialog(dialog = dialog )
+            is AppDialog.Error -> RwErrorDialog(dialog = dialog)
             else -> {}
         }
-
     }
 }

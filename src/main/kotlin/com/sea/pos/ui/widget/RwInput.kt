@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.sp
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
@@ -34,12 +33,18 @@ private fun InputText(modifier: Modifier, value: String, singleLine: Boolean, on
         unfocusedBorderColor = AppTheme.AppColors.divider,
         focusedBorderColor = AppTheme.AppColors.textChecked,
     )
-    val textStyle = TextStyle(fontFamily = Fonts.medium, fontSize = Dimens.sp_text, color = AppTheme.AppColors.textMain, letterSpacing = 3.sp)
-    OutlinedTextField(modifier = modifier, value = value, singleLine = singleLine, onValueChange = onValueChange, textStyle = textStyle, colors = textFieldColors)
+    OutlinedTextField(modifier = modifier, value = value, singleLine = singleLine, onValueChange = onValueChange, textStyle = RwInput.InputTextStyle, colors = textFieldColors)
 }
 
 @Composable
 private fun LengthText(length: Int, maxLength: Int) {
     val color = if (length > maxLength) AppTheme.AppColors.textError else AppTheme.AppColors.textChecked
     Text(modifier = Modifier.width(Dimens.item_norm), text = "[$length]", color = color, textAlign = TextAlign.Center, fontFamily = Fonts.medium, fontSize = Dimens.sp_text)
+}
+
+object RwInput {
+
+    val InputTextStyle: TextStyle
+        @Composable get() = TextStyle(color = AppTheme.AppColors.textMain, fontFamily = Fonts.medium, fontSize = Dimens.sp_text, letterSpacing = Dimens.sp_letter)
+
 }

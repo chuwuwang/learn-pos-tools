@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridItemScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -14,8 +15,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.sea.pos.AppController
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
@@ -63,16 +66,32 @@ private fun BitmapView(bitmaps: BooleanArray, onItemClick: (Int) -> Unit) {
             val index = i + 1
             Column {
                 val selected = bitmaps[index]
+                val has128Bit = bitmaps[1]
+                val radius = 8.dp
+                val roundedCornerShape = if (index == 1) {
+                    RoundedCornerShape(topStart = radius)
+                } else if (index == 16) {
+                    RoundedCornerShape(topEnd = radius)
+                } else if (index == 49 && ! has128Bit) {
+                    RoundedCornerShape(bottomStart = radius)
+                } else if (index == 64 && ! has128Bit) {
+                    RoundedCornerShape(bottomEnd = radius)
+                } else if (index == 113) {
+                    RoundedCornerShape(bottomStart = radius)
+                } else if (index == 128) {
+                    RoundedCornerShape(bottomEnd = radius)
+                } else {
+                    RectangleShape
+                }
                 val modifier = if (selected) {
-                    Modifier.height(Dimens.item_norm).background(AppTheme.AppColors.buttonChecked)
+                    Modifier.height(Dimens.item_norm).background(color = AppTheme.AppColors.buttonChecked, shape = roundedCornerShape)
                 } else {
                     Modifier.height(Dimens.item_norm)
                 }
                 Row(modifier.clickable { onItemClick(index) }, verticalAlignment = Alignment.CenterVertically) {
                     ItemView("$index", index)
                 }
-                val is128Bit = bitmaps[1]
-                if (is128Bit) {
+                if (has128Bit) {
                     if (index in 1..112) HorizontalDivider()
                 } else {
                     if (index in 1..48) HorizontalDivider()

@@ -25,11 +25,10 @@ import com.sea.pos.ui.widget.Vertical
 @ExperimentalMaterial3Api
 @Composable
 fun RwErrorDialog(dialog: AppDialog) {
-    val onDismiss = {
-        DialogManager.dismiss()
-        dialog.onConfirm.invoke()
+    val onDismissRequest = {
+
     }
-    BasicAlertDialog(onDismissRequest = onDismiss) {
+    BasicAlertDialog(onDismissRequest = onDismissRequest) {
 
         Surface(shape = UiUtils.roundedCornerShape_16) {
 
@@ -50,7 +49,11 @@ fun RwErrorDialog(dialog: AppDialog) {
 
                 Vertical(Dimens.space_xxx)
 
-                Button(modifier = UiUtils.modifierSpace_xxx.fillMaxWidth().height(Dimens.item_lg), colors = RwButton.ButtonCheckedColors, onClick = dialog.onConfirm) {
+                val onClick = {
+                    DialogManager.dismiss()
+                    dialog.onConfirm.invoke()
+                }
+                Button(modifier = UiUtils.modifierSpace_xxx.fillMaxWidth().height(Dimens.item_lg), colors = RwButton.ButtonCheckedColors, onClick = onClick) {
                     Text(dialog.confirmText, style = RwButton.ButtonCheckedTextStyle)
                 }
 

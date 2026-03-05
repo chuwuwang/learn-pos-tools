@@ -61,7 +61,7 @@ private fun ItemView(text: String, tint: Color, resourcePath: String, onClick: (
     Row(modifier, verticalAlignment = Alignment.CenterVertically) {
         Horizontal(Dimens.space_x)
 
-        Icon(painter = painterResource(resourcePath), contentDescription = null, modifier = Modifier.size(24.dp), tint = tint)
+        Icon(painter = painterResource(resourcePath), modifier = Modifier.size(24.dp), contentDescription = null, tint = tint)
 
         Horizontal(Dimens.space_norm)
 
