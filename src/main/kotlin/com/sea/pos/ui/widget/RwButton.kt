@@ -17,7 +17,7 @@ private val height = 80.dp
 
 @Composable
 fun RwDecryptButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
-    Button(modifier = modifier.size(width, height), colors = ButtonColors, onClick = onClick) {
+    Button(modifier = modifier.size(width, height), colors = RwButton.ButtonCheckedColors, onClick = onClick) {
         val painter = painterResource("images/ic_decrypt.png")
         Icon(painter = painter, modifier = Modifier.size(32.dp), tint = AppTheme.AppColors.icon, contentDescription = null)
     }
@@ -25,23 +25,31 @@ fun RwDecryptButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
 
 @Composable
 fun RwTextButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit) {
-    Button(modifier = modifier.size(width, height), colors = ButtonColors, onClick = onClick) {
-        Text(text, style = ButtonTextStyle)
+    Button(modifier = modifier.size(width, height), colors = RwButton.ButtonCheckedColors, onClick = onClick) {
+        Text(text, style = RwButton.ButtonTextStyle)
     }
 }
 
 @Composable
 fun RwErrorButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit) {
-    Button(modifier = modifier.size(width, height), colors = ErrorButtonColors, onClick = onClick) {
-        Text(text, style = ButtonTextStyle)
+    Button(modifier = modifier.size(width, height), colors = RwButton.ErrorButtonColors, onClick = onClick) {
+        Text(text, style = RwButton.ButtonTextStyle)
     }
 }
 
-private val ButtonColors: ButtonColors
-    @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.button)
+object RwButton {
 
-private val ErrorButtonColors: ButtonColors
-    @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.textError)
+    val ButtonColors: ButtonColors
+        @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.button)
+    val ButtonTextStyle: TextStyle
+        @Composable get() = TextStyle(color = AppTheme.AppColors.buttonText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center)
 
-private val ButtonTextStyle: TextStyle
-    @Composable get() = TextStyle(color = AppTheme.AppColors.buttonText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center)
+    val ButtonCheckedColors: ButtonColors
+        @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.buttonChecked)
+    val ButtonCheckedTextStyle: TextStyle
+        @Composable get() = TextStyle(color = AppTheme.AppColors.buttonCheckedText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center)
+
+    val ErrorButtonColors: ButtonColors
+        @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.textError)
+
+}

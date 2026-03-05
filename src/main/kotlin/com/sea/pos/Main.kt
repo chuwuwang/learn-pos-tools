@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -24,7 +25,9 @@ import com.sea.pos.ui.iso8583.ISO8583BitmapActivity
 import com.sea.pos.ui.theme.AppTheme
 import com.sea.pos.ui.theme.SeaTheme
 import com.sea.pos.ui.widget.Sidebar
+import com.sea.pos.ui.widget.overlay.OverlayHost
 
+@ExperimentalMaterial3Api
 fun main() = application {
     val position = WindowPosition.Aligned(Alignment.Center)
     // val windowState = WindowState(size = DpSize.Unspecified, position = position)
@@ -32,6 +35,7 @@ fun main() = application {
     Window(title = "POS Tools", state = windowState, onCloseRequest = ::exitApplication) { app() }
 }
 
+@ExperimentalMaterial3Api
 @Composable
 @Preview
 fun app() {
@@ -43,7 +47,10 @@ fun app() {
             Sidebar(modifierSidebar, current.value) { current.value = it }
 
             val modifierContent = Modifier.weight(3f).fillMaxHeight().background(AppTheme.AppColors.bgContent)
-            BoxWithConstraints(modifierContent) { SwitchScreen(appController, current, modifierContent) }
+            BoxWithConstraints(modifierContent) {
+                OverlayHost{ SwitchScreen(appController, current, modifierContent) } }
+
+
         }
     }
 }

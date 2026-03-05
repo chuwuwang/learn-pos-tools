@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -18,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import com.sea.pos.AppController
-import com.sea.pos.flow.Event
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
@@ -31,14 +29,6 @@ fun ISO8583BitmapActivity(modifier: Modifier = Modifier, controller: AppControll
         ISO8583BitmapViewModel()
     }
     val state by vm.state.collectAsState()
-
-    LaunchedEffect(Unit) {
-        vm.event.collect { event ->
-            if (event is Event.ShowToast) {
-
-            }
-        }
-    }
 
     Column(modifier) {
         BitmapView(state.bitmapBooleans) {
@@ -54,13 +44,14 @@ fun ISO8583BitmapActivity(modifier: Modifier = Modifier, controller: AppControll
         }
 
         Row(UiUtils.modifierSpace_xxx) {
-            RwDecryptButton { }
+            RwDecryptButton {
+                vm.dispatch(ISO8583BitmapIntent.GenerateBitmap)
+            }
 
             Horizontal(Dimens.space_x)
 
             RwErrorButton(text = "RESET") { }
         }
-
     }
 }
 

@@ -1,11 +1,9 @@
 package com.sea.pos.ui.iso8583
 
 import com.pos.encode.util.ByteUtil
-import com.sea.pos.flow.Event
-import com.sea.pos.flow.ToastEntity
-import com.sea.pos.flow.ToastType
 import com.sea.pos.ui.BaseViewModel
-import kotlinx.coroutines.launch
+import com.sea.pos.ui.widget.overlay.AppDialog
+import com.sea.pos.ui.widget.overlay.DialogManager
 
 class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
 
@@ -40,11 +38,10 @@ class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
         val bitmapString = state.value.bitmapString
         val length = bitmapString.length
         if (length != 16 && length != 32) {
-            viewModelScope.launch {
-                val entity = ToastEntity(message = "The size of the Bitmap can only be 16 or 32", type = ToastType.ERROR)
-                val event = Event.ShowToast(entity)
-                sendEvent(event)
+            val dialog = AppDialog.Error(message = "The size of the Bitmap can only be 16 or 32") {
+                DialogManager.dismiss()
             }
+            DialogManager.show(dialog)
         } else {
             val bytes = ByteUtil.hexString2Bytes(bitmapString)
             val booleans = ByteUtil.bytes2BinaryBytes(bytes)

@@ -33,8 +33,8 @@ object AppTheme {
 
         icon = Colors.white,
         iconChecked = WeChatColors.main_theme,
-        button = WeChatColors.main_theme,
-        buttonText = Colors.white,
+        button = Colors.white,
+        buttonText = WeChatColors.black,
         buttonChecked = WeChatColors.main_theme,
         buttonCheckedText = Colors.white,
         divider = WeChatColors.gray,

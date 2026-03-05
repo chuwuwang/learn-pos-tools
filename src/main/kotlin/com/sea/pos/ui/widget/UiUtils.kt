@@ -20,6 +20,9 @@ object UiUtils {
     val roundedCornerShape_8: RoundedCornerShape
         get() = RoundedCornerShape(8.dp)
 
+    val roundedCornerShape_16: RoundedCornerShape
+        get() = RoundedCornerShape(16.dp)
+
     @Composable
     fun IconColor(index: Int, default: Int): Color {
         return if (index == default) AppTheme.AppColors.iconChecked else AppTheme.AppColors.icon

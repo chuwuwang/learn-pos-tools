@@ -3,18 +3,17 @@ package com.sea.pos.ui
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
 
 abstract class BaseViewModel<S : Any, E : Any> {
 
-    private val job = SupervisorJob()
-
-    val viewModelScope = CoroutineScope(Dispatchers.Main.immediate + job)
+    val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     // UI State
     abstract fun initialState(): S
 
-    private val _state = MutableStateFlow(initialState() )
+    private val _state = MutableStateFlow(initialState())
     val state: StateFlow<S> = _state.asStateFlow()
 
     fun setState(reducer: S.() -> S) {
@@ -34,7 +33,7 @@ abstract class BaseViewModel<S : Any, E : Any> {
     }
 
     internal fun clear() {
-        job.cancel()
+        viewModelScope.cancel()
         onCleared()
     }
 

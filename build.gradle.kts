@@ -20,7 +20,11 @@ dependencies {
     val map = mapOf("dir" to "libs", list)
     val fileTree = fileTree(map)
     implementation(fileTree)
+    implementation(compose.material3)
     implementation(compose.desktop.currentOs)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.8.1")
+
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.bouncycastle:bcprov-jdk15on:1.70")
 }
