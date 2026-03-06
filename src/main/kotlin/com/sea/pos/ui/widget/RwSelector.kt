@@ -17,9 +17,9 @@ import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
 
 @Composable
-fun RwRadioGroup(list: List<String>, label: String, selection: Int = 0, onClick: (String) -> Unit) {
+fun RwRadioGroup(list: List<String>, label: String, selected: Int = 0, onClick: (String) -> Unit) {
     val selected = remember {
-        val string = list[selection]
+        val string = list[selected]
         mutableStateOf(string)
     }
     BoxWithConstraints(modifier = UiUtils.modifierSpace_xxx.height(72.dp), contentAlignment = Alignment.Center) {

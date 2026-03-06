@@ -71,11 +71,6 @@ class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
 
 }
 
-data class ISO8583BitmapState(
-    val bitmapString: String,
-    val bitmapBooleans: BooleanArray,
-)
-
 sealed class ISO8583BitmapIntent {
 
     class ClickBitmapItem(val index: Int) : ISO8583BitmapIntent()
@@ -87,3 +82,8 @@ sealed class ISO8583BitmapIntent {
     object ResetBitmap : ISO8583BitmapIntent()
 
 }
+
+data class ISO8583BitmapState(
+    val bitmapString: String,
+    val bitmapBooleans: BooleanArray,
+)

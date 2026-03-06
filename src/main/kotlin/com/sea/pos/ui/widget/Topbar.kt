@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.sea.pos.ui.resource.Dimens
@@ -16,10 +17,13 @@ import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
 
 @Composable
-fun Topbar(list: List<String>, selection: Int = 0, onClick: (String) -> Unit) {
-    val selected = remember { mutableStateOf(list[selection]) }
-    val modifier = Modifier.fillMaxWidth().height(Dimens.item_lg)
-    Row(modifier = modifier) {
+fun Topbar(list: List<String>, selected: Int = 0, onClick: (String) -> Unit) {
+    val selected = remember {
+        val string = list[selected]
+        mutableStateOf(string)
+    }
+
+    val content: @Composable RowScope.() -> Unit = {
         for (item in list) {
             ItemView(item, selected.value) {
                 selected.value = item
@@ -27,17 +31,18 @@ fun Topbar(list: List<String>, selection: Int = 0, onClick: (String) -> Unit) {
             }
         }
     }
+    val modifier = Modifier.fillMaxWidth().height(Dimens.item_lg)
+    Row(modifier = modifier, content = content)
 }
 
 @Composable
 private fun RowScope.ItemView(text: String, selected: String, onClick: () -> Unit) {
-    BoxWithConstraints(Modifier.weight(1.0f).fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
+    BoxWithConstraints(modifier = Modifier.weight(1.0f).fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
         val textColor = if (text == selected) AppTheme.AppColors.textChecked else AppTheme.AppColors.textMain
-        Text(textAlign = TextAlign.Center, color = textColor, fontSize = Dimens.sp_text, text = text, fontFamily = Fonts.bold)
+        val textStyle = TextStyle(textAlign = TextAlign.Center, color = textColor, fontSize = Dimens.sp_text, fontFamily = Fonts.bold)
+        Text(text = text, style = textStyle)
 
-        Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
-            if (text == selected) Indicator()
-        }
+        Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) { if (text == selected) Indicator() }
     }
 }
 

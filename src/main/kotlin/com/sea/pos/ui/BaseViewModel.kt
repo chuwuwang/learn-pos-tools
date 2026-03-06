@@ -13,7 +13,9 @@ abstract class BaseViewModel<S : Any, E : Any> {
     // UI State
     abstract fun initialState(): S
 
-    private val _state = MutableStateFlow(initialState())
+    private val _state = MutableStateFlow(
+        value = initialState()
+    )
     val state: StateFlow<S> = _state.asStateFlow()
 
     fun setState(reducer: S.() -> S) {
