@@ -2,7 +2,6 @@ package com.sea.pos.ui.widget
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -12,14 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
 
 @Composable
-fun RwInputField(height: Dp, value: String, maxLength: Int, singleLine: Boolean = false, onValueChange: (String) -> Unit) {
-    Row(modifier = UiUtils.modifierSpace.height(height), verticalAlignment = Alignment.CenterVertically) {
+fun RwInputField(modifier: Modifier = Modifier, value: String, maxLength: Int, singleLine: Boolean = false, onValueChange: (String) -> Unit) {
+    Row(modifier = modifier.then(UiUtils.modifierSpace), verticalAlignment = Alignment.CenterVertically) {
         InputText(Modifier.weight(1.0f).fillMaxHeight(), value, singleLine, onValueChange)
         LengthText(value.length, maxLength)
     }

@@ -33,7 +33,7 @@ fun ISO8583BitmapActivity(modifier: Modifier = Modifier, controller: AppControll
     }
     val state by vm.state.collectAsState()
 
-    Column(modifier) {
+    Column(modifier = modifier) {
         BitmapView(state.bitmapBooleans) {
             val intent = ISO8583BitmapIntent.ClickBitmapItem(it)
             vm.dispatch(intent)
@@ -41,7 +41,7 @@ fun ISO8583BitmapActivity(modifier: Modifier = Modifier, controller: AppControll
 
         RwSubtitleText("Bitmap")
 
-        RwInputField(Dimens.item_norm, state.bitmapString, state.bitmapString.length, true) {
+        RwInputField(Modifier.height(Dimens.item_lg), state.bitmapString, state.bitmapString.length, true) {
             val intent = ISO8583BitmapIntent.InputBitmap(it)
             vm.dispatch(intent)
         }
@@ -60,8 +60,8 @@ fun ISO8583BitmapActivity(modifier: Modifier = Modifier, controller: AppControll
 private fun BitmapView(bitmaps: BooleanArray, onItemClick: (Int) -> Unit) {
     val modifier = Modifier.fillMaxWidth()
         .padding(start = Dimens.space_xxx, top = Dimens.space_xxx, end = Dimens.space_xxx)
-        .border(Dimens.divider, AppTheme.AppColors.divider, UiUtils.roundedCornerShape_8)
-    LazyVerticalGrid(GridCells.Fixed(16), modifier = modifier) {
+        .border(width = Dimens.divider, color = AppTheme.AppColors.divider, shape = UiUtils.roundedCornerShape_8)
+    LazyVerticalGrid(columns = GridCells.Fixed(16), modifier = modifier) {
         val itemContent: @Composable (LazyGridItemScope.(Int) -> Unit) = { i ->
             val index = i + 1
             Column {
@@ -72,9 +72,9 @@ private fun BitmapView(bitmaps: BooleanArray, onItemClick: (Int) -> Unit) {
                     RoundedCornerShape(topStart = radius)
                 } else if (index == 16) {
                     RoundedCornerShape(topEnd = radius)
-                } else if (index == 49 && ! has128Bit) {
+                } else if (index == 49 && !has128Bit) {
                     RoundedCornerShape(bottomStart = radius)
-                } else if (index == 64 && ! has128Bit) {
+                } else if (index == 64 && !has128Bit) {
                     RoundedCornerShape(bottomEnd = radius)
                 } else if (index == 113) {
                     RoundedCornerShape(bottomStart = radius)

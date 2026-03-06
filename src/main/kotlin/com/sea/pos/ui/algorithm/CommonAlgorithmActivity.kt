@@ -1,6 +1,7 @@
 package com.sea.pos.ui.algorithm
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,21 +38,23 @@ private fun XORScreen() {
 
     RwSubtitleText("Component 1")
 
-    RwInputField(120.dp, component1Text.value, Int.MAX_VALUE) {
+    val height = Modifier.height(120.dp)
+
+    RwInputField(height, component1Text.value, Int.MAX_VALUE) {
         component1Text.value = it
     }
 
     RwSubtitleText("Component 2")
 
-    RwInputField(120.dp, component2Text.value, Int.MAX_VALUE) {
+    RwInputField(height, component2Text.value, Int.MAX_VALUE) {
         component2Text.value = it
     }
 
     RwSubtitleText("Output")
 
-    RwInputField(120.dp, outputText.value, Int.MAX_VALUE) {
+    RwInputField(height, outputText.value, Int.MAX_VALUE) {
         outputText.value = it
     }
 
-    RwTextButton(UiUtils.modifierSpace_xxx, "Done") {}
+    RwTextCheckedButton(UiUtils.modifierSpace_xxx, "Done") {}
 }
