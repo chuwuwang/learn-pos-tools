@@ -6,8 +6,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.pos.encode.algorithm.DataFormat
-import com.pos.encode.algorithm.Hash
+import com.sea.pos.algorithm.DataFormat
+import com.sea.pos.algorithm.Hash
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.widget.*
 

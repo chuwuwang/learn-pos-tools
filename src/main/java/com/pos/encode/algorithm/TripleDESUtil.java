@@ -1,18 +1,17 @@
 package com.pos.encode.algorithm;
 
-import java.security.Provider;
-import java.security.Security;
-import java.security.spec.AlgorithmParameterSpec;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.Provider;
+import java.security.Security;
+import java.security.spec.AlgorithmParameterSpec;
 
 public final class TripleDESUtil {
 
     /**
-     * BC support CBC, CFB, CTR, CTS, ECB, OFB, padding support ISO10126d2Padding, ZeroBytePadding, P KCS7Padding, ISO7816d4Padding, X923Padding, TBCPadding
+     * BC support CBC, CFB, CTR, CTS, ECB, OFB, padding support ISO10126d2Padding, ZeroBytePadding, P KCS7Padding, ISO7816d4Padding, X923Padding, TBC Padding
      */
     private TripleDESUtil() {
         throw new UnsupportedOperationException("u can't instantiate me...");

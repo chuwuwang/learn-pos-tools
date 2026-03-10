@@ -8,12 +8,12 @@ import java.security.Provider;
 import java.security.Security;
 import java.security.spec.AlgorithmParameterSpec;
 
-public final class DEStUtil {
+public final class DESUtil {
 
     /**
      * BC support CBC, CFB, CTR, CTS, ECB, OFB, padding support ISO10126d2Padding, ZeroBytePadding, P KCS7Padding, ISO7816d4Padding, X923Padding, TBCPadding
      */
-    private DEStUtil() {
+    private DESUtil() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 

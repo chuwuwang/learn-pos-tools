@@ -1,4 +1,4 @@
-package com.pos.encode.algorithm
+package com.sea.pos.algorithm
 
 enum class SymmetricPadding {
 

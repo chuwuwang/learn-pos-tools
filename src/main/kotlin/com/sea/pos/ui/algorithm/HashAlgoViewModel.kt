@@ -1,10 +1,10 @@
 package com.sea.pos.ui.algorithm
 
-import com.pos.encode.algorithm.DataFormat
-import com.pos.encode.algorithm.Hash
 import com.pos.encode.algorithm.MD5Util
 import com.pos.encode.algorithm.SHAUtil
 import com.pos.encode.util.ByteUtil
+import com.sea.pos.algorithm.DataFormat
+import com.sea.pos.algorithm.Hash
 import com.sea.pos.extension.empty
 import com.sea.pos.extension.valid
 import com.sea.pos.ui.BaseViewModel
