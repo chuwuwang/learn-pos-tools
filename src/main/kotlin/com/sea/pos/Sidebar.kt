@@ -1,4 +1,4 @@
-package com.sea.pos.ui.widget
+package com.sea.pos
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -13,10 +13,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
-import com.sea.pos.ui.resource.Strings
-import com.sea.pos.ui.widget.Sidebar.MENU_COMMON_ALGORITHM
-import com.sea.pos.ui.widget.Sidebar.MENU_ENCRYPTION_ALGORITHM
-import com.sea.pos.ui.widget.Sidebar.MENU_ISO8583_BITMAP
+import com.sea.pos.ui.widget.Horizontal
+import com.sea.pos.ui.widget.UiUtils
+import com.sea.pos.ui.widget.Vertical
 
 @Composable
 fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
@@ -24,41 +23,28 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
         Vertical(Dimens.space_x)
 
         var resourcePath = "images/ic_menu_hash_algo_black.png"
-        var tint = UiUtils.IconColor(index, Sidebar.MENU_HASH_ALGO)
+        var tint = UiUtils.IconColor(index, Sidebar.MENU_ALGO_HASH)
         ItemView("Hash", tint = tint, resourcePath = resourcePath) {
-            onClick(Sidebar.MENU_HASH_ALGO)
+            onClick(Sidebar.MENU_ALGO_HASH)
         }
 
         resourcePath = "images/ic_menu_des_ago_black.png"
-        tint = UiUtils.IconColor(index, Sidebar.MENU_HASH_DES)
+        tint = UiUtils.IconColor(index, Sidebar.MENU_ALGO_DES)
         ItemView("DES / 3DES", tint = tint, resourcePath = resourcePath) {
-            onClick(Sidebar.MENU_HASH_DES)
+            onClick(Sidebar.MENU_ALGO_DES)
         }
 
-        ItemView(
-            Strings.encryption_algorithm,
-            UiUtils.IconColor(index, MENU_ENCRYPTION_ALGORITHM),
-            resourcePath = "images/ic_menu_des_ago_black.png"
-        ) {
-            onClick(MENU_ENCRYPTION_ALGORITHM)
+        resourcePath = "images/ic_menu_common_algo_black.png"
+        tint = UiUtils.IconColor(index, Sidebar.MENU_ALGO_COMMON)
+        ItemView("Common Algorithm", tint = tint, resourcePath = resourcePath) {
+            onClick(Sidebar.MENU_ALGO_COMMON)
         }
 
-        ItemView(
-            Strings.common_algo,
-            UiUtils.IconColor(index, MENU_COMMON_ALGORITHM),
-            resourcePath = "images/ic_menu_common_algo_black.png"
-        ) {
-            onClick(MENU_COMMON_ALGORITHM)
+        resourcePath = "images/ic_menu_bitmap_black.png"
+        tint = UiUtils.IconColor(index, Sidebar.MENU_ISO8583)
+        ItemView("ISO8583 Bitmap", tint = tint, resourcePath = resourcePath) {
+            onClick(Sidebar.MENU_ISO8583)
         }
-
-        ItemView(
-            Strings.iso8583_bitmap,
-            UiUtils.IconColor(index, MENU_ISO8583_BITMAP),
-            resourcePath = "images/ic_menu_bitmap_black.png"
-        ) {
-            onClick(MENU_ISO8583_BITMAP)
-        }
-
     }
 }
 
@@ -78,14 +64,14 @@ private fun ItemView(text: String, tint: Color, resourcePath: String, onClick: (
 
 object Sidebar {
 
-    const val MENU_HASH_ALGO = 0
+    const val MENU_ALGO_HASH = 0
 
-    const val MENU_HASH_DES = 1
+    const val MENU_ALGO_AES = 1
 
-    const val MENU_ENCRYPTION_ALGORITHM = 11
+    const val MENU_ALGO_DES = 2
 
-    const val MENU_COMMON_ALGORITHM = 12
+    const val MENU_ALGO_COMMON = 3
 
-    const val MENU_ISO8583_BITMAP = 13
+    const val MENU_ISO8583 = 11
 
 }
