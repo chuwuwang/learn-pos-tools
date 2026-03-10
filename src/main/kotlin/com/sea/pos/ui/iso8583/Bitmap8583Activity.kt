@@ -27,31 +27,31 @@ import com.sea.pos.ui.viewModel
 import com.sea.pos.ui.widget.*
 
 @Composable
-fun ISO8583BitmapActivity(modifier: Modifier = Modifier, controller: AppController) {
+fun Bitmap8583Activity(controller: AppController) {
     val vm = viewModel(controller) {
-        ISO8583BitmapViewModel()
+        Bitmap8583ViewModel()
     }
     val state by vm.state.collectAsState()
 
-    Column(modifier = modifier) {
+    Column {
         BitmapView(state.bitmapBooleans) {
-            val intent = ISO8583BitmapIntent.ClickBitmapItem(it)
+            val intent = Bitmap8583Intent.ClickItem(it)
             vm.dispatch(intent)
         }
 
         RwSubtitleText("Bitmap")
 
         RwInputField(Modifier.height(Dimens.item_lg), state.bitmapString, state.bitmapString.length, singleLine = true) {
-            val intent = ISO8583BitmapIntent.InputBitmap(it)
+            val intent = Bitmap8583Intent.InputData(it)
             vm.dispatch(intent)
         }
 
         Row(UiUtils.modifierSpace_xxx) {
-            RwDecryptButton { vm.dispatch(ISO8583BitmapIntent.GenerateBitmap) }
+            RwDecryptButton { vm.dispatch(Bitmap8583Intent.Generate) }
 
             Horizontal(Dimens.space_x)
 
-            RwErrorButton(text = "RESET") { vm.dispatch(ISO8583BitmapIntent.ResetBitmap) }
+            RwErrorButton(text = "RESET") { vm.dispatch(Bitmap8583Intent.Reset) }
         }
     }
 }

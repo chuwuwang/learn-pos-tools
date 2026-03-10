@@ -5,32 +5,32 @@ import com.sea.pos.ui.BaseViewModel
 import com.sea.pos.ui.widget.overlay.AppDialog
 import com.sea.pos.ui.widget.overlay.DialogManager
 
-class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
+class Bitmap8583ViewModel : BaseViewModel<Bitmap8583State, Any>() {
 
-    override fun initialState(): ISO8583BitmapState {
+    override fun initialState(): Bitmap8583State {
         val bitmap = "0000000000000000"
         val bytes = ByteUtil.hexString2Bytes(bitmap)
         val booleans = ByteUtil.bytes2BinaryBytes(bytes)
-        return ISO8583BitmapState(bitmap, booleans)
+        return Bitmap8583State(bitmap, booleans)
     }
 
-    fun dispatch(intent: ISO8583BitmapIntent) {
+    fun dispatch(intent: Bitmap8583Intent) {
         when (intent) {
-            is ISO8583BitmapIntent.ClickBitmapItem -> clickItem(intent)
-            is ISO8583BitmapIntent.InputBitmap -> inputBitmap(intent)
-            ISO8583BitmapIntent.GenerateBitmap -> generateBitmap()
-            ISO8583BitmapIntent.ResetBitmap -> reset()
+            is Bitmap8583Intent.ClickItem -> clickItem(intent)
+            is Bitmap8583Intent.InputData -> inputBitmap(intent)
+            Bitmap8583Intent.Generate -> generateBitmap()
+            Bitmap8583Intent.Reset -> reset()
         }
     }
 
-    private fun clickItem(intent: ISO8583BitmapIntent.ClickBitmapItem) {
+    private fun clickItem(intent: Bitmap8583Intent.ClickItem) {
         val bytes = getDynamicBitmap(state.value.bitmapBooleans, intent.index)
         val hexString = ByteUtil.bytes2HexString(bytes)
         val booleans = ByteUtil.bytes2BinaryBytes(bytes)
         setState { copy(bitmapString = hexString, bitmapBooleans = booleans) }
     }
 
-    private fun inputBitmap(intent: ISO8583BitmapIntent.InputBitmap) {
+    private fun inputBitmap(intent: Bitmap8583Intent.InputData) {
         setState { copy(bitmapString = intent.bitmap) }
     }
 
@@ -71,19 +71,19 @@ class ISO8583BitmapViewModel : BaseViewModel<ISO8583BitmapState, Any>() {
 
 }
 
-sealed class ISO8583BitmapIntent {
+sealed class Bitmap8583Intent {
 
-    class ClickBitmapItem(val index: Int) : ISO8583BitmapIntent()
+    class ClickItem(val index: Int) : Bitmap8583Intent()
 
-    class InputBitmap(val bitmap: String) : ISO8583BitmapIntent()
+    class InputData(val bitmap: String) : Bitmap8583Intent()
 
-    object GenerateBitmap : ISO8583BitmapIntent()
+    object Generate : Bitmap8583Intent()
 
-    object ResetBitmap : ISO8583BitmapIntent()
+    object Reset : Bitmap8583Intent()
 
 }
 
-data class ISO8583BitmapState(
+data class Bitmap8583State(
     val bitmapString: String,
     val bitmapBooleans: BooleanArray,
 )
