@@ -57,7 +57,7 @@ fun RwRadioButton(modifier: Modifier, text: String, selected: Boolean, onClick: 
 
 @Composable
 private fun DividerHorizontal(label: String) {
-    val borderColor = AppTheme.AppColors.borderChecked
+    val borderColor = AppTheme.AppColors.dividerChecked
     Column {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Divider(modifier = Modifier.width(Dimens.space_xxx).height(borderWidth), color = borderColor)
@@ -77,7 +77,7 @@ private fun DividerHorizontal(label: String) {
 
 @Composable
 private fun DividerVertical() {
-    val borderColor = AppTheme.AppColors.borderChecked
+    val borderColor = AppTheme.AppColors.dividerChecked
     val modifier = Modifier.padding(top = Dimens.space_norm)
     Row(modifier = modifier) {
         Divider(modifier = Modifier.width(borderWidth).fillMaxHeight(), color = borderColor)

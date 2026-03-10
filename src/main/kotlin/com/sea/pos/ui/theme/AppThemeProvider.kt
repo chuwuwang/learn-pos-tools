@@ -6,6 +6,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.State
 import androidx.compose.ui.graphics.Color
 import com.sea.pos.ui.resource.Fonts
 
@@ -15,90 +16,59 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
         AppTheme.Theme.WeChat -> AppTheme.wechatColors
         else -> AppTheme.wechatColors
     }
-    val animationSpec = TweenSpec<Color>(durationMillis = 600)
-    val textMain = animateColorAsState(targetColors.textMain, animationSpec)
-    val textSecondary = animateColorAsState(targetColors.textSecondary, animationSpec)
-    val textTertiary = animateColorAsState(targetColors.textTertiary, animationSpec)
-    val textError = animateColorAsState(targetColors.textError, animationSpec)
-    val textChecked = animateColorAsState(targetColors.textChecked, animationSpec)
+    val bgContent = AnimateColorAsState(targetColors.bgContent)
+    val bgSidebar = AnimateColorAsState(targetColors.bgSidebar)
 
-    val mainTheme = animateColorAsState(targetColors.mainTheme, animationSpec)
+    val textMain = AnimateColorAsState(targetColors.textMain)
+    val textSecondary = AnimateColorAsState(targetColors.textSecondary)
+    val textTertiary = AnimateColorAsState(targetColors.textTertiary)
+    val textError = AnimateColorAsState(targetColors.textError)
+    val textChecked = AnimateColorAsState(targetColors.textChecked)
 
-    val bgSidebar = animateColorAsState(targetColors.bgSidebar, animationSpec)
-    val bgContent = animateColorAsState(targetColors.bgContent, animationSpec)
+    val icon = AnimateColorAsState(targetColors.icon)
+    val iconChecked = AnimateColorAsState(targetColors.iconChecked)
 
-    val icon = animateColorAsState(targetColors.icon, animationSpec)
-    val iconChecked = animateColorAsState(targetColors.iconChecked, animationSpec)
-    val button = animateColorAsState(targetColors.button, animationSpec)
-    val buttonText = animateColorAsState(targetColors.buttonText, animationSpec)
-    val buttonChecked = animateColorAsState(targetColors.buttonChecked, animationSpec)
-    val buttonCheckedText = animateColorAsState(targetColors.buttonCheckedText, animationSpec)
-    val divider = animateColorAsState(targetColors.divider, animationSpec)
-    val dividerChecked = animateColorAsState(targetColors.dividerChecked, animationSpec)
+    val button = AnimateColorAsState(targetColors.button)
+    val buttonText = AnimateColorAsState(targetColors.buttonText)
+    val buttonChecked = AnimateColorAsState(targetColors.buttonChecked)
+    val buttonCheckedText = AnimateColorAsState(targetColors.buttonCheckedText)
 
-    val topBarText = animateColorAsState(targetColors.topBarText, animationSpec)
-    val topBarTextChecked = animateColorAsState(targetColors.topBarTextChecked, animationSpec)
-    val topBarDivider = animateColorAsState(targetColors.topBarDivider, animationSpec)
-    val topBarDividerChecked = animateColorAsState(targetColors.topBarDividerChecked, animationSpec)
-
-
-    val contentText = animateColorAsState(targetColors.contentText, animationSpec)
-    val contentBackground = animateColorAsState(targetColors.contentBackground, animationSpec)
-
-
-    val border = animateColorAsState(targetColors.border, animationSpec)
-    val borderError = animateColorAsState(targetColors.borderError, animationSpec)
-    val borderChecked = animateColorAsState(targetColors.borderChecked, animationSpec)
-    val dialogText = animateColorAsState(targetColors.dialogText, animationSpec)
-    val dialogBackground = animateColorAsState(targetColors.dialogBackground, animationSpec)
-
+    val divider = AnimateColorAsState(targetColors.divider)
+    val dividerError = AnimateColorAsState(targetColors.dividerError)
+    val dividerChecked = AnimateColorAsState(targetColors.dividerChecked)
 
     val colors = ThemeColors(
+        bgContent = bgContent.value,
+        bgSidebar = bgSidebar.value,
+
         textMain = textMain.value,
         textSecondary = textSecondary.value,
         textTertiary = textTertiary.value,
         textError = textError.value,
         textChecked = textChecked.value,
 
-        mainTheme = mainTheme.value,
-
-        bgSidebar = bgSidebar.value,
-        bgContent = bgContent.value,
-
         icon = icon.value,
         iconChecked = iconChecked.value,
+
         button = button.value,
         buttonText = buttonText.value,
         buttonChecked = buttonChecked.value,
         buttonCheckedText = buttonCheckedText.value,
+
         divider = divider.value,
+        dividerError = dividerError.value,
         dividerChecked = dividerChecked.value,
-
-        /////////////
-
-        topBarText = topBarText.value,
-        topBarTextChecked = topBarTextChecked.value,
-        topBarDivider = topBarDivider.value,
-        topBarDividerChecked = topBarDividerChecked.value,
-
-
-        contentText = contentText.value,
-        contentBackground = contentBackground.value,
-
-
-        border = border.value,
-        borderError = borderError.value,
-        borderChecked = borderChecked.value,
-        dialogText = dialogText.value,
-        dialogBackground = dialogBackground.value,
     )
 
     // Use the font family to define a custom typography
-    val craneTypography = Typography(
-        defaultFontFamily = Fonts.defaultFontFamily,
-        /* ... */
-    )
+    val craneTypography = Typography(defaultFontFamily = Fonts.defaultFontFamily)
     CompositionLocalProvider(AppTheme.defaultLocalColors provides colors) {
         MaterialTheme(typography = craneTypography, content = content)
     }
+}
+
+@Composable
+private fun AnimateColorAsState(targetValue: Color): State<Color> {
+    val animationSpec = TweenSpec<Color>(durationMillis = 600)
+    return animateColorAsState(targetValue, animationSpec)
 }
