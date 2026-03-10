@@ -26,8 +26,8 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
             is DESAlgoIntent.InputKey -> inputKey(intent)
             is DESAlgoIntent.InputData -> inputData(intent)
             is DESAlgoIntent.SwitchAlgo -> switchAlgo(intent)
-            is DESAlgoIntent.SwitchFormat -> switchFormat(intent)
             is DESAlgoIntent.SwitchMode -> switchMode(intent)
+            is DESAlgoIntent.SwitchFormat -> switchFormat(intent)
             is DESAlgoIntent.SwitchPadding -> switchPadding(intent)
         }
     }

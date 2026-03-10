@@ -18,7 +18,6 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import com.pos.encode.ui.encrypt.EncryptionAlgorithmActivity
 import com.sea.pos.ui.algorithm.DESAlgoActivity
 import com.sea.pos.ui.algorithm.HashAlgoActivity
 import com.sea.pos.ui.iso8583.ISO8583BitmapActivity
@@ -58,8 +57,6 @@ private fun SwitchScreen(index: MutableState<Int>, controller: AppController) {
         HashAlgoActivity()
     } else if (index.value == Sidebar.MENU_HASH_DES) {
         DESAlgoActivity()
-    } else if (index.value == Sidebar.MENU_ENCRYPTION_ALGORITHM) {
-        EncryptionAlgorithmActivity.preview()
     } else if (index.value == Sidebar.MENU_ISO8583_BITMAP) {
         ISO8583BitmapActivity(controller = controller)
     } else if (index.value == Sidebar.MENU_COMMON_ALGORITHM) {
