@@ -12,27 +12,26 @@ import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.widget.*
 
 @Composable
-fun HashAlgoActivity(modifier: Modifier = Modifier) {
-    val dataFormatList = listOf(DataFormat.Raw, DataFormat.Hex)
-    val algoList = listOf(Hash.MD2, Hash.MD4, Hash.MD5, Hash.SHA1, Hash.SHA224, Hash.SHA256, Hash.SHA384, Hash.SHA512)
+fun HashAlgoActivity() {
+    val formats = listOf(DataFormat.Raw, DataFormat.Hex)
+    val algos = listOf(Hash.MD2, Hash.MD4, Hash.MD5, Hash.SHA1, Hash.SHA224, Hash.SHA256, Hash.SHA384, Hash.SHA512)
 
     val vm = remember { HashAlgoViewModel() }
     val state by vm.state.collectAsState()
 
-    Column(modifier = modifier) {
-        val selectedAlgo = algoList.indexOf(state.algo)
-        Topbar(list = algoList.map { it.code }, selected = selectedAlgo) { algo ->
-            val item = Hash.entries.find { it.code == algo } ?: Hash.MD2
+    Column {
+        val selectedAlgo = algos.indexOf(state.algo)
+        Topbar(list = algos.map { it.code }, selected = selectedAlgo) { algo ->
+            val item = Hash.entries.find { it.code == algo } ?: Hash.MD5
             val intent = HashAlgoIntent.SwitchAlgo(item)
             vm.dispatch(intent)
         }
 
         HorizontalDivider()
 
-        val dataFormatSelected = dataFormatList.indexOf(state.dataFormat)
-        RwRadioGroup(list = dataFormatList.map { it.code }, label = "Data Format", selected = dataFormatSelected) {
-            val item = DataFormat.valueOf(it)
-            val intent = HashAlgoIntent.SwitchDataFormat(item)
+        val selectedFormat = formats.indexOf(state.format)
+        RwRadioGroup(list = formats.map { it.code }, label = "Data Format", selected = selectedFormat) { format ->
+            val intent = DataFormat.valueOf(format).let { HashAlgoIntent.SwitchFormat(it) }
             vm.dispatch(intent)
         }
 

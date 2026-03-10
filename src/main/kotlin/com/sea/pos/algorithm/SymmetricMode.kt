@@ -1,13 +1,13 @@
 package com.sea.pos.algorithm
 
-enum class SymmetricMode {
+enum class SymmetricMode(val code: String) {
 
-    ECB,
+    ECB("ECB"),
 
-    CBC,
+    CBC("CBC"),
 
-    CFB,
+    CFB("CFB"),
 
-    OFB,
+    OFB("OFB");
 
 }

@@ -1,17 +1,17 @@
 package com.sea.pos.algorithm
 
-enum class SymmetricPadding {
+enum class SymmetricPadding(val code: String) {
 
-    PKCS5Padding,
+    PKCS5Padding("PKCS5Padding"),
 
-    PKCS7Padding,
+    PKCS7Padding("PKCS7Padding"),
 
-    ZeroPadding,
+    NoPadding("NoPadding"),
 
-    ANSIX923Padding,
+    ZeroPadding("ZeroPadding"),
 
-    ISO10126Padding,
+    ANSIX923Padding("ANSIX923Padding"),
 
-    NoPadding,
+    ISO10126Padding("ISO10126Padding");
 
 }
