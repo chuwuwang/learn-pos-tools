@@ -46,7 +46,7 @@ fun HashAlgoActivity() {
 
         RwInputField(Modifier.weight(1f), state.outputData, Int.MAX_VALUE, enabled = false) { }
 
-        RwDecryptButton(modifier = UiUtils.modifierSpace_xxx) {
+        RwEncryptButton(modifier = UiUtils.modifierSpace_xxx) {
             vm.dispatch(HashAlgoIntent.Encrypt)
         }
 

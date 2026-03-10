@@ -1,6 +1,7 @@
 package com.sea.pos.ui.algorithm
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -76,7 +77,7 @@ fun DESAlgoActivity() {
 
         RwSubtitleText("Input Data")
 
-        RwInputField(Modifier.weight(1f), state.inputData, Int.MAX_VALUE) {
+        RwInputField(Modifier.weight(2f), state.inputData, Int.MAX_VALUE) {
             val intent = DESAlgoIntent.InputData(it)
             vm.dispatch(intent)
         }
@@ -85,8 +86,12 @@ fun DESAlgoActivity() {
 
         RwInputField(Modifier.weight(1f), state.outputData, Int.MAX_VALUE, enabled = false) { }
 
-        RwDecryptButton(modifier = UiUtils.modifierSpace_xxx) {
-            vm.dispatch(DESAlgoIntent.Encrypt)
+        Row(UiUtils.modifierSpace_xxx) {
+            RwEncryptButton { vm.dispatch(DESAlgoIntent.Encrypt) }
+
+            Horizontal(Dimens.space_x)
+
+            RwDecryptButton { vm.dispatch(DESAlgoIntent.Decrypt) }
         }
 
         Vertical(Dimens.space_xxx)

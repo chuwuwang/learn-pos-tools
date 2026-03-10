@@ -16,13 +16,15 @@ import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
 
+private val borderWidth = 2.dp
+
 @Composable
 fun RwRadioGroup(list: List<String>, label: String, selected: Int = 0, onClick: (String) -> Unit) {
     val selected = remember {
         val string = list[selected]
         mutableStateOf(string)
     }
-    BoxWithConstraints(modifier = UiUtils.modifierSpace_xxx.height(72.dp), contentAlignment = Alignment.Center) {
+    BoxWithConstraints(modifier = UiUtils.modifierSpace_xxx.height(64.dp), contentAlignment = Alignment.Center) {
         // 从上到下绘制 divider
         DividerHorizontal(label)
 
@@ -66,7 +68,6 @@ private fun DividerHorizontal(label: String) {
             Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
         }
 
-        // 占满空间
         val modifier = Modifier.weight(1.0f)
         Spacer(modifier = modifier)
 
@@ -81,12 +82,9 @@ private fun DividerVertical() {
     Row(modifier = modifier) {
         Divider(modifier = Modifier.width(borderWidth).fillMaxHeight(), color = borderColor)
 
-        // 占满空间
         val modifier = Modifier.weight(1.0f)
         Spacer(modifier = modifier)
 
         Divider(modifier = Modifier.width(borderWidth).fillMaxHeight(), color = borderColor)
     }
 }
-
-private val borderWidth = 2.dp

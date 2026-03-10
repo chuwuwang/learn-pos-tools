@@ -16,6 +16,14 @@ private val width = 96.dp
 private val height = 80.dp
 
 @Composable
+fun RwEncryptButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Button(modifier = modifier.size(width, height), colors = RwButton.ButtonCheckedColors, onClick = onClick) {
+        val painter = painterResource("images/ic_encrypt.png")
+        Icon(painter = painter, modifier = Modifier.size(32.dp), tint = AppTheme.AppColors.icon, contentDescription = null)
+    }
+}
+
+@Composable
 fun RwDecryptButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Button(modifier = modifier.size(width, height), colors = RwButton.ButtonCheckedColors, onClick = onClick) {
         val painter = painterResource("images/ic_decrypt.png")

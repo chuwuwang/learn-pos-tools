@@ -18,20 +18,6 @@ import com.sea.pos.ui.widget.Sidebar.MENU_COMMON_ALGORITHM
 import com.sea.pos.ui.widget.Sidebar.MENU_ENCRYPTION_ALGORITHM
 import com.sea.pos.ui.widget.Sidebar.MENU_ISO8583_BITMAP
 
-object Sidebar {
-
-    const val MENU_HASH_ALGO = 0
-
-    const val MENU_HASH_DES = 1
-
-    const val MENU_ENCRYPTION_ALGORITHM = 11
-
-    const val MENU_COMMON_ALGORITHM = 12
-
-    const val MENU_ISO8583_BITMAP = 13
-
-}
-
 @Composable
 fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
     Column(modifier) {
@@ -39,7 +25,7 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
 
         var resourcePath = "images/ic_menu_hash_algo_black.png"
         var tint = UiUtils.IconColor(index, Sidebar.MENU_HASH_ALGO)
-        ItemView("Hash Algorithm", tint = tint, resourcePath = resourcePath) {
+        ItemView("Hash", tint = tint, resourcePath = resourcePath) {
             onClick(Sidebar.MENU_HASH_ALGO)
         }
 
@@ -88,4 +74,18 @@ private fun ItemView(text: String, tint: Color, resourcePath: String, onClick: (
 
         Text(color = tint, textAlign = TextAlign.Start, fontSize = Dimens.sp_title, fontFamily = Fonts.bold, text = text)
     }
+}
+
+object Sidebar {
+
+    const val MENU_HASH_ALGO = 0
+
+    const val MENU_HASH_DES = 1
+
+    const val MENU_ENCRYPTION_ALGORITHM = 11
+
+    const val MENU_COMMON_ALGORITHM = 12
+
+    const val MENU_ISO8583_BITMAP = 13
+
 }
