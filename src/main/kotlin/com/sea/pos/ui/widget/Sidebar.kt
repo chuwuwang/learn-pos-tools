@@ -16,18 +16,19 @@ import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.resource.Strings
 import com.sea.pos.ui.widget.Sidebar.MENU_COMMON_ALGORITHM
 import com.sea.pos.ui.widget.Sidebar.MENU_ENCRYPTION_ALGORITHM
-import com.sea.pos.ui.widget.Sidebar.MENU_HASH_ALGORITHM
 import com.sea.pos.ui.widget.Sidebar.MENU_ISO8583_BITMAP
 
 object Sidebar {
 
-    const val MENU_HASH_ALGORITHM = 0
+    const val MENU_HASH_ALGO = 0
 
-    const val MENU_ENCRYPTION_ALGORITHM = 1
+    const val MENU_HASH_DES = 1
 
-    const val MENU_COMMON_ALGORITHM = 2
+    const val MENU_ENCRYPTION_ALGORITHM = 11
 
-    const val MENU_ISO8583_BITMAP = 3
+    const val MENU_COMMON_ALGORITHM = 12
+
+    const val MENU_ISO8583_BITMAP = 13
 
 }
 
@@ -36,19 +37,39 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
     Column(modifier) {
         Vertical(Dimens.space_x)
 
-        ItemView(Strings.hash_algorithm, UiUtils.IconColor(index, MENU_HASH_ALGORITHM), resourcePath = "images/ic_menu_hash_algo_black.png") {
-            onClick(MENU_HASH_ALGORITHM)
+        var resourcePath = "images/ic_menu_hash_algo_black.png"
+        var tint = UiUtils.IconColor(index, Sidebar.MENU_HASH_ALGO)
+        ItemView("Hash Algorithm", tint = tint, resourcePath = resourcePath) {
+            onClick(Sidebar.MENU_HASH_ALGO)
         }
 
-        ItemView(Strings.encryption_algorithm, UiUtils.IconColor(index, MENU_ENCRYPTION_ALGORITHM), resourcePath = "images/ic_menu_des_ago_black.png") {
+        resourcePath = "images/ic_menu_des_ago_black.png"
+        tint = UiUtils.IconColor(index, Sidebar.MENU_HASH_DES)
+        ItemView("DES / 3DES", tint = tint, resourcePath = resourcePath) {
+            onClick(Sidebar.MENU_HASH_DES)
+        }
+
+        ItemView(
+            Strings.encryption_algorithm,
+            UiUtils.IconColor(index, MENU_ENCRYPTION_ALGORITHM),
+            resourcePath = "images/ic_menu_des_ago_black.png"
+        ) {
             onClick(MENU_ENCRYPTION_ALGORITHM)
         }
 
-        ItemView(Strings.common_algo, UiUtils.IconColor(index, MENU_COMMON_ALGORITHM), resourcePath = "images/ic_menu_common_algo_black.png") {
+        ItemView(
+            Strings.common_algo,
+            UiUtils.IconColor(index, MENU_COMMON_ALGORITHM),
+            resourcePath = "images/ic_menu_common_algo_black.png"
+        ) {
             onClick(MENU_COMMON_ALGORITHM)
         }
 
-        ItemView(Strings.iso8583_bitmap, UiUtils.IconColor(index, MENU_ISO8583_BITMAP), resourcePath = "images/ic_menu_bitmap_black.png") {
+        ItemView(
+            Strings.iso8583_bitmap,
+            UiUtils.IconColor(index, MENU_ISO8583_BITMAP),
+            resourcePath = "images/ic_menu_bitmap_black.png"
+        ) {
             onClick(MENU_ISO8583_BITMAP)
         }
 

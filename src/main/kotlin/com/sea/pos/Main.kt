@@ -19,6 +19,7 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.pos.encode.ui.encrypt.EncryptionAlgorithmActivity
+import com.sea.pos.ui.algorithm.DESAlgoActivity
 import com.sea.pos.ui.algorithm.HashAlgoActivity
 import com.sea.pos.ui.iso8583.ISO8583BitmapActivity
 import com.sea.pos.ui.theme.AppTheme
@@ -38,28 +39,30 @@ fun main() = application {
 @Composable
 @Preview
 fun App() {
-    val appController = remember { AppController() }
+    val controller = remember { AppController() }
     val current = remember { mutableStateOf(0) }
     SeaTheme {
         Row {
-            val modifierSidebar = Modifier.weight(1f).fillMaxHeight().background(AppTheme.AppColors.bgSidebar)
-            Sidebar(modifierSidebar, current.value) { current.value = it }
+            var modifier = Modifier.weight(1f).fillMaxHeight().background(AppTheme.AppColors.bgSidebar)
+            Sidebar(modifier, current.value) { current.value = it }
 
-            val modifierContent = Modifier.weight(3f).fillMaxHeight().background(AppTheme.AppColors.bgContent)
-            BoxWithConstraints(modifierContent) { OverlayHost { SwitchScreen(appController, current, modifierContent) } }
+            modifier = Modifier.weight(3f).fillMaxHeight().background(AppTheme.AppColors.bgContent)
+            BoxWithConstraints(modifier) { OverlayHost { SwitchScreen(current, controller) } }
         }
     }
 }
 
 @Composable
-private fun SwitchScreen(controller: AppController, index: MutableState<Int>, modifier: Modifier) {
-    if (index.value == Sidebar.MENU_HASH_ALGORITHM) {
-        HashAlgoActivity(modifier)
+private fun SwitchScreen(index: MutableState<Int>, controller: AppController) {
+    if (index.value == Sidebar.MENU_HASH_ALGO) {
+        HashAlgoActivity()
+    } else if (index.value == Sidebar.MENU_HASH_DES) {
+        DESAlgoActivity()
     } else if (index.value == Sidebar.MENU_ENCRYPTION_ALGORITHM) {
-        EncryptionAlgorithmActivity.preview(modifier)
+        EncryptionAlgorithmActivity.preview()
     } else if (index.value == Sidebar.MENU_ISO8583_BITMAP) {
-        ISO8583BitmapActivity(modifier, controller)
+        ISO8583BitmapActivity(controller = controller)
     } else if (index.value == Sidebar.MENU_COMMON_ALGORITHM) {
-        HashAlgoActivity(modifier)
+        HashAlgoActivity()
     }
 }

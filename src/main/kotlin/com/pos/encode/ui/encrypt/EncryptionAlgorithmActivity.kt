@@ -38,7 +38,7 @@ object EncryptionAlgorithmActivity {
     private const val PADDING_ISO10126d2Padding = "ISO10126d2Padding"
 
     @Composable
-    fun preview(modifier: Modifier) {
+    fun preview(modifier: Modifier=Modifier) {
         val algorithmText = remember { mutableStateOf(0) }
         val modeText = remember { mutableStateOf(Algorithm.MODE_ECB) }
         val paddingText = remember { mutableStateOf(PADDING_NoPadding) }
