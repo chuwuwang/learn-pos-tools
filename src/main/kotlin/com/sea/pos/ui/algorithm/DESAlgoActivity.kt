@@ -20,12 +20,10 @@ fun DESAlgoActivity() {
     val formats = listOf(DataFormat.Hex, DataFormat.Raw)
     val algos = listOf(SymmetricEncryption.DES, SymmetricEncryption.TripleDES)
     val paddings = listOf(
+        SymmetricPadding.NoPadding,
+        SymmetricPadding.ZeroBytePadding,
         SymmetricPadding.PKCS5Padding,
         SymmetricPadding.PKCS7Padding,
-        SymmetricPadding.NoPadding,
-        SymmetricPadding.ZeroPadding,
-        SymmetricPadding.ANSIX923Padding,
-        SymmetricPadding.ISO10126Padding,
     )
     val modes = listOf(SymmetricMode.ECB, SymmetricMode.CBC, SymmetricMode.CFB, SymmetricMode.OFB)
 
@@ -54,9 +52,10 @@ fun DESAlgoActivity() {
             vm.dispatch(intent)
         }
 
-        val selectedPadding = modes.indexOf(state.mode)
+        val selectedPadding = paddings.indexOf(state.padding)
         RwRadioGroup(list = paddings.map { it.code }, label = "Padding", selected = selectedPadding) { padding ->
-            val intent = SymmetricPadding.valueOf(padding).let { DESAlgoIntent.SwitchPadding(it) }
+            val item = SymmetricPadding.entries.find { it.code == padding } ?: SymmetricPadding.NoPadding
+            val intent = DESAlgoIntent.SwitchPadding(item)
             vm.dispatch(intent)
         }
 
@@ -70,7 +69,7 @@ fun DESAlgoActivity() {
 
         RwSubtitleText("IV")
 
-        val enabled = vm.state.value.mode == SymmetricMode.ECB
+        val enabled = vm.state.value.mode != SymmetricMode.ECB
         RwInputTextWithLength(Modifier.height(Dimens.item_norm), state.iv, maxLength, enabled = enabled, singleLine = true) {
             val intent = DESAlgoIntent.InputIV(it)
             vm.dispatch(intent)

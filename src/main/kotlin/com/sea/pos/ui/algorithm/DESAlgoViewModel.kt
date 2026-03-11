@@ -1,10 +1,15 @@
 package com.sea.pos.ui.algorithm
 
+import com.pos.encode.algorithm.DESUtil
+import com.pos.encode.util.ByteUtil
 import com.sea.pos.algorithm.DataFormat
 import com.sea.pos.algorithm.SymmetricEncryption
 import com.sea.pos.algorithm.SymmetricMode
 import com.sea.pos.algorithm.SymmetricPadding
+import com.sea.pos.extension.isInputInvalid
 import com.sea.pos.ui.BaseViewModel
+import com.sea.pos.ui.widget.overlay.AppDialog
+import com.sea.pos.ui.widget.overlay.DialogManager
 
 class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
 
@@ -13,16 +18,28 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
             format = DataFormat.Hex,
             mode = SymmetricMode.ECB,
             algo = SymmetricEncryption.DES,
-            padding = SymmetricPadding.PKCS5Padding,
+            padding = SymmetricPadding.NoPadding,
             iv = "0000000000000000",
+            key = "1111111111111111",
+            inputData = "0000000000000000",
         )
         return state
     }
 
     fun dispatch(intent: DESAlgoIntent) {
         when (intent) {
-            DESAlgoIntent.Encrypt -> encrypt()
-            DESAlgoIntent.Decrypt -> decrypt()
+            DESAlgoIntent.Encrypt -> {
+                if (state.value.algo == SymmetricEncryption.DES) {
+                    encryptByDES()
+                } else {
+
+                }
+            }
+
+            DESAlgoIntent.Decrypt -> {
+
+            }
+
             is DESAlgoIntent.InputIV -> inputIV(intent)
             is DESAlgoIntent.InputKey -> inputKey(intent)
             is DESAlgoIntent.InputData -> inputData(intent)
@@ -33,9 +50,45 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
         }
     }
 
-    private fun encrypt() {
+    private fun encryptByDES() {
+        val iv = state.value.iv
+        val key = state.value.key
+        val mode = state.value.mode
         val format = state.value.format
-        state.value.key
+        val inputData = state.value.inputData
+        if (key.length != 8 && key.length != 16) {
+            val dialog = AppDialog.Error(message = "key size must be 8 bytes")
+            DialogManager.show(dialog)
+            return
+        }
+        val invalid = inputData.isInputInvalid(format)
+        if (invalid) {
+            val dialog = AppDialog.Error(message = "Data error")
+            DialogManager.show(dialog)
+            return
+        }
+        val keyBytes = if (key.length == 8) {
+            key.toByteArray()
+        } else {
+            ByteUtil.hexString2Bytes(key)
+        }
+        val dataIn = if (state.value.format == DataFormat.Raw) {
+            state.value.inputData.toByteArray()
+        } else {
+            ByteUtil.hexString2Bytes(state.value.inputData)
+        }
+        val dataOut = if (mode == SymmetricMode.ECB) {
+            DESUtil.encryptECB(keyBytes, dataIn, state.value.padding.code)
+        } else {
+            byteArrayOf()
+        }
+        if (dataOut != null) {
+            val string = ByteUtil.bytes2HexString(dataOut)
+            setState { copy(outputData = string) }
+        } else {
+            val dialog = AppDialog.Error(message = "Encryption failed")
+            DialogManager.show(dialog)
+        }
     }
 
     private fun decrypt() {
@@ -71,36 +124,3 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
     }
 
 }
-
-sealed class DESAlgoIntent {
-
-    class SwitchMode(val mode: SymmetricMode) : DESAlgoIntent()
-
-    class SwitchFormat(val format: DataFormat) : DESAlgoIntent()
-
-    class SwitchAlgo(val algo: SymmetricEncryption) : DESAlgoIntent()
-
-    class SwitchPadding(val padding: SymmetricPadding) : DESAlgoIntent()
-
-    class InputIV(val iv: String) : DESAlgoIntent()
-
-    class InputKey(val key: String) : DESAlgoIntent()
-
-    class InputData(val data: String) : DESAlgoIntent()
-
-    object Encrypt : DESAlgoIntent()
-
-    object Decrypt : DESAlgoIntent()
-
-}
-
-data class DESAlgoState(
-    val format: DataFormat,
-    val mode: SymmetricMode,
-    val algo: SymmetricEncryption,
-    val padding: SymmetricPadding,
-    val iv: String = "",
-    val key: String = "",
-    val inputData: String = "",
-    val outputData: String = "",
-)
