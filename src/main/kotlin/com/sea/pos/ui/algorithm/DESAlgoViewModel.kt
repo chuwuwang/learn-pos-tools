@@ -61,11 +61,22 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
             DialogManager.show(dialog)
             return
         }
+        if (mode != SymmetricMode.ECB && iv.length != 8 && key.length != 16) {
+            val dialog = AppDialog.Error(message = "IV size must be 8 bytes")
+            DialogManager.show(dialog)
+            return
+        }
         val invalid = inputData.isInputInvalid(format)
         if (invalid) {
             val dialog = AppDialog.Error(message = "Data error")
             DialogManager.show(dialog)
             return
+        }
+
+        val ivBytes = if (iv.length == 8) {
+            iv.toByteArray()
+        } else {
+            ByteUtil.hexString2Bytes(iv)
         }
         val keyBytes = if (key.length == 8) {
             key.toByteArray()
@@ -77,11 +88,7 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
         } else {
             ByteUtil.hexString2Bytes(state.value.inputData)
         }
-        val dataOut = if (mode == SymmetricMode.ECB) {
-            DESUtil.encryptECB(keyBytes, dataIn, state.value.padding.code)
-        } else {
-            byteArrayOf()
-        }
+        val dataOut = DESUtil.encrypt(keyBytes, dataIn, ivBytes, mode.code, state.value.padding.name)
         if (dataOut != null) {
             val string = ByteUtil.bytes2HexString(dataOut)
             setState { copy(outputData = string) }
