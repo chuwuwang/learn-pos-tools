@@ -40,19 +40,19 @@ private fun XORScreen() {
 
     val height = Modifier.height(120.dp)
 
-    RwInputField(height, component1Text.value, Int.MAX_VALUE) {
+    RwInputTextWithLength(height, component1Text.value, Int.MAX_VALUE) {
         component1Text.value = it
     }
 
     RwSubtitleText("Component 2")
 
-    RwInputField(height, component2Text.value, Int.MAX_VALUE) {
+    RwInputTextWithLength(height, component2Text.value, Int.MAX_VALUE) {
         component2Text.value = it
     }
 
     RwSubtitleText("Output")
 
-    RwInputField(height, outputText.value, Int.MAX_VALUE) {
+    RwInputTextWithLength(height, outputText.value, Int.MAX_VALUE) {
         outputText.value = it
     }
 

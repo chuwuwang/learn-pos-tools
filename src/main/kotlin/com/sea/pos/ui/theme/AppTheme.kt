@@ -21,24 +21,25 @@ object AppTheme {
 
     val wechatColors = ThemeColors(
         bgContent = Colors.white,
-        bgSidebar = WeChatColors.black,
+        bgSidebar = WeChatColors.text_main,
 
-        textMain = WeChatColors.black,
-        textTertiary = Colors.text_tertiary,
-        textSecondary = Colors.text_secondary,
-        textError = Colors.text_error,
+        textMain = WeChatColors.text_main,
+        textTertiary = WeChatColors.text_tertiary,
+        textSecondary = WeChatColors.text_secondary,
+        textError = WeChatColors.text_error,
         textChecked = WeChatColors.main_theme,
+        textDisabled = WeChatColors.background_fill,
 
         icon = Colors.white,
         iconChecked = WeChatColors.main_theme,
 
         button = Colors.white,
-        buttonText = WeChatColors.black,
+        buttonText = WeChatColors.text_main,
         buttonChecked = WeChatColors.main_theme,
         buttonCheckedText = Colors.white,
 
-        divider = WeChatColors.gray,
-        dividerError = Colors.text_error,
+        divider = WeChatColors.line_fill,
+        dividerError = WeChatColors.text_error,
         dividerChecked = WeChatColors.main_theme,
     )
 

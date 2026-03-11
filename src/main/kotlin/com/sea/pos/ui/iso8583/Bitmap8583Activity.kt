@@ -41,7 +41,7 @@ fun Bitmap8583Activity(controller: AppController) {
 
         RwSubtitleText("Bitmap")
 
-        RwInputField(Modifier.height(Dimens.item_lg), state.bitmapString, state.bitmapString.length, singleLine = true) {
+        RwInputTextWithLength(Modifier.height(Dimens.item_lg), state.bitmapString, state.bitmapString.length, singleLine = true) {
             val intent = Bitmap8583Intent.InputData(it)
             vm.dispatch(intent)
         }

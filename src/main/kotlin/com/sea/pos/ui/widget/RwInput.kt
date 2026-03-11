@@ -1,5 +1,6 @@
 package com.sea.pos.ui.widget
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.width
@@ -16,22 +17,26 @@ import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
 
 @Composable
-fun RwInputField(modifier: Modifier = Modifier, value: String, maxLength: Int, singleLine: Boolean = false, enabled: Boolean = true, onValueChange: (String) -> Unit) {
+fun RwInputTextWithLength(modifier: Modifier = Modifier, value: String, maxLength: Int, input: Boolean = true, enabled: Boolean = true, singleLine: Boolean = false, onValueChange: (String) -> Unit) {
     Row(modifier = modifier.then(UiUtils.modifierSpace), verticalAlignment = Alignment.CenterVertically) {
-        InputText(Modifier.weight(1.0f).fillMaxHeight(), value, singleLine, enabled, onValueChange)
+        InputText(Modifier.weight(1.0f).fillMaxHeight(), value, input = input, enabled = enabled, singleLine = singleLine, onValueChange)
         LengthText(value.length, maxLength)
     }
 }
 
 @Composable
-private fun InputText(modifier: Modifier, value: String, singleLine: Boolean, enabled: Boolean = true, onValueChange: (String) -> Unit) {
-    val textFieldColors = TextFieldDefaults.outlinedTextFieldColors(
+private fun InputText(modifier: Modifier, value: String, input: Boolean, enabled: Boolean, singleLine: Boolean, onValueChange: (String) -> Unit) {
+    val colors = TextFieldDefaults.outlinedTextFieldColors(
         textColor = AppTheme.AppColors.textMain,
         cursorColor = AppTheme.AppColors.textChecked,
         unfocusedBorderColor = AppTheme.AppColors.divider,
         focusedBorderColor = AppTheme.AppColors.textChecked,
     )
-    OutlinedTextField(modifier = modifier, value = value, singleLine = singleLine, enabled = enabled, onValueChange = onValueChange, textStyle = RwInput.InputTextStyle, colors = textFieldColors)
+    if (enabled) {
+        OutlinedTextField(modifier = modifier, value = value, colors = colors, enabled = input, singleLine = singleLine, onValueChange = onValueChange, textStyle = RwInput.InputTextStyle)
+    } else {
+        OutlinedTextField(modifier = modifier.background(AppTheme.AppColors.textDisabled), value = value, colors = colors, enabled = false, singleLine = singleLine, onValueChange = onValueChange, textStyle = RwInput.DisabledTextStyle)
+    }
 }
 
 @Composable
@@ -44,5 +49,8 @@ object RwInput {
 
     val InputTextStyle: TextStyle
         @Composable get() = TextStyle(color = AppTheme.AppColors.textMain, fontFamily = Fonts.medium, fontSize = Dimens.sp_text, letterSpacing = Dimens.sp_letter)
+
+    val DisabledTextStyle: TextStyle
+        @Composable get() = TextStyle(color = AppTheme.AppColors.textTertiary, fontFamily = Fonts.medium, fontSize = Dimens.sp_text, letterSpacing = Dimens.sp_letter)
 
 }

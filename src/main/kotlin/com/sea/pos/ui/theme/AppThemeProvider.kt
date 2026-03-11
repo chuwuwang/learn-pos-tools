@@ -24,6 +24,7 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
     val textTertiary = AnimateColorAsState(targetColors.textTertiary)
     val textError = AnimateColorAsState(targetColors.textError)
     val textChecked = AnimateColorAsState(targetColors.textChecked)
+    val textDisabled = AnimateColorAsState(targetColors.textDisabled)
 
     val icon = AnimateColorAsState(targetColors.icon)
     val iconChecked = AnimateColorAsState(targetColors.iconChecked)
@@ -46,6 +47,7 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
         textTertiary = textTertiary.value,
         textError = textError.value,
         textChecked = textChecked.value,
+        textDisabled = textDisabled.value,
 
         icon = icon.value,
         iconChecked = iconChecked.value,

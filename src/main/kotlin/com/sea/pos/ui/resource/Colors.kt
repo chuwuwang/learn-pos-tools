@@ -23,5 +23,6 @@ object Colors {
 
     val line_fill = Color(0xFFE8E8E8)
 
-    val background_fill = Color(0xFFE8E8E8)
+    val background_fill = Color(0xFFF5F5F5)
+
 }

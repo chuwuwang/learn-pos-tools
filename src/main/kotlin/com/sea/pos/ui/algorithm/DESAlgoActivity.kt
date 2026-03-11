@@ -63,28 +63,29 @@ fun DESAlgoActivity() {
         RwSubtitleText("Key")
 
         val maxLength = if (state.algo == SymmetricEncryption.DES) 16 else 32
-        RwInputField(Modifier.height(Dimens.item_norm), state.key, maxLength, singleLine = true) {
+        RwInputTextWithLength(Modifier.height(Dimens.item_norm), state.key, maxLength, singleLine = true) {
             val intent = DESAlgoIntent.InputKey(it)
             vm.dispatch(intent)
         }
 
         RwSubtitleText("IV")
 
-        RwInputField(Modifier.height(Dimens.item_norm), state.iv, maxLength, singleLine = true) {
+        val enabled = vm.state.value.mode == SymmetricMode.ECB
+        RwInputTextWithLength(Modifier.height(Dimens.item_norm), state.iv, maxLength, enabled = enabled, singleLine = true) {
             val intent = DESAlgoIntent.InputIV(it)
             vm.dispatch(intent)
         }
 
         RwSubtitleText("Input Data")
 
-        RwInputField(Modifier.weight(2f), state.inputData, Int.MAX_VALUE) {
+        RwInputTextWithLength(Modifier.weight(2f), state.inputData, Int.MAX_VALUE) {
             val intent = DESAlgoIntent.InputData(it)
             vm.dispatch(intent)
         }
 
         RwSubtitleText("Output Data")
 
-        RwInputField(Modifier.weight(1f), state.outputData, Int.MAX_VALUE, enabled = false) { }
+        RwInputTextWithLength(Modifier.weight(1f), state.outputData, Int.MAX_VALUE, input = false) { }
 
         Row(UiUtils.modifierSpace_xxx) {
             RwEncryptButton { vm.dispatch(DESAlgoIntent.Encrypt) }

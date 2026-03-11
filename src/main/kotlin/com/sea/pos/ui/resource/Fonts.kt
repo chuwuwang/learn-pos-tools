@@ -17,9 +17,7 @@ object Fonts {
     val defaultFontFamily = FontFamily(lightFont, regularFont, mediumFont, boldFont)
 
     val bold = FontFamily(boldFont)
-
     val medium = FontFamily(mediumFont)
-
     val regular = FontFamily(regularFont)
 
 }
