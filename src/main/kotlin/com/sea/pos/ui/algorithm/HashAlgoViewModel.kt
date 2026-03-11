@@ -14,7 +14,7 @@ import com.sea.pos.ui.widget.overlay.DialogManager
 class HashAlgoViewModel : BaseViewModel<HashAlgoState, Any>() {
 
     override fun initialState(): HashAlgoState {
-        return HashAlgoState(algo = Hash.MD5, format = DataFormat.Raw)
+        return HashAlgoState(algo = Hash.MD2, format = DataFormat.Hex)
     }
 
     fun dispatch(intent: HashAlgoIntent) {

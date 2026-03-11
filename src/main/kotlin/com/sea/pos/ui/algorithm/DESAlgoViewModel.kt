@@ -10,10 +10,11 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
 
     override fun initialState(): DESAlgoState {
         val state = DESAlgoState(
-            format = DataFormat.Raw,
+            format = DataFormat.Hex,
             mode = SymmetricMode.ECB,
             algo = SymmetricEncryption.DES,
             padding = SymmetricPadding.PKCS5Padding,
+            iv = "0000000000000000",
         )
         return state
     }
@@ -33,7 +34,8 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
     }
 
     private fun encrypt() {
-
+        val format = state.value.format
+        state.value.key
     }
 
     private fun decrypt() {
