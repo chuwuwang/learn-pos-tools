@@ -70,20 +70,3 @@ class Bitmap8583ViewModel : BaseViewModel<Bitmap8583State, Any>() {
     }
 
 }
-
-sealed class Bitmap8583Intent {
-
-    class ClickItem(val index: Int) : Bitmap8583Intent()
-
-    class InputData(val bitmap: String) : Bitmap8583Intent()
-
-    object Generate : Bitmap8583Intent()
-
-    object Reset : Bitmap8583Intent()
-
-}
-
-data class Bitmap8583State(
-    val bitmapString: String,
-    val bitmapBooleans: BooleanArray,
-)

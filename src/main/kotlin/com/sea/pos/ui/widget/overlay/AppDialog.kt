@@ -3,9 +3,9 @@ package com.sea.pos.ui.widget.overlay
 sealed class AppDialog(
     val title: String = "",
     val message: String = "",
-    val confirmText: String = "CONFIRM",
+    val confirmText: String = "Confirm",
     val onConfirm: () -> Unit = { },
-    val dismissText: String = "CANCEL",
+    val dismissText: String = "Cancel",
     val onDismiss: () -> Unit = { },
 ) {
 
@@ -14,7 +14,7 @@ sealed class AppDialog(
     class Error(
         title: String = "",
         message: String,
-        confirmText: String = "CONFIRM",
+        confirmText: String = "Confirm",
         onConfirm: () -> Unit = { },
     ) : AppDialog(title, message, confirmText, onConfirm)
 
