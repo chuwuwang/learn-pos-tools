@@ -5,7 +5,7 @@ import com.pos.encode.algorithm.SHAUtil
 import com.pos.encode.util.ByteUtil
 import com.sea.pos.algorithm.DataFormat
 import com.sea.pos.algorithm.Hash
-import com.sea.pos.extension.isInputInvalid
+import com.sea.pos.extension.isInvalidInput
 import com.sea.pos.ui.BaseViewModel
 import com.sea.pos.ui.widget.overlay.AppDialog
 import com.sea.pos.ui.widget.overlay.DialogManager
@@ -29,7 +29,7 @@ class HashAlgoViewModel : BaseViewModel<HashAlgoState, Any>() {
         val algo = state.value.algo
         val format = state.value.format
         val inputData = state.value.inputData
-        val invalid = inputData.isInputInvalid(format)
+        val invalid = inputData.isInvalidInput(format)
         if (invalid) {
             val dialog = AppDialog.Error(message = "Data error")
             DialogManager.show(dialog)

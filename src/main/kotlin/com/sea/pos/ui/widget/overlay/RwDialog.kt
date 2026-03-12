@@ -57,7 +57,7 @@ fun RwErrorDialog(dialog: AppDialog) {
                     Text(dialog.confirmText, style = RwButton.ButtonCheckedTextStyle)
                 }
 
-                Vertical(48.dp)
+                Vertical(32.dp)
             }
 
         }
