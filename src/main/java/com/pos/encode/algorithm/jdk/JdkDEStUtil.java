@@ -14,7 +14,7 @@ public final class JdkDEStUtil {
     /**
      * javax.crypto.Cipher
      * java.security.MessageDigest
-     * JDK support CBC, CFB, CTR, CTS, ECB, OFB, padding support ISO10126Padding, NoPadding, P KCS5Padding
+     * JDK support CBC, CFB, CTR, CTS, ECB, OFB, padding support ISO10126Padding, NoPadding, PKCS5Padding
      */
     private JdkDEStUtil() {
         throw new UnsupportedOperationException("u can't instantiate me...");

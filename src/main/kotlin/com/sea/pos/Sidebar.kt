@@ -36,7 +36,7 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
 
         resourcePath = "images/ic_menu_common_algo_black.png"
         tint = UiUtils.IconColor(index, Sidebar.MENU_ALGO_COMMON)
-        ItemView("Common Algorithm", tint = tint, resourcePath = resourcePath) {
+        ItemView("Common Crypto", tint = tint, resourcePath = resourcePath) {
             onClick(Sidebar.MENU_ALGO_COMMON)
         }
 
