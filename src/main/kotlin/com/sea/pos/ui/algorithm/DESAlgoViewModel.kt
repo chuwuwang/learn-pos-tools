@@ -1,6 +1,7 @@
 package com.sea.pos.ui.algorithm
 
 import com.pos.encode.algorithm.DESUtil
+import com.pos.encode.algorithm.TripleDESUtil
 import com.pos.encode.util.ByteUtil
 import com.sea.pos.algorithm.DataFormat
 import com.sea.pos.algorithm.SymmetricEncryption
@@ -28,13 +29,7 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
 
     fun dispatch(intent: DESAlgoIntent) {
         when (intent) {
-            DESAlgoIntent.Encrypt -> {
-                if (state.value.algo == SymmetricEncryption.DES) {
-                    encryptByDES()
-                } else {
-
-                }
-            }
+            DESAlgoIntent.Encrypt -> encrypt()
 
             DESAlgoIntent.Decrypt -> {
 
@@ -50,18 +45,20 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
         }
     }
 
-    private fun encryptByDES() {
+    private fun encrypt() {
         val iv = state.value.iv
         val key = state.value.key
         val mode = state.value.mode
         val format = state.value.format
         val inputData = state.value.inputData
-        if (key.length != 8 && key.length != 16) {
-            val dialog = AppDialog.Error(message = "key size must be 8 bytes")
+        val triple = state.value.algo == SymmetricEncryption.TripleDES
+        val size = if (triple) 16 else 8
+        if (key.length != size && key.length != size * 2) {
+            val dialog = AppDialog.Error(message = "key size must be $size bytes")
             DialogManager.show(dialog)
             return
         }
-        if (mode != SymmetricMode.ECB && iv.length != 8 && key.length != 16) {
+        if (mode != SymmetricMode.ECB && iv.length != 8 && iv.length != 16) {
             val dialog = AppDialog.Error(message = "IV size must be 8 bytes")
             DialogManager.show(dialog)
             return
@@ -72,23 +69,29 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
             DialogManager.show(dialog)
             return
         }
-
-        val ivBytes = if (iv.length == 8) {
+        var ivBytes = if (iv.length == 8) {
             iv.toByteArray()
         } else {
             ByteUtil.hexString2Bytes(iv)
         }
-        val keyBytes = if (key.length == 8) {
+        if (mode == SymmetricMode.ECB) {
+            ivBytes = null
+        }
+        val keyBytes = if (key.length == size) {
             key.toByteArray()
         } else {
             ByteUtil.hexString2Bytes(key)
         }
-        val dataIn = if (state.value.format == DataFormat.Raw) {
-            state.value.inputData.toByteArray()
+        val dataIn = if (format == DataFormat.Raw) {
+            inputData.toByteArray()
         } else {
-            ByteUtil.hexString2Bytes(state.value.inputData)
+            ByteUtil.hexString2Bytes(inputData)
         }
-        val dataOut = DESUtil.encrypt(keyBytes, dataIn, ivBytes, mode.code, state.value.padding.name)
+        val dataOut = if (triple) {
+            TripleDESUtil.encrypt(keyBytes, dataIn, ivBytes, mode.code, state.value.padding.name)
+        } else {
+            DESUtil.encrypt(keyBytes, dataIn, ivBytes, mode.code, state.value.padding.name)
+        }
         if (dataOut != null) {
             val string = ByteUtil.bytes2HexString(dataOut)
             setState { copy(outputData = string) }
@@ -96,10 +99,6 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
             val dialog = AppDialog.Error(message = "Encryption failed")
             DialogManager.show(dialog)
         }
-    }
-
-    private fun decrypt() {
-
     }
 
     private fun inputIV(intent: DESAlgoIntent.InputIV) {
