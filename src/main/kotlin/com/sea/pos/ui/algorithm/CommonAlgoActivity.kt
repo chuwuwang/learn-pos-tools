@@ -41,21 +41,17 @@ fun CommonAlgoActivity() {
 
         if (I18nUtils.string("common_algo_xor") == state.algo) {
             RwSubtitleText("Component 1")
-
             RwInputTextWithLength(Modifier.weight(1f), state.component1, Int.MAX_VALUE) {
                 val intent = CommonAlgoIntent.InputComponent1(it)
                 vm.dispatch(intent)
             }
-
             RwSubtitleText("Component 2")
-
             RwInputTextWithLength(Modifier.weight(1f), state.component2, Int.MAX_VALUE) {
                 val intent = CommonAlgoIntent.InputComponent2(it)
                 vm.dispatch(intent)
             }
         } else {
             RwSubtitleText("Input Data")
-
             RwInputTextWithLength(Modifier.weight(3f), state.inputData, Int.MAX_VALUE) {
                 val intent = CommonAlgoIntent.InputData(it)
                 vm.dispatch(intent)

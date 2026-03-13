@@ -14,4 +14,12 @@ public final class AlgorithmUtil {
         return bytes;
     }
 
+    public static byte xorBitwise(final byte[] data) {
+        byte result = 0x00;
+        for (byte b : data) {
+            result ^= b;
+        }
+        return result;
+    }
+
 }

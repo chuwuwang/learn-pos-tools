@@ -30,6 +30,8 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
         val algo = state.value.algo
         if (I18nUtils.string("common_algo_xor") == algo) {
             xor()
+        } else if (I18nUtils.string("common_algo_xor_bitwise") == algo) {
+            xorBitwise()
         }
     }
 
@@ -60,6 +62,24 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
             val dialog = AppDialog.Error(message = "Calculation failed")
             DialogManager.show(dialog)
         }
+    }
+
+    private fun xorBitwise() {
+        val inputData = state.value.inputData
+        val invalid = inputData.isInvalidInput(state.value.format)
+        if (invalid) {
+            val dialog = AppDialog.Error(message = "Data error")
+            DialogManager.show(dialog)
+            return
+        }
+        val dataIn = if (state.value.format == DataFormat.Raw) {
+            inputData.toByteArray()
+        } else {
+            ByteUtil.hexString2Bytes(inputData)
+        }
+        val dataOut = AlgorithmUtil.xorBitwise(dataIn)
+        val string = ByteUtil.byte2HexString(dataOut).uppercase()
+        setState { copy(outputData = string) }
     }
 
     private fun inputComponent1(intent: CommonAlgoIntent.InputComponent1) {
