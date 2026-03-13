@@ -1,7 +1,12 @@
 package com.sea.pos.ui.algorithm
 
+import com.pos.encode.algorithm.AlgorithmUtil
+import com.pos.encode.util.ByteUtil
 import com.sea.pos.algorithm.DataFormat
+import com.sea.pos.extension.isInvalidInput
 import com.sea.pos.ui.BaseViewModel
+import com.sea.pos.ui.widget.overlay.AppDialog
+import com.sea.pos.ui.widget.overlay.DialogManager
 import com.sea.pos.utils.I18nUtils
 
 class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
@@ -12,13 +17,57 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
 
     fun dispatch(intent: CommonAlgoIntent) {
         when (intent) {
-            CommonAlgoIntent.Calculate -> TODO()
-            is CommonAlgoIntent.InputComponent1 -> TODO()
-            is CommonAlgoIntent.InputComponent2 -> TODO()
+            CommonAlgoIntent.Calculate -> calculate()
+            is CommonAlgoIntent.InputComponent1 -> inputComponent1(intent)
+            is CommonAlgoIntent.InputComponent2 -> inputComponent2(intent)
             is CommonAlgoIntent.InputData -> inputData(intent)
             is CommonAlgoIntent.SwitchAlgo -> switchAlgo(intent)
             is CommonAlgoIntent.SwitchFormat -> switchFormat(intent)
         }
+    }
+
+    private fun calculate() {
+        val algo = state.value.algo
+        if (I18nUtils.string("common_algo_xor") == algo) {
+            xor()
+        }
+    }
+
+    private fun xor() {
+        val component1 = state.value.component1
+        val component2 = state.value.component2
+        val b1 = component1.isInvalidInput(state.value.format)
+        val b2 = component2.isInvalidInput(state.value.format)
+        if (b1 || b2 || component1.length != component2.length) {
+            val dialog = AppDialog.Error(message = "Data error")
+            DialogManager.show(dialog)
+            return
+        }
+        var dataInComponent1: ByteArray
+        var dataInComponent2: ByteArray
+        if (state.value.format == DataFormat.Raw) {
+            dataInComponent1 = component1.toByteArray()
+            dataInComponent2 = component2.toByteArray()
+        } else {
+            dataInComponent1 = ByteUtil.hexString2Bytes(component1)
+            dataInComponent2 = ByteUtil.hexString2Bytes(component2)
+        }
+        val dataOut = AlgorithmUtil.xor(dataInComponent1, dataInComponent2)
+        if (dataOut != null) {
+            val string = ByteUtil.bytes2HexString(dataOut)
+            setState { copy(outputData = string) }
+        } else {
+            val dialog = AppDialog.Error(message = "Calculation failed")
+            DialogManager.show(dialog)
+        }
+    }
+
+    private fun inputComponent1(intent: CommonAlgoIntent.InputComponent1) {
+        setState { copy(component1 = intent.component) }
+    }
+
+    private fun inputComponent2(intent: CommonAlgoIntent.InputComponent2) {
+        setState { copy(component2 = intent.component) }
     }
 
     private fun inputData(intent: CommonAlgoIntent.InputData) {
