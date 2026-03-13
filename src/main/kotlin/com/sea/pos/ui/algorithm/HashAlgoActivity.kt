@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import com.sea.pos.algorithm.DataFormat
 import com.sea.pos.algorithm.Hash
 import com.sea.pos.ui.resource.Dimens
@@ -37,14 +36,14 @@ fun HashAlgoActivity() {
 
         RwSubtitleText("Input Data")
 
-        RwInputTextWithLength(Modifier.weight(3f), state.inputData, Int.MAX_VALUE) {
+        RwInputTextWithLength(UiUtils.modifierInput, state.inputData, Int.MAX_VALUE) {
             val intent = HashAlgoIntent.InputData(it)
             vm.dispatch(intent)
         }
 
         RwSubtitleText("Output Data")
 
-        RwInputTextWithLength(Modifier.weight(1f), state.outputData, Int.MAX_VALUE, input = false) { }
+        RwInputTextWithLength(UiUtils.modifierOutput, state.outputData, Int.MAX_VALUE, input = false) { }
 
         RwEncryptButton(modifier = UiUtils.modifierSpace_xxx) {
             vm.dispatch(HashAlgoIntent.Encrypt)

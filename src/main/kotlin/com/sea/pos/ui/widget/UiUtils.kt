@@ -1,5 +1,6 @@
 package com.sea.pos.ui.widget
 
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -16,6 +17,12 @@ object UiUtils {
 
     val modifierSpace_xxx: Modifier
         get() = Modifier.padding(start = Dimens.space_xxx, top = Dimens.space_xxx, end = Dimens.space_xxx)
+
+    val modifierInput: Modifier
+        get() = Modifier.height(240.dp)
+
+    val modifierOutput: Modifier
+        get() = Modifier.height(120.dp)
 
     val roundedCornerShape_8: RoundedCornerShape
         get() = RoundedCornerShape(8.dp)

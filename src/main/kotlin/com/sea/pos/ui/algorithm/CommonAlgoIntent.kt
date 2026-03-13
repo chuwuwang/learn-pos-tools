@@ -16,4 +16,8 @@ sealed class CommonAlgoIntent {
 
     object Calculate : CommonAlgoIntent()
 
+    object Base64Encode : CommonAlgoIntent()
+
+    object Base64Decode : CommonAlgoIntent()
+
 }

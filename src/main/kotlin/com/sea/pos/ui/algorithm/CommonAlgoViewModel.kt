@@ -8,6 +8,7 @@ import com.sea.pos.ui.BaseViewModel
 import com.sea.pos.ui.widget.overlay.AppDialog
 import com.sea.pos.ui.widget.overlay.DialogManager
 import com.sea.pos.utils.I18nUtils
+import java.util.*
 
 class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
 
@@ -18,6 +19,8 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
     fun dispatch(intent: CommonAlgoIntent) {
         when (intent) {
             CommonAlgoIntent.Calculate -> calculate()
+            CommonAlgoIntent.Base64Encode -> base64(true)
+            CommonAlgoIntent.Base64Decode -> base64(false)
             is CommonAlgoIntent.InputComponent1 -> inputComponent1(intent)
             is CommonAlgoIntent.InputComponent2 -> inputComponent2(intent)
             is CommonAlgoIntent.InputData -> inputData(intent)
@@ -28,10 +31,17 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
 
     private fun calculate() {
         val algo = state.value.algo
+        val inputData = state.value.inputData
+        val invalid = inputData.isInvalidInput(state.value.format)
+        if (invalid) {
+            val dialog = AppDialog.Error(message = "Data error")
+            DialogManager.show(dialog)
+            return
+        }
         if (I18nUtils.string("common_algo_xor") == algo) {
             xor()
         } else if (I18nUtils.string("common_algo_xor_bitwise") == algo) {
-            xorBitwise()
+            xorBitwise(inputData)
         }
     }
 
@@ -64,7 +74,18 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
         }
     }
 
-    private fun xorBitwise() {
+    private fun xorBitwise(data: String) {
+        val dataIn = if (state.value.format == DataFormat.Raw) {
+            data.toByteArray()
+        } else {
+            ByteUtil.hexString2Bytes(data)
+        }
+        val dataOut = AlgorithmUtil.xorBitwise(dataIn)
+        val string = ByteUtil.byte2HexString(dataOut).uppercase()
+        setState { copy(outputData = string) }
+    }
+
+    private fun base64(encode: Boolean) {
         val inputData = state.value.inputData
         val invalid = inputData.isInvalidInput(state.value.format)
         if (invalid) {
@@ -77,8 +98,12 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
         } else {
             ByteUtil.hexString2Bytes(inputData)
         }
-        val dataOut = AlgorithmUtil.xorBitwise(dataIn)
-        val string = ByteUtil.byte2HexString(dataOut).uppercase()
+        val dataOut = if (encode) {
+            Base64.getEncoder().withoutPadding().encode(dataIn)
+        } else {
+            Base64.getDecoder().decode(dataIn)
+        }
+        val string = ByteUtil.bytes2HexString(dataOut)
         setState { copy(outputData = string) }
     }
 
@@ -95,7 +120,7 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
     }
 
     private fun switchAlgo(intent: CommonAlgoIntent.SwitchAlgo) {
-        setState { copy(algo = intent.algo) }
+        setState { copy(algo = intent.algo, outputData = "") }
     }
 
     private fun switchFormat(intent: CommonAlgoIntent.SwitchFormat) {
