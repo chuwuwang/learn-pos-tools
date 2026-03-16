@@ -45,7 +45,7 @@ fun RwRadioGroup(list: List<String>, label: String, selected: Int = 0, onClick: 
 }
 
 @Composable
-fun RwRadioButton(modifier: Modifier, text: String, selected: Boolean, onClick: () -> Unit) {
+fun RwRadioButton(modifier: Modifier = Modifier, text: String, selected: Boolean, onClick: () -> Unit) {
     Row(modifier = modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
         val colors = RadioButtonDefaults.colors(AppTheme.AppColors.buttonChecked)
         RadioButton(onClick = onClick, selected = selected, colors = colors)

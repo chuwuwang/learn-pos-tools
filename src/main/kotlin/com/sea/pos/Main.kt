@@ -22,6 +22,7 @@ import com.sea.pos.ui.algorithm.CommonAlgoActivity
 import com.sea.pos.ui.algorithm.DESAlgoActivity
 import com.sea.pos.ui.algorithm.HashAlgoActivity
 import com.sea.pos.ui.iso8583.Bitmap8583Activity
+import com.sea.pos.ui.iso8583.TagDecodeActivity
 import com.sea.pos.ui.theme.AppTheme
 import com.sea.pos.ui.theme.SeaTheme
 import com.sea.pos.ui.widget.overlay.OverlayHost
@@ -61,5 +62,7 @@ private fun SwitchScreen(index: MutableState<Int>, controller: AppController) {
         CommonAlgoActivity()
     } else if (index.value == Sidebar.MENU_ISO8583) {
         Bitmap8583Activity(controller = controller)
+    } else if (index.value == Sidebar.MENU_TAG_DECODE) {
+        TagDecodeActivity()
     }
 }
