@@ -18,7 +18,7 @@ import com.sea.pos.ui.theme.AppTheme
 
 @Composable
 fun RwInputTextWithLength(modifier: Modifier = Modifier, value: String, maxLength: Int, input: Boolean = true, enabled: Boolean = true, singleLine: Boolean = false, onValueChange: (String) -> Unit) {
-    Row(modifier = modifier.then(UiUtils.modifierSpace), verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = modifier.then(other = UiUtils.modifierSpace), verticalAlignment = Alignment.CenterVertically) {
         InputText(Modifier.weight(1.0f).fillMaxHeight(), value, input = input, enabled = enabled, singleLine = singleLine, onValueChange)
         LengthText(value.length, maxLength)
     }
@@ -35,7 +35,7 @@ private fun InputText(modifier: Modifier, value: String, input: Boolean, enabled
     if (enabled) {
         OutlinedTextField(modifier = modifier, value = value, colors = colors, enabled = input, singleLine = singleLine, onValueChange = onValueChange, textStyle = RwInput.InputTextStyle)
     } else {
-        OutlinedTextField(modifier = modifier.background(AppTheme.AppColors.textDisabled), value = value, colors = colors, enabled = false, singleLine = singleLine, onValueChange = onValueChange, textStyle = RwInput.DisabledTextStyle)
+        OutlinedTextField(modifier = modifier.background(color = AppTheme.AppColors.textDisabled), value = value, colors = colors, enabled = false, singleLine = singleLine, onValueChange = onValueChange, textStyle = RwInput.DisabledTextStyle)
     }
 }
 

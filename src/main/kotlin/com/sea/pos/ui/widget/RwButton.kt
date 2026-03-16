@@ -18,7 +18,7 @@ private val height = 80.dp
 @Composable
 fun RwEncryptButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Button(modifier = modifier.size(width, height), colors = RwButton.ButtonCheckedColors, onClick = onClick) {
-        val painter = painterResource("images/ic_encrypt.png")
+        val painter = painterResource(resourcePath = "images/ic_encrypt.png")
         Icon(painter = painter, modifier = Modifier.size(32.dp), tint = AppTheme.AppColors.icon, contentDescription = null)
     }
 }
@@ -26,7 +26,7 @@ fun RwEncryptButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
 @Composable
 fun RwDecryptButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Button(modifier = modifier.size(width, height), colors = RwButton.ButtonCheckedColors, onClick = onClick) {
-        val painter = painterResource("images/ic_decrypt.png")
+        val painter = painterResource(resourcePath = "images/ic_decrypt.png")
         Icon(painter = painter, modifier = Modifier.size(32.dp), tint = AppTheme.AppColors.icon, contentDescription = null)
     }
 }
@@ -55,16 +55,16 @@ fun RwErrorButton(modifier: Modifier = Modifier, text: String, onClick: () -> Un
 object RwButton {
 
     val ButtonColors: ButtonColors
-        @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.button)
+        @Composable get() = ButtonDefaults.buttonColors(backgroundColor = AppTheme.AppColors.button)
     val ButtonTextStyle: TextStyle
         @Composable get() = TextStyle(color = AppTheme.AppColors.buttonText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center, letterSpacing = Dimens.sp_letter)
 
     val ButtonCheckedColors: ButtonColors
-        @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.buttonChecked)
+        @Composable get() = ButtonDefaults.buttonColors(backgroundColor = AppTheme.AppColors.buttonChecked)
     val ButtonCheckedTextStyle: TextStyle
         @Composable get() = TextStyle(color = AppTheme.AppColors.buttonCheckedText, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = TextAlign.Center, letterSpacing = Dimens.sp_letter)
 
     val ErrorButtonColors: ButtonColors
-        @Composable get() = ButtonDefaults.buttonColors(AppTheme.AppColors.textError)
+        @Composable get() = ButtonDefaults.buttonColors(backgroundColor = AppTheme.AppColors.textError)
 
 }

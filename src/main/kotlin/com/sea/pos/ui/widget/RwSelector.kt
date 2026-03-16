@@ -20,9 +20,9 @@ private val borderWidth = 2.dp
 
 @Composable
 fun RwRadioGroup(list: List<String>, label: String, selected: Int = 0, onClick: (String) -> Unit) {
-    val selected = remember {
+    val selection = remember {
         val string = list[selected]
-        mutableStateOf(string)
+        mutableStateOf(value = string)
     }
     BoxWithConstraints(modifier = UiUtils.modifierSpace_xxx.height(64.dp), contentAlignment = Alignment.Center) {
         // 从上到下绘制 divider
@@ -33,8 +33,8 @@ fun RwRadioGroup(list: List<String>, label: String, selected: Int = 0, onClick: 
 
         val content: @Composable RowScope.() -> Unit = {
             for (item in list) {
-                RwRadioButton(Modifier.weight(1f), item, item == selected.value) {
-                    selected.value = item
+                RwRadioButton(modifier = Modifier.weight(1f), text = item, selected = item == selection.value) {
+                    selection.value = item
                     onClick(item)
                 }
             }
@@ -47,8 +47,10 @@ fun RwRadioGroup(list: List<String>, label: String, selected: Int = 0, onClick: 
 @Composable
 fun RwRadioButton(modifier: Modifier = Modifier, text: String, selected: Boolean, onClick: () -> Unit) {
     Row(modifier = modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
-        val colors = RadioButtonDefaults.colors(AppTheme.AppColors.buttonChecked)
+        val colors = RadioButtonDefaults.colors(selectedColor = AppTheme.AppColors.buttonChecked)
         RadioButton(onClick = onClick, selected = selected, colors = colors)
+
+        Horizontal(width = Dimens.space_sm)
 
         val textStyle = TextStyle(fontSize = Dimens.sp_text, color = AppTheme.AppColors.textMain, fontFamily = Fonts.medium)
         Text(text = text, style = textStyle)

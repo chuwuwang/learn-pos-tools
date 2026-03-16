@@ -28,33 +28,33 @@ import com.sea.pos.ui.widget.*
 
 @Composable
 fun Bitmap8583Activity(controller: AppController) {
-    val vm = viewModel(controller) {
+    val vm = viewModel(container = controller) {
         Bitmap8583ViewModel()
     }
     val state by vm.state.collectAsState()
 
     Column {
-        BitmapView(state.bitmapBooleans) {
-            val intent = Bitmap8583Intent.ClickItem(it)
+        BitmapView(bitmaps = state.bitmapBooleans) {
+            val intent = Bitmap8583Intent.ClickItem(index = it)
             vm.dispatch(intent)
         }
 
         RwSubtitleText("Bitmap")
 
-        RwInputTextWithLength(Modifier.height(Dimens.item_norm), state.bitmapString, state.bitmapString.length, singleLine = true) {
-            val intent = Bitmap8583Intent.InputData(it)
+        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.bitmapString, maxLength = state.bitmapString.length, singleLine = true) {
+            val intent = Bitmap8583Intent.InputData(bitmap = it)
             vm.dispatch(intent)
         }
 
-        Row(UiUtils.modifierSpace_xxx) {
-            RwDecryptButton { vm.dispatch(Bitmap8583Intent.Generate) }
+        Row(modifier = UiUtils.modifierSpace_xxx) {
+            RwDecryptButton { vm.dispatch(intent = Bitmap8583Intent.Generate) }
 
-            Horizontal(Dimens.space_x)
+            Horizontal(width = Dimens.space_x)
 
-            RwErrorButton(text = "RESET") { vm.dispatch(Bitmap8583Intent.Reset) }
+            RwErrorButton(text = "RESET") { vm.dispatch(intent = Bitmap8583Intent.Reset) }
         }
 
-        Vertical(Dimens.space_xxx)
+        Vertical(height = Dimens.space_xxx)
     }
 
 }
@@ -64,7 +64,7 @@ private fun BitmapView(bitmaps: BooleanArray, onItemClick: (Int) -> Unit) {
     val modifier = Modifier.fillMaxWidth()
         .padding(start = Dimens.space_xxx, top = Dimens.space_xxx, end = Dimens.space_xxx)
         .border(width = Dimens.divider, color = AppTheme.AppColors.divider, shape = UiUtils.roundedCornerShape_8)
-    LazyVerticalGrid(columns = GridCells.Fixed(16), modifier = modifier) {
+    LazyVerticalGrid(columns = GridCells.Fixed(count = 16), modifier = modifier) {
         val itemContent: @Composable (LazyGridItemScope.(Int) -> Unit) = { i ->
             val index = i + 1
             Column {
@@ -92,7 +92,7 @@ private fun BitmapView(bitmaps: BooleanArray, onItemClick: (Int) -> Unit) {
                     Modifier.height(Dimens.item_norm)
                 }
                 Row(modifier.clickable { onItemClick(index) }, verticalAlignment = Alignment.CenterVertically) {
-                    ItemView("$index", index)
+                    ItemView(text = "$index", position = index)
                 }
                 if (has128Bit) {
                     if (index in 1..112) HorizontalDivider()
@@ -101,7 +101,7 @@ private fun BitmapView(bitmaps: BooleanArray, onItemClick: (Int) -> Unit) {
                 }
             }
         }
-        items(bitmaps.size - 1, itemContent = itemContent)
+        items(count = bitmaps.size - 1, itemContent = itemContent)
     }
 }
 

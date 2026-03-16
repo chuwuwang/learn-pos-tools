@@ -18,15 +18,15 @@ import com.sea.pos.ui.theme.AppTheme
 
 @Composable
 fun Topbar(list: List<String>, selected: Int = 0, onClick: (String) -> Unit) {
-    val selected = remember {
+    val selection = remember {
         val string = list[selected]
-        mutableStateOf(string)
+        mutableStateOf(value = string)
     }
 
     val content: @Composable RowScope.() -> Unit = {
         for (item in list) {
-            ItemView(item, selected.value) {
-                selected.value = item
+            ItemView(text = item, selected = selection.value) {
+                selection.value = item
                 onClick(item)
             }
         }

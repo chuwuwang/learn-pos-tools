@@ -19,7 +19,6 @@ import com.sea.pos.ui.widget.*
 
 @Composable
 fun TagDecodeActivity() {
-
     val vm = remember { TagDecodeViewModel() }
     val state by vm.state.collectAsState()
 
@@ -28,24 +27,25 @@ fun TagDecodeActivity() {
 
         RwSubtitleText(state.tag.name)
 
-        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.inputData, state.tag.length, singleLine = true) {
+        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.inputData, maxLength = state.tag.length, singleLine = true) {
             val intent = TagDecodeIntent.InputData(it)
             vm.dispatch(intent)
         }
 
         RwDecryptButton(modifier = UiUtils.modifierSpace_xxx) {
-            vm.dispatch(TagDecodeIntent.Decode)
+            vm.dispatch(intent = TagDecodeIntent.Decode)
         }
 
         Vertical(height = Dimens.space_xxx)
     }
+
 }
 
 @Composable
 private fun TagDecodeView(vm: TagDecodeViewModel, state: TagDecodeState) {
     val modifier = UiUtils.modifierSpace_xxx
         .fillMaxWidth()
-        .clip(UiUtils.roundedCornerShape_8)
+        .clip(shape = UiUtils.roundedCornerShape_8)
         .border(width = 2.dp, color = AppTheme.AppColors.dividerChecked, shape = UiUtils.roundedCornerShape_8)
         .padding(horizontal = Dimens.space_norm, vertical = Dimens.space_norm)
     Column(modifier) {

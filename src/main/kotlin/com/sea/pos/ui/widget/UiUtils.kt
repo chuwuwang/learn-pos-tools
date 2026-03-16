@@ -25,10 +25,10 @@ object UiUtils {
         get() = Modifier.height(120.dp)
 
     val roundedCornerShape_8: RoundedCornerShape
-        get() = RoundedCornerShape(8.dp)
+        get() = RoundedCornerShape(size = 8.dp)
 
     val roundedCornerShape_16: RoundedCornerShape
-        get() = RoundedCornerShape(16.dp)
+        get() = RoundedCornerShape(size = 16.dp)
 
     @Composable
     fun IconColor(index: Int, default: Int): Color {
