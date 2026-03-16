@@ -27,7 +27,7 @@ fun TagDecodeActivity() {
 
         RwSubtitleText(state.tag.name)
 
-        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.inputData, maxLength = state.tag.length, singleLine = true) {
+        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.inputData, maxLength = state.tag.length, hint = state.tag.format, singleLine = true) {
             val intent = TagDecodeIntent.InputData(it)
             vm.dispatch(intent)
         }

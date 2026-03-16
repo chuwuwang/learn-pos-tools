@@ -62,7 +62,7 @@ fun DESAlgoActivity() {
         RwSubtitleText("Key")
 
         val maxLength = if (state.algo == SymmetricEncryption.DES) 16 else 32
-        RwInputTextWithLength(Modifier.height(Dimens.item_norm), state.key, maxLength, singleLine = true) {
+        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.key, maxLength = maxLength, singleLine = true) {
             val intent = DESAlgoIntent.InputKey(it)
             vm.dispatch(intent)
         }
@@ -70,31 +70,31 @@ fun DESAlgoActivity() {
         RwSubtitleText("IV")
 
         val enabled = vm.state.value.mode != SymmetricMode.ECB
-        RwInputTextWithLength(Modifier.height(Dimens.item_norm), state.iv, maxLength, enabled = enabled, singleLine = true) {
+        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.iv, maxLength = maxLength, enabled = enabled, singleLine = true) {
             val intent = DESAlgoIntent.InputIV(it)
             vm.dispatch(intent)
         }
 
         RwSubtitleText("Input Data")
 
-        RwInputTextWithLength(Modifier.weight(2f), state.inputData, Int.MAX_VALUE) {
+        RwInputTextWithLength(modifier = Modifier.weight(2f), value = state.inputData) {
             val intent = DESAlgoIntent.InputData(it)
             vm.dispatch(intent)
         }
 
         RwSubtitleText("Output Data")
 
-        RwInputTextWithLength(Modifier.weight(1f), state.outputData, Int.MAX_VALUE, input = false) { }
+        RwInputTextWithLength(modifier = Modifier.weight(1f), value = state.outputData, input = false) { }
 
-        Row(UiUtils.modifierSpace_xxx) {
-            RwEncryptButton { vm.dispatch(DESAlgoIntent.Encrypt) }
+        Row(modifier = UiUtils.modifierSpace_xxx) {
+            RwEncryptButton { vm.dispatch(intent = DESAlgoIntent.Encrypt) }
 
-            Horizontal(Dimens.space_x)
+            Horizontal(width = Dimens.space_x)
 
-            RwDecryptButton { vm.dispatch(DESAlgoIntent.Decrypt) }
+            RwDecryptButton { vm.dispatch(intent = DESAlgoIntent.Decrypt) }
         }
 
-        Vertical(Dimens.space_xxx)
+        Vertical(height = Dimens.space_xxx)
     }
 
 }
