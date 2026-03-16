@@ -36,19 +36,19 @@ fun HashAlgoActivity() {
 
         RwSubtitleText("Input Data")
 
-        RwInputTextWithLength(UiUtils.modifierInput, state.inputData, Int.MAX_VALUE) {
+        RwInputTextWithLength(modifier = UiUtils.modifierInput, value = state.inputData, maxLength = Int.MAX_VALUE) {
             val intent = HashAlgoIntent.InputData(it)
             vm.dispatch(intent)
         }
 
         RwSubtitleText("Output Data")
 
-        RwInputTextWithLength(UiUtils.modifierOutput, state.outputData, Int.MAX_VALUE, input = false) { }
+        RwInputTextWithLength(modifier = UiUtils.modifierOutput, value = state.outputData, maxLength = Int.MAX_VALUE, input = false) { }
 
         RwEncryptButton(modifier = UiUtils.modifierSpace_xxx) {
             vm.dispatch(HashAlgoIntent.Encrypt)
         }
 
-        Vertical(Dimens.space_xxx)
+        Vertical(height = Dimens.space_xxx)
     }
 }
