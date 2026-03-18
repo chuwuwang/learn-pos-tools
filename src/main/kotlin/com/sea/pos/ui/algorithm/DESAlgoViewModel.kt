@@ -21,8 +21,8 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
             algo = SymmetricEncryption.DES,
             padding = SymmetricPadding.NoPadding,
             iv = "0000000000000000",
-            key = "1111111111111111",
-            inputData = "0000000000000000",
+            key = "",
+            inputData = "",
         )
         return state
     }
