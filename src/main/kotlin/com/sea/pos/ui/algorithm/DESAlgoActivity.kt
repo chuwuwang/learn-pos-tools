@@ -38,7 +38,7 @@ fun DESAlgoActivity() {
             vm.dispatch(intent)
         }
 
-        HorizontalDivider()
+        RwHorizontalDivider()
 
         val selectedFormat = formats.indexOf(state.format)
         RwRadioGroup(list = formats.map { it.code }, label = "Data Format", selected = selectedFormat) { format ->
@@ -89,12 +89,12 @@ fun DESAlgoActivity() {
         Row(modifier = UiUtils.modifierSpace_xxx) {
             RwEncryptButton { vm.dispatch(intent = DESAlgoIntent.Encrypt) }
 
-            Horizontal(width = Dimens.space_x)
+            RwHorizontal(width = Dimens.space_x)
 
             RwDecryptButton { vm.dispatch(intent = DESAlgoIntent.Decrypt) }
         }
 
-        Vertical(height = Dimens.space_xxx)
+        RwVertical(height = Dimens.space_xxx)
     }
 
 }

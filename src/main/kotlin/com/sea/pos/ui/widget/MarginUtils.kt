@@ -8,13 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 
 @Composable
-fun Horizontal(width: Dp) {
+fun RwHorizontal(width: Dp) {
     val modifier = Modifier.width(width)
     Spacer(modifier = modifier)
 }
 
 @Composable
-fun Vertical(height: Dp) {
+fun RwVertical(height: Dp) {
     val modifier = Modifier.height(height)
     Spacer(modifier = modifier)
 }

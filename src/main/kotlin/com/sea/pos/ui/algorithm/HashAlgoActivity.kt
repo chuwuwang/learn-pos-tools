@@ -26,7 +26,7 @@ fun HashAlgoActivity() {
             vm.dispatch(intent)
         }
 
-        HorizontalDivider()
+        RwHorizontalDivider()
 
         val selectedFormat = formats.indexOf(state.format)
         RwRadioGroup(list = formats.map { it.code }, label = "Data Format", selected = selectedFormat) { format ->
@@ -49,7 +49,7 @@ fun HashAlgoActivity() {
             vm.dispatch(intent = HashAlgoIntent.Encrypt)
         }
 
-        Vertical(height = Dimens.space_xxx)
+        RwVertical(height = Dimens.space_xxx)
     }
 
 }

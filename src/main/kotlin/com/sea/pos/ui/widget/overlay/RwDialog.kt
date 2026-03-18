@@ -20,7 +20,7 @@ import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
 import com.sea.pos.ui.widget.RwButton
 import com.sea.pos.ui.widget.UiUtils
-import com.sea.pos.ui.widget.Vertical
+import com.sea.pos.ui.widget.RwVertical
 
 @ExperimentalMaterial3Api
 @Composable
@@ -33,21 +33,21 @@ fun RwErrorDialog(dialog: AppDialog) {
         Surface(shape = UiUtils.roundedCornerShape_16) {
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Vertical(48.dp)
+                RwVertical(48.dp)
 
                 val painter = painterResource("images/ic_dialog_error.png")
                 Icon(painter = painter, modifier = Modifier.size(60.dp), contentDescription = null, tint = AppTheme.AppColors.textError)
 
-                Vertical(Dimens.space_xxx)
+                RwVertical(Dimens.space_xxx)
 
                 if (dialog.title.valid) {
                     Text(modifier = Modifier.padding(horizontal = Dimens.space_xxx), style = RwDialog.TitleTextStyle, text = dialog.title)
-                    Vertical(Dimens.space_x)
+                    RwVertical(Dimens.space_x)
                 }
 
                 Text(modifier = Modifier.padding(horizontal = Dimens.space_xxx), style = RwDialog.ContentTextStyle, text = dialog.message)
 
-                Vertical(Dimens.space_xxx)
+                RwVertical(Dimens.space_xxx)
 
                 val onClick = {
                     DialogManager.dismiss()
@@ -57,7 +57,7 @@ fun RwErrorDialog(dialog: AppDialog) {
                     Text(dialog.confirmText, style = RwButton.ButtonCheckedTextStyle)
                 }
 
-                Vertical(32.dp)
+                RwVertical(32.dp)
             }
 
         }

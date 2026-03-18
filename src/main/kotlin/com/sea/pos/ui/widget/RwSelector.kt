@@ -50,7 +50,7 @@ fun RwRadioButton(modifier: Modifier = Modifier, text: String, selected: Boolean
         val colors = RadioButtonDefaults.colors(selectedColor = AppTheme.AppColors.buttonChecked)
         RadioButton(onClick = onClick, selected = selected, colors = colors)
 
-        Horizontal(width = Dimens.space_sm)
+        RwHorizontal(width = Dimens.space_sm)
 
         val textStyle = TextStyle(fontSize = Dimens.sp_text, color = AppTheme.AppColors.textMain, fontFamily = Fonts.medium)
         Text(text = text, style = textStyle)

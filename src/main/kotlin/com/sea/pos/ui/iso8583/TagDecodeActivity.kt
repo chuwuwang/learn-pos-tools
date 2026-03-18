@@ -23,7 +23,7 @@ fun TagDecodeActivity() {
     val state by vm.state.collectAsState()
 
     Column {
-        TagDecodeView(vm, state)
+        TagView(vm, state)
 
         RwSubtitleText(state.tag.name)
 
@@ -36,13 +36,13 @@ fun TagDecodeActivity() {
             vm.dispatch(intent = TagDecodeIntent.Decode)
         }
 
-        Vertical(height = Dimens.space_xxx)
+        TagDecodeView(state = state)
     }
 
 }
 
 @Composable
-private fun TagDecodeView(vm: TagDecodeViewModel, state: TagDecodeState) {
+private fun TagView(vm: TagDecodeViewModel, state: TagDecodeState) {
     val modifier = UiUtils.modifierSpace_xxx
         .fillMaxWidth()
         .clip(shape = UiUtils.roundedCornerShape_8)

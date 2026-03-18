@@ -49,12 +49,12 @@ fun Bitmap8583Activity(controller: AppController) {
         Row(modifier = UiUtils.modifierSpace_xxx) {
             RwDecryptButton { vm.dispatch(intent = Bitmap8583Intent.Generate) }
 
-            Horizontal(width = Dimens.space_x)
+            RwHorizontal(width = Dimens.space_x)
 
             RwErrorButton(text = "RESET") { vm.dispatch(intent = Bitmap8583Intent.Reset) }
         }
 
-        Vertical(height = Dimens.space_xxx)
+        RwVertical(height = Dimens.space_xxx)
     }
 
 }
@@ -95,9 +95,9 @@ private fun BitmapView(bitmaps: BooleanArray, onItemClick: (Int) -> Unit) {
                     ItemView(text = "$index", position = index)
                 }
                 if (has128Bit) {
-                    if (index in 1..112) HorizontalDivider()
+                    if (index in 1..112) RwHorizontalDivider()
                 } else {
-                    if (index in 1..48) HorizontalDivider()
+                    if (index in 1..48) RwHorizontalDivider()
                 }
             }
         }
