@@ -5,5 +5,5 @@ import com.sea.pos.emv.TagDecode
 data class TagDecodeState(
     val tag: TagDecode = TagDecode.TVR,
     val inputData: String = "",
-    val outputData: List<Boolean> = emptyList(),
+    val outputData: List< List<Boolean> > = emptyList(),
 )

@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -22,7 +24,9 @@ fun TagDecodeActivity() {
     val vm = remember { TagDecodeViewModel() }
     val state by vm.state.collectAsState()
 
-    Column {
+    val scrollState = rememberScrollState()
+    val modifier = Modifier.verticalScroll(state = scrollState)
+    Column(modifier) {
         TagView(vm, state)
 
         RwSubtitleText(state.tag.name)

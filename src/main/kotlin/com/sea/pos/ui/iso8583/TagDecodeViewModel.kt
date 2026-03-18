@@ -3,7 +3,8 @@ package com.sea.pos.ui.iso8583
 import com.pos.encode.util.ByteUtil
 import com.sea.pos.emv.TagDecode
 import com.sea.pos.ui.BaseViewModel
-import kotlin.collections.chunked
+import com.sea.pos.ui.widget.overlay.AppDialog
+import com.sea.pos.ui.widget.overlay.DialogManager
 
 class TagDecodeViewModel : BaseViewModel<TagDecodeState, Any>() {
 
@@ -23,33 +24,26 @@ class TagDecodeViewModel : BaseViewModel<TagDecodeState, Any>() {
         val tag = state.value.tag
         val inputData = state.value.inputData
         if (tag == TagDecode.TVR && inputData.length != 10) {
-            DialogHelper.showErrorMessageDialog("TVR must be 10 Hex Digits")
-            return
+            val dialog = AppDialog.Error(message = "TVR must be 10 Hex Digits")
+            DialogManager.show(dialog)
+        } else if (tag == TagDecode.AIP && inputData.length != 4) {
+            val dialog = AppDialog.Error(message = "AIP must be 4 Hex Digits")
+            DialogManager.show(dialog)
+        } else if (tag == TagDecode.CVM && inputData.length != 6) {
+            val dialog = AppDialog.Error(message = "CVM must be 6 Hex Digits")
+            DialogManager.show(dialog)
+        } else if (tag == TagDecode.CTQ && inputData.length != 4) {
+            val dialog = AppDialog.Error(message = "CTQ must be 4 Hex Digits")
+            DialogManager.show(dialog)
+        } else {
+            val bytes = ByteUtil.hexString2Bytes(inputData)
+            val booleans = ByteUtil.bytes2BinaryBytes(bytes).toList().chunked(size = 8)
+            setState { copy(outputData = booleans) }
         }
-        if (tag == RiskControlTag.AIP && inputText.length != 4) {
-            DialogHelper.showErrorMessageDialog("AIP must be 4 Hex Digits")
-            return
-        }
-        if (tag == RiskControlTag.CVM && inputText.length != 6) {
-            DialogHelper.showErrorMessageDialog("CVM must be 6 Hex Digits")
-            return
-        }
-        if (tag == RiskControlTag.CTQ && inputText.length != 4) {
-            DialogHelper.showErrorMessageDialog("CTQ must be 4 Hex Digits")
-            return
-        }
-        val bytes = ByteUtil.hexString2Bytes(inputText)
-        val booleans = ByteUtil.getBinaryFromByte(bytes).toList()
-        outDataList.clear()
-        outDataList.addAll(booleans)
-
-        val bytes = ByteUtil.hexString2Bytes(state.i)
-        val booleans = ByteUtil.bytes2BinaryBytes(bytes).toList().chunked(size = 8)
-
     }
 
     private fun switchTag(intent: TagDecodeIntent.SwitchTag) {
-        setState { copy(tag = intent.tag, outputData = "") }
+        setState { copy(outputData = emptyList(), tag = intent.tag) }
     }
 
     private fun inputData(intent: TagDecodeIntent.InputData) {

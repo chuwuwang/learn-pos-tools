@@ -20,6 +20,10 @@ object AppTheme {
     val defaultLocalColors = staticCompositionLocalOf { wechatColors }
 
     val wechatColors = ThemeColors(
+        main = WeChatColors.main,
+        secondary = WeChatColors.secondary,
+        tertiary = WeChatColors.tertiary,
+
         bgContent = Colors.white,
         bgSidebar = WeChatColors.text_main,
 
@@ -27,20 +31,20 @@ object AppTheme {
         textTertiary = WeChatColors.text_tertiary,
         textSecondary = WeChatColors.text_secondary,
         textError = WeChatColors.text_error,
-        textChecked = WeChatColors.main_theme,
+        textChecked = WeChatColors.main,
         textDisabled = WeChatColors.background_fill,
 
         icon = Colors.white,
-        iconChecked = WeChatColors.main_theme,
+        iconChecked = WeChatColors.main,
 
         button = Colors.white,
         buttonText = WeChatColors.text_main,
-        buttonChecked = WeChatColors.main_theme,
+        buttonChecked = WeChatColors.main,
         buttonCheckedText = Colors.white,
 
         divider = WeChatColors.line_fill,
         dividerError = WeChatColors.text_error,
-        dividerChecked = WeChatColors.main_theme,
+        dividerChecked = WeChatColors.main,
     )
 
 }

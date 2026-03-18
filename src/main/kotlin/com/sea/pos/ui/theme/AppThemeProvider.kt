@@ -16,6 +16,10 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
         AppTheme.Theme.WeChat -> AppTheme.wechatColors
         else -> AppTheme.wechatColors
     }
+    val main = AnimateColorAsState(targetColors.main)
+    val secondary = AnimateColorAsState(targetColors.secondary)
+    val tertiary = AnimateColorAsState(targetColors.tertiary)
+
     val bgContent = AnimateColorAsState(targetColors.bgContent)
     val bgSidebar = AnimateColorAsState(targetColors.bgSidebar)
 
@@ -39,6 +43,10 @@ fun SeaTheme(theme: AppTheme.Theme = AppTheme.Theme.WeChat, content: @Composable
     val dividerChecked = AnimateColorAsState(targetColors.dividerChecked)
 
     val colors = ThemeColors(
+        main = main.value,
+        secondary = secondary.value,
+        tertiary = tertiary.value,
+
         bgContent = bgContent.value,
         bgSidebar = bgSidebar.value,
 

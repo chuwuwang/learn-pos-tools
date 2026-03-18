@@ -219,6 +219,19 @@ public final class ByteUtil {
      */
     public static boolean[] bytes2BinaryBytes(final byte[] bytes) {
         String string = "";
+        boolean[] booleans = new boolean[bytes.length * 8];
+        for (byte value : bytes) {
+            string += getBinaryLengthStringByByte(value);
+        }
+        for (int i = 0; i < string.length(); i++) {
+            boolean bool = string.substring(i, i + 1).equalsIgnoreCase("1");
+            booleans[i] = bool;
+        }
+        return booleans;
+    }
+
+    public static boolean[] bitmapBytes2BinaryBytes(final byte[] bytes) {
+        String string = "";
         boolean[] booleans = new boolean[bytes.length * 8 + 1];
         for (byte value : bytes) {
             string += getBinaryLengthStringByByte(value);

@@ -5,6 +5,10 @@ import androidx.compose.ui.graphics.Color
 
 @Stable
 class ThemeColors(
+    val main: Color,
+    val secondary: Color,
+    val tertiary: Color,
+
     val bgContent: Color,
     val bgSidebar: Color,
 

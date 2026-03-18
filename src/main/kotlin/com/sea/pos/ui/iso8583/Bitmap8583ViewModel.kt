@@ -10,7 +10,7 @@ class Bitmap8583ViewModel : BaseViewModel<Bitmap8583State, Any>() {
     override fun initialState(): Bitmap8583State {
         val bitmap = "0000000000000000"
         val bytes = ByteUtil.hexString2Bytes(bitmap)
-        val booleans = ByteUtil.bytes2BinaryBytes(bytes)
+        val booleans = ByteUtil.bitmapBytes2BinaryBytes(bytes)
         return Bitmap8583State(bitmap, booleans)
     }
 
@@ -26,7 +26,7 @@ class Bitmap8583ViewModel : BaseViewModel<Bitmap8583State, Any>() {
     private fun clickItem(intent: Bitmap8583Intent.ClickItem) {
         val bytes = getDynamicBitmap(state.value.bitmapBooleans, intent.index)
         val hexString = ByteUtil.bytes2HexString(bytes)
-        val booleans = ByteUtil.bytes2BinaryBytes(bytes)
+        val booleans = ByteUtil.bitmapBytes2BinaryBytes(bytes)
         setState { copy(bitmapString = hexString, bitmapBooleans = booleans) }
     }
 
@@ -42,7 +42,7 @@ class Bitmap8583ViewModel : BaseViewModel<Bitmap8583State, Any>() {
             DialogManager.show(dialog)
         } else {
             val bytes = ByteUtil.hexString2Bytes(bitmapString)
-            val booleans = ByteUtil.bytes2BinaryBytes(bytes)
+            val booleans = ByteUtil.bitmapBytes2BinaryBytes(bytes)
             setState { copy(bitmapBooleans = booleans) }
         }
     }
