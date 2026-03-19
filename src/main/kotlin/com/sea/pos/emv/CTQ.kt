@@ -9,7 +9,7 @@ enum class CTQ(val position: String, val code: String) {
     B1Bit4("14", "Go Online if Application Expired"),
     B1Bit3("13", "Switch Interface for (manual) Cash Transactions"),
     B1Bit2("12", "Switch Interface for Cashback Transactions"),
-    B1Bit1("11", "Not valid for contactless ATM transactions"),
+    B1Bit1("11", "Valid for contactless ATM transactions"),
 
     B2Bit8("28", "CDCVM Performed"),
     B2Bit7("27", "Card supports Issuer Update Processing at the POS"),

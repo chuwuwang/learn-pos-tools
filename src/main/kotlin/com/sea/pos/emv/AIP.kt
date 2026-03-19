@@ -11,7 +11,7 @@ enum class AIP(val position: String, val code: String) {
     B1Bit2("12", "On device cardholder verification is supported"),
     B1Bit1("11", "CDA supported"),
 
-    B2Bit8("28", "Reserved for use by the EMV Contactless Specifications"),
+    B2Bit8("28", "EMV Mode has been selected"),
     B2Bit7("27", "RFU"),
     B2Bit6("26", "RFU"),
     B2Bit5("25", "RFU"),

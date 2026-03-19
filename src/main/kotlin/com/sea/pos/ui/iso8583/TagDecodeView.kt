@@ -12,14 +12,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.sea.pos.emv.AIP
-import com.sea.pos.emv.CTQ
-import com.sea.pos.emv.TVR
-import com.sea.pos.emv.TagDecode
+import com.sea.pos.emv.*
+import com.sea.pos.extension.valid
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
 import com.sea.pos.ui.widget.*
+import com.sea.pos.utils.NumberUtils
 
 @Composable
 fun TagDecodeView(state: TagDecodeState) {
@@ -71,15 +70,33 @@ private fun DecodeView(tag: TagDecode, list: List<Boolean>, position: Int) {
 
 @Composable
 private fun CVMView(list: List<Boolean>, position: Int) {
-
+    val hexString = NumberUtils.booleans2HexString(list)
+    if (position == 1) {
+        ItemView(value = false, description = CVM.Performed1.code, position = 8)
+        val bool = list[1]
+        if (bool) {
+            ItemView(value = false, description = CVM.Performed2.code, position = 7)
+        } else {
+            ItemView(value = false, description = CVM.Performed3.code, position = 7)
+        }
+        val string = NumberUtils.formatLast6Bits(hexString)
+        val item = CVM.entries.find { it.position == string } ?: CVM.PerformedRFU
+        ItemView(value = true, description = "$string - " + item.code, position = 1, single = true, head = "bit 6-1")
+    } else if (position == 2) {
+        val item = CVM.entries.find { it.position == "$position$hexString" } ?: CVM.ConditionRFU
+        ItemView(value = false, description = "$hexString - " + item.code, position = 1, head = "bit 8-1")
+    } else if (position == 3) {
+        val item = CVM.entries.find { it.position == "$position$hexString" } ?: CVM.ResultRFU
+        ItemView(value = false, description = "$hexString - " + item.code, position = 1, head = "bit 8-1")
+    }
 }
 
 @Composable
-private fun ItemView(value: Boolean, description: String, position: Int, all: Boolean = false) {
+private fun ItemView(value: Boolean, description: String, position: Int, single: Boolean = false, head: String = "") {
     Row(modifier = Modifier.height(32.dp).fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         val style = TextStyle(color = AppTheme.AppColors.textSecondary, fontFamily = Fonts.regular, fontSize = Dimens.sp_text, textAlign = TextAlign.Center)
 
-        Text(text = "bit $position", modifier = Modifier.width(60.dp), style = style)
+        Text(text = if (head.valid) head else "bit $position", modifier = Modifier.width(60.dp), style = style)
 
         RwVerticalDivider()
 
@@ -89,7 +106,7 @@ private fun ItemView(value: Boolean, description: String, position: Int, all: Bo
 
         var modifier = Modifier.fillMaxHeight().fillMaxWidth()
         if (value) {
-            if (all) {
+            if (single) {
                 modifier = modifier.clip(shape = UiUtils.roundedCornerShape_8)
             } else if (position == 8) {
                 val shape = RoundedCornerShape(topEnd = 8.dp)
