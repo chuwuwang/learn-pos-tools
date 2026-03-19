@@ -47,32 +47,26 @@ fun TagDecodeActivity() {
 
 @Composable
 private fun TagView(vm: TagDecodeViewModel, state: TagDecodeState) {
+    val tags = listOf(
+        TagDecode.TVR, TagDecode.AIP, TagDecode.TerminalCapabilities, TagDecode.CVM,
+        TagDecode.CTQ, TagDecode.TTQ, TagDecode.TSI, TagDecode.ATC, TagDecode.AUC,
+    )
+    val scrollState = rememberScrollState()
     val modifier = UiUtils.modifierSpace_xxx
+        .height(300.dp)
         .fillMaxWidth()
+        .verticalScroll(state = scrollState)
         .clip(shape = UiUtils.roundedCornerShape_8)
         .border(width = 2.dp, color = AppTheme.AppColors.dividerChecked, shape = UiUtils.roundedCornerShape_8)
         .padding(horizontal = Dimens.space_norm, vertical = Dimens.space_norm)
     Column(modifier) {
         val modifier = Modifier.height(Dimens.item_norm)
-        val tagTVR = "Tag " + TagDecode.TVR.tag + " - " + TagDecode.TVR.description
-        val tagAIP = "Tag " + TagDecode.AIP.tag + " - " + TagDecode.AIP.description
-        val tagCVM = "Tag " + TagDecode.CVM.tag + " - " + TagDecode.CVM.description
-        val tagCTQ = "Tag " + TagDecode.CTQ.tag + " - " + TagDecode.CTQ.description
-        RwRadioButton(modifier = modifier, text = tagTVR, selected = state.tag == TagDecode.TVR) {
-            val intent = TagDecodeIntent.SwitchTag(TagDecode.TVR)
-            vm.dispatch(intent)
-        }
-        RwRadioButton(modifier = modifier, text = tagAIP, selected = state.tag == TagDecode.AIP) {
-            val intent = TagDecodeIntent.SwitchTag(TagDecode.AIP)
-            vm.dispatch(intent)
-        }
-        RwRadioButton(modifier = modifier, text = tagCVM, selected = state.tag == TagDecode.CVM) {
-            val intent = TagDecodeIntent.SwitchTag(TagDecode.CVM)
-            vm.dispatch(intent)
-        }
-        RwRadioButton(modifier = modifier, text = tagCTQ, selected = state.tag == TagDecode.CTQ) {
-            val intent = TagDecodeIntent.SwitchTag(TagDecode.CTQ)
-            vm.dispatch(intent)
+        tags.forEach { item ->
+            val text = "Tag " + item.tag + " - " + item.description
+            RwRadioButton(modifier = modifier, text = text, selected = state.tag == item) {
+                val intent = TagDecodeIntent.SwitchTag(item)
+                vm.dispatch(intent)
+            }
         }
     }
 }

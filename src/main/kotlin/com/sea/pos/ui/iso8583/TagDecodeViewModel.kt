@@ -43,7 +43,7 @@ class TagDecodeViewModel : BaseViewModel<TagDecodeState, Any>() {
     }
 
     private fun switchTag(intent: TagDecodeIntent.SwitchTag) {
-        setState { copy(outputData = emptyList(), tag = intent.tag) }
+        setState { copy(inputData = "", outputData = emptyList(), tag = intent.tag) }
     }
 
     private fun inputData(intent: TagDecodeIntent.InputData) {
