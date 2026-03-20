@@ -60,8 +60,23 @@ private fun DecodeView(tag: TagDecode, list: List<Boolean>, position: Int) {
         } else if (tag == TagDecode.AIP) {
             val item = AIP.entries.find { it.position == "$position$idx" }
             if (item != null) desc = item.code
+        } else if (tag == TagDecode.TerminalCapabilities) {
+            val item = TerminalCapabilities.entries.find { it.position == "$position$idx" }
+            if (item != null) desc = item.code
         } else if (tag == TagDecode.CTQ) {
             val item = CTQ.entries.find { it.position == "$position$idx" }
+            if (item != null) desc = item.code
+        } else if (tag == TagDecode.TTQ) {
+            val item = TTQ.entries.find { it.position == "$position$idx" }
+            if (item != null) desc = item.code
+        } else if (tag == TagDecode.TSI) {
+            val item = TSI.entries.find { it.position == "$position$idx" }
+            if (item != null) desc = item.code
+        } else if (tag == TagDecode.ATC) {
+            val item = ATC.entries.find { it.position == "$position$idx" }
+            if (item != null) desc = item.code
+        } else if (tag == TagDecode.AUC) {
+            val item = AUC.entries.find { it.position == "$position$idx" }
             if (item != null) desc = item.code
         }
         ItemView(value = bool, description = desc, position = idx)

@@ -1,7 +1,6 @@
 package com.sea.pos.ui.iso8583
 
 import com.pos.encode.util.ByteUtil
-import com.sea.pos.emv.TagDecode
 import com.sea.pos.ui.BaseViewModel
 import com.sea.pos.ui.widget.overlay.AppDialog
 import com.sea.pos.ui.widget.overlay.DialogManager
@@ -23,17 +22,9 @@ class TagDecodeViewModel : BaseViewModel<TagDecodeState, Any>() {
     private fun calculate() {
         val tag = state.value.tag
         val inputData = state.value.inputData
-        if (tag == TagDecode.TVR && inputData.length != 10) {
-            val dialog = AppDialog.Error(message = "TVR must be 10 Hex Digits")
-            DialogManager.show(dialog)
-        } else if (tag == TagDecode.AIP && inputData.length != 4) {
-            val dialog = AppDialog.Error(message = "AIP must be 4 Hex Digits")
-            DialogManager.show(dialog)
-        } else if (tag == TagDecode.CVM && inputData.length != 6) {
-            val dialog = AppDialog.Error(message = "CVM must be 6 Hex Digits")
-            DialogManager.show(dialog)
-        } else if (tag == TagDecode.CTQ && inputData.length != 4) {
-            val dialog = AppDialog.Error(message = "CTQ must be 4 Hex Digits")
+        if (inputData.length != tag.length) {
+            val length = tag.length
+            val dialog = AppDialog.Error(message = tag.name + " must be $length Hex Digits")
             DialogManager.show(dialog)
         } else {
             val bytes = ByteUtil.hexString2Bytes(inputData)

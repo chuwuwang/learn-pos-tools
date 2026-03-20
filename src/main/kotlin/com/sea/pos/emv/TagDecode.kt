@@ -14,7 +14,7 @@ enum class TagDecode(val tag: String, val description: String, val length: Int, 
 
     TTQ("9F66", "TTQ (Terminal Transaction Qualifiers)", 8, "8 Hex Digits"),
 
-    TSI("9B", "AIP (Application Interchange Profile)", 4, "4 Hex Digits"),
+    TSI("9B", "TSI (Transaction Status Information)", 4, "4 Hex Digits"),
 
     ATC("9F40", "ATC (Additional Terminal Capabilities)", 10, "10 Hex Digits"),
 

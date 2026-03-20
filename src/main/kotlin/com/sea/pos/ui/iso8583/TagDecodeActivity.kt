@@ -53,7 +53,7 @@ private fun TagView(vm: TagDecodeViewModel, state: TagDecodeState) {
     )
     val scrollState = rememberScrollState()
     val modifier = UiUtils.modifierSpace_xxx
-        .height(300.dp)
+        .height(280.dp)
         .fillMaxWidth()
         .verticalScroll(state = scrollState)
         .clip(shape = UiUtils.roundedCornerShape_8)
