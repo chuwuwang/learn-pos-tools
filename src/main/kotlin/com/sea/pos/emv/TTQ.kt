@@ -2,14 +2,14 @@ package com.sea.pos.emv
 
 enum class TTQ(val position: String, val code: String) {
 
-    B1b8("18", "MSD supported"),
+    B1b8("18", "(Contactless MSD) Mag-stripe mode supported"),
     B1b7("17", "RFU"),
-    B1b6("16", "qVSDC supported"),
+    B1b6("16", "(qVSDC) EMV mode supported"),
     B1b5("15", "EMV contact chip supported"),
     B1b4("14", "Offline-only reader"),
     B1b3("13", "Online PIN supported"),
     B1b2("12", "Signature supported"),
-    B1b1("11", "Offline Data Authentication (ODA) for Online Authorizations supported"),
+    B1b1("11", "Offline Data Authentication (ODA) for online authorizations supported"),
 
     B2b8("28", "Online cryptogram required"),
     B2b7("27", "CVM required"),
@@ -20,8 +20,8 @@ enum class TTQ(val position: String, val code: String) {
     B2b2("22", "RFU"),
     B2b1("21", "RFU"),
 
-    B3b8("38", "Issuer Update Processing supported"),
-    B3b7("37", "Mobile functionality supported (CDCVM)"),
+    B3b8("38", "Issuer update processing supported"),
+    B3b7("37", "(CDCVM) Consumer device CVM supported"),
     B3b6("36", "RFU"),
     B3b5("35", "RFU"),
     B3b4("34", "RFU"),

@@ -7,7 +7,7 @@ enum class TSI(val position: String, val code: String) {
     B1b6("16", "Card risk management was performed"),
     B1b5("15", "Issuer authentication was performed"),
     B1b4("14", "Terminal risk management was performed"),
-    B1b3("13", "Issuer script processing was performed"),
+    B1b3("13", "Script processing was performed"),
     B1b2("12", "RFU"),
     B1b1("11", "RFU"),
 

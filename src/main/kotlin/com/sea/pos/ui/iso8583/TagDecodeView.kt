@@ -31,6 +31,12 @@ fun TagDecodeView(state: TagDecodeState) {
             subTitle += " - CVM Condition"
         } else if (state.tag == TagDecode.CVM && position == 3) {
             subTitle += " - CVM Result"
+        } else if (state.tag == TagDecode.TerminalCapabilities && position == 1) {
+            subTitle += " - Card Data Input Capability"
+        } else if (state.tag == TagDecode.TerminalCapabilities && position == 2) {
+            subTitle += " - CVM Capability"
+        } else if (state.tag == TagDecode.TerminalCapabilities && position == 3) {
+            subTitle += " - Security Capability"
         }
         RwSubtitleText(subTitle)
 

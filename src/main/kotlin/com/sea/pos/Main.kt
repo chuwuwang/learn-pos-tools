@@ -63,6 +63,6 @@ private fun SwitchScreen(index: MutableState<Int>, controller: AppController) {
     } else if (index.value == Sidebar.MENU_ISO8583) {
         Bitmap8583Activity(controller = controller)
     } else if (index.value == Sidebar.MENU_TAG_DECODE) {
-        TagDecodeActivity()
+        TagDecodeActivity(controller = controller)
     }
 }

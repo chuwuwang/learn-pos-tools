@@ -31,8 +31,8 @@ enum class ATC(val position: String, val code: String) {
 
     B4b8("48", "Print, attendant"),
     B4b7("47", "Print, cardholder"),
-    B4b6("46", "Display attendant"),
-    B4b5("45", "Display cardholder"),
+    B4b6("46", "Display, attendant"),
+    B4b5("45", "Display, cardholder"),
     B4b4("44", "RFU"),
     B4b3("43", "RFU"),
     B4b2("42", "Code table 10"),

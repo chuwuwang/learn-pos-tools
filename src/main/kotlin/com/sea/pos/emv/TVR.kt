@@ -14,7 +14,7 @@ enum class TVR(val position: String, val code: String) {
     B2b8("28", "ICC and terminal have different application versions"),
     B2b7("27", "Expired application"),
     B2b6("26", "Application not yet effective"),
-    B2b5("25", "Service not allowed for card product"),
+    B2b5("25", "Requested service not allowed for card product"),
     B2b4("24", "New card"),
     B2b3("23", "RFU"),
     B2b2("22", "RFU"),
