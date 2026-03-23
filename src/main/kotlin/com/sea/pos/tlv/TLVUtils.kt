@@ -1,6 +1,7 @@
 package com.sea.pos.tlv
 
 import com.pos.encode.utils.ByteUtils
+import com.sea.pos.extension.empty
 
 object TLVUtils {
 
@@ -18,8 +19,7 @@ object TLVUtils {
         while (string.length > position) {
             // get tag
             val tag = getTag(string, position)
-            val bool = TextUtils.isEmpty(tag) || TextUtils.equals("00", tag)
-            if (bool) {
+            if (tag.empty || tag == "00") {
                 break
             }
             position += tag.length
@@ -35,24 +35,23 @@ object TLVUtils {
 
             val tlv = TLV(tag, length, value)
             map[tag] = tlv
-            if (print) Log.i(TAG, "$tag: $value")
+            if (print) println("$tag: $value")
         }
         return map
     }
 
-    fun toIssuerScriptMap(hexString: String): Map<String, List<TLV>> {
+    fun toIssuerScriptMap(hexString: String): Map< String, List<TLV> > {
         var position = 0
         val string = hexString.uppercase()
         val value71List = ArrayList<TLV>()
         val value72List = ArrayList<TLV>()
         val value91List = ArrayList<TLV>()
-        val map = HashMap<String, List<TLV>>()
+        val map = HashMap< String, List<TLV> >()
         try {
             while (string.length > position) {
                 // get tag
                 val tag = getTag(string, position)
-                val bool = TextUtils.isEmpty(tag) || TextUtils.equals("00", tag)
-                if (bool) {
+                if (tag.empty || tag == "00") {
                     break
                 }
                 position += tag.length
@@ -78,7 +77,7 @@ object TLVUtils {
                     val tlv = TLV("91", length, value)
                     value91List.add(tlv)
                 }
-                Log.i(TAG, "$tag: $value")
+                println("$tag: $value")
             }
             map["71"] = value71List
             map["72"] = value72List

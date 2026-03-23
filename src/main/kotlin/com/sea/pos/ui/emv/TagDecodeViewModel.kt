@@ -13,13 +13,13 @@ class TagDecodeViewModel : BaseViewModel<TagDecodeState, Any>() {
 
     fun dispatch(intent: TagDecodeIntent) {
         when (intent) {
-            TagDecodeIntent.Decode -> calculate()
+            TagDecodeIntent.Decode -> decode()
             is TagDecodeIntent.SwitchTag -> switchTag(intent)
             is TagDecodeIntent.InputData -> inputData(intent)
         }
     }
 
-    private fun calculate() {
+    private fun decode() {
         val tag = state.value.tag
         val inputData = state.value.inputData
         if (inputData.length != tag.length) {
