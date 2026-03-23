@@ -1,6 +1,6 @@
 package com.sea.pos.ui.emv
 
-import com.pos.encode.util.ByteUtil
+import com.pos.encode.utils.ByteUtils
 import com.sea.pos.ui.BaseViewModel
 import com.sea.pos.ui.widget.overlay.AppDialog
 import com.sea.pos.ui.widget.overlay.DialogManager
@@ -27,8 +27,8 @@ class TagDecodeViewModel : BaseViewModel<TagDecodeState, Any>() {
             val dialog = AppDialog.Error(message = tag.name + " must be $length Hex Digits")
             DialogManager.show(dialog)
         } else {
-            val bytes = ByteUtil.hexString2Bytes(inputData)
-            val booleans = ByteUtil.bytes2BinaryBytes(bytes).toList().chunked(size = 8)
+            val bytes = ByteUtils.hexString2Bytes(inputData)
+            val booleans = ByteUtils.bytes2BinaryBytes(bytes).toList().chunked(size = 8)
             setState { copy(outputData = booleans) }
         }
     }

@@ -2,7 +2,7 @@ package com.sea.pos.ui.algorithm
 
 import com.pos.encode.algorithm.MD5Util
 import com.pos.encode.algorithm.SHAUtil
-import com.pos.encode.util.ByteUtil
+import com.pos.encode.utils.ByteUtils
 import com.sea.pos.algorithm.DataFormat
 import com.sea.pos.algorithm.Hash
 import com.sea.pos.extension.isInvalidInput
@@ -36,7 +36,7 @@ class HashAlgoViewModel : BaseViewModel<HashAlgoState, Any>() {
             return
         }
         val dataIn = if (format == DataFormat.Hex) {
-            ByteUtil.hexString2Bytes(inputData)
+            ByteUtils.hexString2Bytes(inputData)
         } else {
             inputData.toByteArray()
         }
@@ -58,7 +58,7 @@ class HashAlgoViewModel : BaseViewModel<HashAlgoState, Any>() {
             MD5Util.md2(dataIn)
         }
         if (dataOut != null) {
-            val string = ByteUtil.bytes2HexString(dataOut)
+            val string = ByteUtils.bytes2HexString(dataOut)
             setState { copy(outputData = string) }
         } else {
             val dialog = AppDialog.Error(message = "Encryption failed")

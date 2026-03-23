@@ -1,11 +1,11 @@
-package com.pos.encode.util;
+package com.pos.encode.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class RegularUtil {
+public final class RegularUtils {
 
-    private RegularUtil() {
+    private RegularUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 

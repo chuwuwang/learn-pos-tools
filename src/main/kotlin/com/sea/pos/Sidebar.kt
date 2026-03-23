@@ -46,6 +46,12 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
             onClick(Sidebar.MENU_ISO8583)
         }
 
+        resourcePath = "images/ic_menu_emv_white.png"
+        tint = UiUtils.IconColor(index, Sidebar.MENU_TLV_DECODE)
+        ItemView("TLV Decoder", tint = tint, resourcePath = resourcePath) {
+            onClick(Sidebar.MENU_TLV_DECODE)
+        }
+
         resourcePath = "images/ic_menu_tag_decode_black.png"
         tint = UiUtils.IconColor(index, Sidebar.MENU_TAG_DECODE)
         ItemView("EMV Tag Decoder", tint = tint, resourcePath = resourcePath) {
@@ -71,15 +77,12 @@ private fun ItemView(text: String, tint: Color, resourcePath: String, onClick: (
 object Sidebar {
 
     const val MENU_ALGO_HASH = 0
-
     const val MENU_ALGO_AES = 1
-
     const val MENU_ALGO_DES = 2
-
     const val MENU_ALGO_COMMON = 3
 
     const val MENU_ISO8583 = 10
-
-    const val MENU_TAG_DECODE = 11
+    const val MENU_TLV_DECODE = 11
+    const val MENU_TAG_DECODE = 12
 
 }

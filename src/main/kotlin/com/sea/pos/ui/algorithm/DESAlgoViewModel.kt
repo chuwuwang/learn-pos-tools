@@ -2,7 +2,7 @@ package com.sea.pos.ui.algorithm
 
 import com.pos.encode.algorithm.DESUtil
 import com.pos.encode.algorithm.TripleDESUtil
-import com.pos.encode.util.ByteUtil
+import com.pos.encode.utils.ByteUtils
 import com.sea.pos.algorithm.DataFormat
 import com.sea.pos.algorithm.SymmetricEncryption
 import com.sea.pos.algorithm.SymmetricMode
@@ -68,7 +68,7 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
         var ivBytes = if (iv.length == 8) {
             iv.toByteArray()
         } else {
-            ByteUtil.hexString2Bytes(iv)
+            ByteUtils.hexString2Bytes(iv)
         }
         if (mode == SymmetricMode.ECB) {
             ivBytes = null
@@ -76,12 +76,12 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
         val keyBytes = if (key.length == size) {
             key.toByteArray()
         } else {
-            ByteUtil.hexString2Bytes(key)
+            ByteUtils.hexString2Bytes(key)
         }
         val dataIn = if (format == DataFormat.Raw) {
             inputData.toByteArray()
         } else {
-            ByteUtil.hexString2Bytes(inputData)
+            ByteUtils.hexString2Bytes(inputData)
         }
         if (encrypt) {
             encrypt(triple, keyBytes, dataIn, ivBytes)
@@ -97,7 +97,7 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
             DESUtil.encrypt(keyBytes, dataIn, ivBytes, state.value.mode.code, state.value.padding.name)
         }
         if (dataOut != null) {
-            val string = ByteUtil.bytes2HexString(dataOut)
+            val string = ByteUtils.bytes2HexString(dataOut)
             setState { copy(outputData = string) }
         } else {
             val dialog = AppDialog.Error(message = "Encryption failed")
@@ -112,7 +112,7 @@ class DESAlgoViewModel : BaseViewModel<DESAlgoState, Any>() {
             DESUtil.decrypt(keyBytes, dataIn, ivBytes, state.value.mode.code, state.value.padding.name)
         }
         if (dataOut != null) {
-            val string = ByteUtil.bytes2HexString(dataOut)
+            val string = ByteUtils.bytes2HexString(dataOut)
             setState { copy(outputData = string) }
         } else {
             val dialog = AppDialog.Error(message = "Decryption failed")

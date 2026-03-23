@@ -1,6 +1,6 @@
 package com.sea.pos.ui.emv
 
-import com.pos.encode.util.ByteUtil
+import com.pos.encode.utils.ByteUtils
 import com.sea.pos.ui.BaseViewModel
 import com.sea.pos.ui.widget.overlay.AppDialog
 import com.sea.pos.ui.widget.overlay.DialogManager
@@ -9,8 +9,8 @@ class Bitmap8583ViewModel : BaseViewModel<Bitmap8583State, Any>() {
 
     override fun initialState(): Bitmap8583State {
         val bitmap = "0000000000000000"
-        val bytes = ByteUtil.hexString2Bytes(bitmap)
-        val booleans = ByteUtil.bitmapBytes2BinaryBytes(bytes)
+        val bytes = ByteUtils.hexString2Bytes(bitmap)
+        val booleans = ByteUtils.bitmapBytes2BinaryBytes(bytes)
         return Bitmap8583State(bitmap, booleans)
     }
 
@@ -25,8 +25,8 @@ class Bitmap8583ViewModel : BaseViewModel<Bitmap8583State, Any>() {
 
     private fun clickItem(intent: Bitmap8583Intent.ClickItem) {
         val bytes = getDynamicBitmap(state.value.bitmapBooleans, intent.index)
-        val hexString = ByteUtil.bytes2HexString(bytes)
-        val booleans = ByteUtil.bitmapBytes2BinaryBytes(bytes)
+        val hexString = ByteUtils.bytes2HexString(bytes)
+        val booleans = ByteUtils.bitmapBytes2BinaryBytes(bytes)
         setState { copy(bitmapString = hexString, bitmapBooleans = booleans) }
     }
 
@@ -41,8 +41,8 @@ class Bitmap8583ViewModel : BaseViewModel<Bitmap8583State, Any>() {
             val dialog = AppDialog.Error(message = "The size of the Bitmap can only be 16 or 32")
             DialogManager.show(dialog)
         } else {
-            val bytes = ByteUtil.hexString2Bytes(bitmapString)
-            val booleans = ByteUtil.bitmapBytes2BinaryBytes(bytes)
+            val bytes = ByteUtils.hexString2Bytes(bitmapString)
+            val booleans = ByteUtils.bitmapBytes2BinaryBytes(bytes)
             setState { copy(bitmapBooleans = booleans) }
         }
     }
@@ -55,15 +55,15 @@ class Bitmap8583ViewModel : BaseViewModel<Bitmap8583State, Any>() {
     private fun getDynamicBitmap(bitmaps: BooleanArray, index: Int): ByteArray {
         val item = bitmaps[index]
         bitmaps[index] = ! item
-        if (index != 1) return ByteUtil.binaryBytes2Bytes(bitmaps)
+        if (index != 1) return ByteUtils.binaryBytes2Bytes(bitmaps)
         if (item) {
             val temp = ByteArray(8)
-            val oldBytes = ByteUtil.binaryBytes2Bytes(bitmaps)
+            val oldBytes = ByteUtils.binaryBytes2Bytes(bitmaps)
             System.arraycopy(oldBytes, 0, temp, 0, temp.size)
             return temp
         } else {
             val temp = ByteArray(16)
-            val oldBytes = ByteUtil.binaryBytes2Bytes(bitmaps)
+            val oldBytes = ByteUtils.binaryBytes2Bytes(bitmaps)
             System.arraycopy(oldBytes, 0, temp, 0, oldBytes.size)
             return temp
         }

@@ -1,11 +1,11 @@
-package com.pos.encode.util;
+package com.pos.encode.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.Charset;
 
-public final class ByteUtil {
+public final class ByteUtils {
 
-    private ByteUtil() {
+    private ByteUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 

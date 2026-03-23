@@ -1,7 +1,7 @@
 package com.sea.pos.ui.algorithm
 
 import com.pos.encode.algorithm.AlgorithmUtil
-import com.pos.encode.util.ByteUtil
+import com.pos.encode.utils.ByteUtils
 import com.sea.pos.algorithm.DataFormat
 import com.sea.pos.extension.isInvalidInput
 import com.sea.pos.ui.BaseViewModel
@@ -61,12 +61,12 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
             dataInComponent1 = component1.toByteArray()
             dataInComponent2 = component2.toByteArray()
         } else {
-            dataInComponent1 = ByteUtil.hexString2Bytes(component1)
-            dataInComponent2 = ByteUtil.hexString2Bytes(component2)
+            dataInComponent1 = ByteUtils.hexString2Bytes(component1)
+            dataInComponent2 = ByteUtils.hexString2Bytes(component2)
         }
         val dataOut = AlgorithmUtil.xor(dataInComponent1, dataInComponent2)
         if (dataOut != null) {
-            val string = ByteUtil.bytes2HexString(dataOut)
+            val string = ByteUtils.bytes2HexString(dataOut)
             setState { copy(outputData = string) }
         } else {
             val dialog = AppDialog.Error(message = "Calculation failed")
@@ -78,10 +78,10 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
         val dataIn = if (state.value.format == DataFormat.Raw) {
             data.toByteArray()
         } else {
-            ByteUtil.hexString2Bytes(data)
+            ByteUtils.hexString2Bytes(data)
         }
         val dataOut = AlgorithmUtil.xorBitwise(dataIn)
-        val string = ByteUtil.byte2HexString(dataOut).uppercase()
+        val string = ByteUtils.byte2HexString(dataOut).uppercase()
         setState { copy(outputData = string) }
     }
 
@@ -96,14 +96,14 @@ class CommonAlgoViewModel : BaseViewModel<CommonAlgoState, Any>() {
         val dataIn = if (state.value.format == DataFormat.Raw) {
             inputData.toByteArray()
         } else {
-            ByteUtil.hexString2Bytes(inputData)
+            ByteUtils.hexString2Bytes(inputData)
         }
         val dataOut = if (encode) {
             Base64.getEncoder().withoutPadding().encode(dataIn)
         } else {
             Base64.getDecoder().decode(dataIn)
         }
-        val string = ByteUtil.bytes2HexString(dataOut)
+        val string = ByteUtils.bytes2HexString(dataOut)
         setState { copy(outputData = string) }
     }
 
