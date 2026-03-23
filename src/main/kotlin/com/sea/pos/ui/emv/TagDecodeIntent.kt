@@ -1,4 +1,4 @@
-package com.sea.pos.ui.iso8583
+package com.sea.pos.ui.emv
 
 import com.sea.pos.emv.TagDecode
 

@@ -1,4 +1,4 @@
-package com.sea.pos.ui.iso8583
+package com.sea.pos.ui.emv
 
 import com.pos.encode.util.ByteUtil
 import com.sea.pos.ui.BaseViewModel

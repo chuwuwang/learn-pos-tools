@@ -21,8 +21,8 @@ import androidx.compose.ui.window.application
 import com.sea.pos.ui.algorithm.CommonAlgoActivity
 import com.sea.pos.ui.algorithm.DESAlgoActivity
 import com.sea.pos.ui.algorithm.HashAlgoActivity
+import com.sea.pos.ui.emv.TagDecodeActivity
 import com.sea.pos.ui.iso8583.Bitmap8583Activity
-import com.sea.pos.ui.iso8583.TagDecodeActivity
 import com.sea.pos.ui.theme.AppTheme
 import com.sea.pos.ui.theme.SeaTheme
 import com.sea.pos.ui.widget.overlay.OverlayHost
