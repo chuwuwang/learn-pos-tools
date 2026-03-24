@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -14,8 +15,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.dp
 import com.sea.pos.AppController
+import com.sea.pos.Sidebar
 import com.sea.pos.emv.EMVTagCollections
+import com.sea.pos.emv.TagDecode
 import com.sea.pos.tlv.TLV
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
@@ -40,7 +45,7 @@ fun TLVDecodeActivity(controller: AppController) {
 
         RwSubtitleText("Output Data")
 
-        DecodeView(state = state)
+        TLVDecodeView(state = state, controller = controller)
 
         Row(modifier = UiUtils.modifierSpace_xxx) {
             RwDecryptButton { vm.dispatch(intent = TLVDecodeIntent.Decode) }
@@ -56,19 +61,21 @@ fun TLVDecodeActivity(controller: AppController) {
 }
 
 @Composable
-private fun ColumnScope.DecodeView(state: TLVDecodeState) {
+private fun ColumnScope.TLVDecodeView(state: TLVDecodeState, controller: AppController) {
     val modifier = UiUtils.modifierSpace.weight(3f).fillMaxWidth()
         .border(width = Dimens.divider, color = AppTheme.AppColors.divider, shape = UiUtils.roundedCornerShape_8)
     Column(modifier) {
         Row(modifier = Modifier.height(IntrinsicSize.Min), verticalAlignment = Alignment.CenterVertically) {
             ItemLabel("Tag")
             ItemLabel("Length")
-            ItemLabel("Value", weight = 3f)
+            ItemLabel("Value", weight = 2f)
             ItemLabel("Description", weight = 3f)
             ItemLabel("Source", divider = false)
         }
 
         RwHorizontalDivider()
+
+        val vm = viewModel(container = controller) { TagDecodeViewModel() }
 
         Box {
             val bindItem: @Composable (TLV, Int) -> Unit = { item, position ->
@@ -77,30 +84,38 @@ private fun ColumnScope.DecodeView(state: TLVDecodeState) {
                     val value = item.value
                     val length = item.length.toString()
                     val pair = EMVTagCollections.map[tag] ?: Pair("", "")
-                    val modifier = if (position % 2 != 0) {
-                        Modifier.height(IntrinsicSize.Min).background(color = AppTheme.AppColors.tertiary)
-                    } else {
-                        Modifier.height(IntrinsicSize.Min)
+                    var modifier = Modifier.height(IntrinsicSize.Min)
+                    if (position % 2 != 0 && position == state.outputData.size - 1) {
+                        val shape = RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp)
+                        modifier = modifier.background(color = AppTheme.AppColors.textDisabled, shape = shape)
+                    } else if (position % 2 != 0) {
+                        modifier = modifier.background(color = AppTheme.AppColors.textDisabled)
                     }
                     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-                        ItemView(text = tag)
+                        val decodeTag = TagDecode.entries.find { it.tag == tag }
+                        if (decodeTag != null) {
+                            val onClick = {
+                                vm.setState { vm.state.value.copy(tag = decodeTag, inputData = value) }
+                                controller.navigate(Sidebar.MENU_TAG_DECODE)
+                            }
+                            ItemView(text = tag, onClick = onClick)
+                        } else {
+                            ItemView(text = tag)
+                        }
                         ItemView(text = length)
-                        ItemView(text = value, weight = 3f, TextAlign.Start)
+                        ItemView(text = value, weight = 2f, TextAlign.Start)
                         ItemView(text = pair.first, weight = 3f, TextAlign.Start)
                         ItemView(text = pair.second, divider = false)
                     }
                 }
-                RwHorizontalDivider()
+                if (position != state.outputData.size - 1) RwHorizontalDivider()
             }
             val scrollState = rememberLazyListState()
             LazyColumn(state = scrollState) {
                 itemsIndexed(state.outputData) { position, item -> bindItem(item, position) }
             }
 
-            val style = defaultScrollbarStyle().copy(
-                hoverColor = AppTheme.AppColors.dividerChecked,
-                unhoverColor = AppTheme.AppColors.dividerChecked.copy(alpha = 0.5f),
-            )
+            val style = defaultScrollbarStyle().copy(hoverColor = AppTheme.AppColors.divider)
             val adapter = rememberScrollbarAdapter(scrollState = scrollState)
             VerticalScrollbar(modifier = Modifier.fillMaxHeight().align(Alignment.CenterEnd), style = style, adapter = adapter)
         }
@@ -108,11 +123,18 @@ private fun ColumnScope.DecodeView(state: TLVDecodeState) {
 }
 
 @Composable
-private fun RowScope.ItemView(text: String, weight: Float = 1f, textAlign: TextAlign = TextAlign.Center, divider: Boolean = true) {
-    val modifier = Modifier.wrapContentHeight(Alignment.CenterVertically).weight(weight)
+private fun RowScope.ItemView(text: String, weight: Float = 1f, textAlign: TextAlign = TextAlign.Center, divider: Boolean = true, onClick: ( () -> Unit ) ? = null) {
+    var modifier = Modifier.wrapContentHeight(Alignment.CenterVertically).weight(weight)
         .padding(horizontal = Dimens.space_norm, vertical = Dimens.space_x)
-    val style = TextStyle(color = AppTheme.AppColors.textSecondary, fontFamily = Fonts.regular, fontSize = Dimens.sp_text, textAlign = textAlign)
-    Text(text = text, modifier = modifier, style = style)
+    val decodeTag = TagDecode.entries.find { it.tag == text }
+    if (decodeTag != null) {
+        if (onClick != null) modifier = modifier.clickable(onClick = onClick)
+        val style = TextStyle(color = AppTheme.AppColors.textChecked, fontFamily = Fonts.bold, fontSize = Dimens.sp_title, textAlign = textAlign)
+        Text(text = text, modifier = modifier, style = style, textDecoration = TextDecoration.Underline)
+    } else {
+        val style = TextStyle(color = AppTheme.AppColors.textSecondary, fontFamily = Fonts.regular, fontSize = Dimens.sp_text, textAlign = textAlign)
+        Text(text = text, modifier = modifier, style = style)
+    }
     if (divider) RwVerticalDivider()
 }
 

@@ -12,6 +12,10 @@ class ViewModelStore {
         return map.getOrPut(key) { factory() } as T
     }
 
+    fun <T : BaseViewModel<*, *> > get(key: String): T ? {
+        return map[key] as T ?
+    }
+
     fun clear() {
         map.values.forEach { it.clear() }
         map.clear()

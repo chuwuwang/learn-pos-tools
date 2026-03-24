@@ -43,6 +43,8 @@ fun App() {
     val controller = remember { AppController() }
     val current = remember { mutableStateOf(0) }
     SeaTheme {
+        controller.navigate = { current.value = it }
+
         Row {
             var modifier = Modifier.weight(1f).fillMaxHeight().background(AppTheme.AppColors.bgSidebar)
             Sidebar(modifier, current.value) { current.value = it }
@@ -50,7 +52,9 @@ fun App() {
             modifier = Modifier.weight(3f).fillMaxHeight().background(AppTheme.AppColors.bgContent)
             BoxWithConstraints(modifier) { OverlayHost { SwitchScreen(current, controller) } }
         }
+
     }
+
 }
 
 @Composable

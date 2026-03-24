@@ -16,6 +16,6 @@ object WeChatColors {
 
     val line_fill = Color(0xFFD7D7D7).convert(ColorSpaces.CieXyz)
 
-    val background_fill = Color(0xFFF5F5F5).convert(ColorSpaces.CieXyz)
+    val background_fill = Color(0xFFF9F9F9).convert(ColorSpaces.CieXyz)
 
 }
