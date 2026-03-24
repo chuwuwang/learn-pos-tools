@@ -11,8 +11,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.resource.Fonts
+import com.sea.pos.ui.theme.AppTheme
 import com.sea.pos.ui.widget.RwHorizontal
 import com.sea.pos.ui.widget.RwVertical
 import com.sea.pos.ui.widget.UiUtils
@@ -57,6 +59,17 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
         ItemView("EMV Tag Decoder", tint = tint, resourcePath = resourcePath) {
             onClick(Sidebar.MENU_TAG_DECODE)
         }
+
+        Footer()
+    }
+}
+
+@Composable
+private fun Footer() {
+    val modifier = Modifier.fillMaxHeight()
+    Box(modifier = modifier) {
+        val padding = Modifier.align(Alignment.BottomStart).padding(start = Dimens.space_xxx, bottom = Dimens.space_xxx)
+        Text(modifier = padding, fontSize = 14.sp, text = "© chuwuwang", color = AppTheme.AppColors.bgContent)
     }
 }
 
@@ -64,11 +77,11 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
 private fun ItemView(text: String, tint: Color, resourcePath: String, onClick: () -> Unit) {
     val modifier = Modifier.fillMaxWidth().height(Dimens.item_norm).clickable(onClick = onClick)
     Row(modifier, verticalAlignment = Alignment.CenterVertically) {
-        RwHorizontal(Dimens.space_x)
+        RwHorizontal(width = Dimens.space_x)
 
         Icon(painter = painterResource(resourcePath), modifier = Modifier.size(24.dp), contentDescription = null, tint = tint)
 
-        RwHorizontal(Dimens.space_norm)
+        RwHorizontal(width = Dimens.space_norm)
 
         Text(color = tint, textAlign = TextAlign.Start, fontSize = Dimens.sp_title, fontFamily = Fonts.bold, text = text)
     }
