@@ -52,7 +52,7 @@ fun TLVDecodeActivity(controller: AppController) {
 
             RwHorizontal(width = Dimens.space_x)
 
-            RwDecryptButton { }
+            RwTextCheckedButton(text = "Search Tag") { vm.dispatch(intent = TLVDecodeIntent.Search) }
         }
 
         RwVertical(height = Dimens.space_xxx)

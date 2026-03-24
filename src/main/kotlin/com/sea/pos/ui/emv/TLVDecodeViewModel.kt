@@ -4,6 +4,8 @@ import com.sea.pos.tlv.TLVUtils
 import com.sea.pos.ui.BaseViewModel
 import com.sea.pos.ui.widget.overlay.AppDialog
 import com.sea.pos.ui.widget.overlay.DialogManager
+import java.awt.Desktop
+import java.net.URI
 import java.util.*
 
 class TLVDecodeViewModel : BaseViewModel<TLVDecodeState, Any>() {
@@ -15,8 +17,15 @@ class TLVDecodeViewModel : BaseViewModel<TLVDecodeState, Any>() {
     fun dispatch(intent: TLVDecodeIntent) {
         when (intent) {
             TLVDecodeIntent.Decode -> decode()
+            TLVDecodeIntent.Search -> search()
             is TLVDecodeIntent.InputData -> inputData(intent)
         }
+    }
+
+    private fun search() {
+        val url = "https://www.eftlab.com/knowledge-base/complete-list-of-emv-nfc-tags"
+        val uri = URI(url)
+        Desktop.getDesktop().browse(uri)
     }
 
     private fun decode() {

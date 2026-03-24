@@ -1,5 +1,7 @@
 package com.sea.pos.ui.widget
 
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -40,7 +42,7 @@ fun RwTextButton(modifier: Modifier = Modifier, text: String, onClick: () -> Uni
 
 @Composable
 fun RwTextCheckedButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit) {
-    Button(modifier = modifier.size(width, height), colors = RwButton.ButtonCheckedColors, onClick = onClick) {
+    Button(modifier = modifier.height(height).defaultMinSize(minWidth = width), colors = RwButton.ButtonCheckedColors, onClick = onClick) {
         Text(text = text, style = RwButton.ButtonCheckedTextStyle)
     }
 }
