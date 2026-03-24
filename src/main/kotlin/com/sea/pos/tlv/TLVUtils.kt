@@ -5,8 +5,6 @@ import com.sea.pos.extension.empty
 
 object TLVUtils {
 
-    private const val TAG = "TLV"
-
     fun toMap(bytes: ByteArray, print: Boolean = false): Map<String, TLV> {
         val hexString = ByteUtils.bytes2HexString(bytes)
         return toMap(hexString, print)
