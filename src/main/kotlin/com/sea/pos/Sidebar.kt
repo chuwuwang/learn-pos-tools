@@ -60,6 +60,12 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
             onClick(Sidebar.MENU_TAG_DECODE)
         }
 
+        resourcePath = "images/ic_menu_tf_black.png"
+        tint = UiUtils.IconColor(index, Sidebar.MENU_IMAGE_TRANSFORM)
+        ItemView("Image Transform", tint = tint, resourcePath = resourcePath) {
+            onClick(Sidebar.MENU_IMAGE_TRANSFORM)
+        }
+
         Footer()
     }
 }
@@ -97,5 +103,6 @@ object Sidebar {
     const val MENU_ISO8583 = 10
     const val MENU_TLV_DECODE = 11
     const val MENU_TAG_DECODE = 12
+    const val MENU_IMAGE_TRANSFORM = 13
 
 }

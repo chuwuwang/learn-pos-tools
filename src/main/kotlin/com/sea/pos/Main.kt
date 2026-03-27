@@ -24,6 +24,7 @@ import com.sea.pos.ui.algorithm.HashAlgoActivity
 import com.sea.pos.ui.emv.Bitmap8583Activity
 import com.sea.pos.ui.emv.TLVDecodeActivity
 import com.sea.pos.ui.emv.TagDecodeActivity
+import com.sea.pos.ui.more.ImageTransformActivity
 import com.sea.pos.ui.theme.AppTheme
 import com.sea.pos.ui.theme.SeaTheme
 import com.sea.pos.ui.widget.overlay.OverlayHost
@@ -71,5 +72,7 @@ private fun SwitchScreen(index: MutableState<Int>, controller: AppController) {
         TLVDecodeActivity(controller = controller)
     } else if (index.value == Sidebar.MENU_TAG_DECODE) {
         TagDecodeActivity(controller = controller)
+    } else if (index.value == Sidebar.MENU_IMAGE_TRANSFORM) {
+        ImageTransformActivity()
     }
 }
