@@ -1,6 +1,7 @@
 package com.sea.pos.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import com.sea.pos.AppController
 
@@ -25,10 +26,18 @@ class ViewModelStore {
 
 @Composable
 inline fun <reified T : BaseViewModel<*, *> > viewModel(key: String, store: ViewModelStore, noinline factory: () -> T): T {
-    return remember { store.get(key, factory) }
+    val viewModel = remember { store.get(key, factory) }
+    DisposableEffect(key1 = Unit) {
+        onDispose { viewModel.onCleared() }
+    }
+    return viewModel
 }
 
 @Composable
 inline fun <reified T : BaseViewModel<*, *> > viewModel(container: AppController, key: String = T::class.simpleName ?: "ViewModel", noinline factory: () -> T): T {
-    return remember { container.viewModelStore.get(key, factory) }
+    val viewModel = remember { container.viewModelStore.get(key, factory) }
+    DisposableEffect(key1 = Unit) {
+        onDispose { viewModel.onCleared() }
+    }
+    return viewModel
 }

@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 @ExperimentalMaterial3Api
 @Composable
 fun OverlayHost(content: @Composable () -> Unit) {
+
     var dialog by remember { mutableStateOf<AppDialog>(AppDialog.None) }
 
     LaunchedEffect(Unit) {
@@ -15,9 +16,11 @@ fun OverlayHost(content: @Composable () -> Unit) {
 
     Box {
         content()
+
         when (dialog) {
             is AppDialog.Error -> RwErrorDialog(dialog = dialog)
-            else -> {}
+            else -> { }
         }
     }
+
 }

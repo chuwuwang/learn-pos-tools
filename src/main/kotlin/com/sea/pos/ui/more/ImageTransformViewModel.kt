@@ -22,15 +22,19 @@ class ImageTransformViewModel : BaseViewModel<ImageTransformState, Any>() {
     }
 
     private fun generateQRCode() {
-        val bgColor = Colors.css("#07C160")
-        val bytes = QRCode.ofSquares()
-            .withSize(10)
-            .withColor(bgColor)
-            .build(state.value.inputData)
-            .render()
-            .getBytes()
-        val imageBitmap = Image.makeFromEncoded(bytes).toComposeImageBitmap()
-        setState { copy(bitmap = imageBitmap) }
+        launch {
+            val imageBitmap = io {
+                val bgColor = Colors.css("#07C160")
+                val bytes = QRCode.ofSquares()
+                    .withSize(10)
+                    .withColor(bgColor)
+                    .build(state.value.inputData)
+                    .render()
+                    .getBytes()
+                Image.makeFromEncoded(bytes).toComposeImageBitmap()
+            }
+            setState { copy(bitmap = imageBitmap) }
+        }
     }
 
     private fun inputData(intent: ImageTransformIntent.InputData) {

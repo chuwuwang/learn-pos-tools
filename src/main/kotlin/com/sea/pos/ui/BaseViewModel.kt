@@ -1,14 +1,12 @@
 package com.sea.pos.ui
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
+import com.sea.pos.ui.widget.overlay.AppDialog
+import com.sea.pos.ui.widget.overlay.DialogManager
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import kotlin.coroutines.CoroutineContext
 
-abstract class BaseViewModel<S : Any, E : Any> {
-
-    val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+abstract class BaseViewModel<S : Any, E : Any> : CoroutineScope {
 
     // UI State
     abstract fun initialState(): S
@@ -30,13 +28,44 @@ abstract class BaseViewModel<S : Any, E : Any> {
         _event.emit(event)
     }
 
+    internal fun clear() {
+        job.cancel()
+        onCleared()
+    }
+
     open fun onCleared() {
 
     }
 
-    internal fun clear() {
-        viewModelScope.cancel()
-        onCleared()
+    private val job = SupervisorJob()
+    override val coroutineContext: CoroutineContext = Dispatchers.Main + job + CoroutineExceptionHandler { _, e ->
+        onError(e)
+    }
+
+    open fun onError(e: Throwable) {
+        val dialog = AppDialog.Error(message = "Unknown error - " + e.message)
+        DialogManager.show(dialog)
+    }
+
+    fun launch(block: suspend CoroutineScope.() -> Unit): Job = launch(context = coroutineContext) {
+        try {
+            block()
+        } catch (e: Throwable) {
+            e.printStackTrace()
+            onError(e)
+        }
+    }
+
+    fun launchIO(block: suspend CoroutineScope.() -> Unit): Job = launch {
+        withContext(Dispatchers.IO) { block() }
+    }
+
+    suspend fun <T> io(block: suspend () -> T): T {
+        return withContext(Dispatchers.IO) { block() }
+    }
+
+    suspend fun <T> main(block: suspend () -> T): T {
+        return withContext(Dispatchers.Main) { block() }
     }
 
 }
