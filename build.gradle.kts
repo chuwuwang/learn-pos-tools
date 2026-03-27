@@ -2,7 +2,8 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.9.0"
+    kotlin("jvm") version "2.1.21"
+    kotlin("plugin.compose") version "2.1.21"
     id("org.jetbrains.compose") version "1.6.10"
 }
 
@@ -27,6 +28,8 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.bouncycastle:bcprov-jdk15on:1.70")
+
+    implementation("io.github.g0dkar:qrcode-kotlin:4.5.0")
 }
 
 tasks.withType<KotlinCompile> {
