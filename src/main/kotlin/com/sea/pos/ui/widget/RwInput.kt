@@ -17,10 +17,15 @@ import com.sea.pos.ui.resource.Fonts
 import com.sea.pos.ui.theme.AppTheme
 
 @Composable
-fun RwInputTextWithLength(modifier: Modifier = Modifier, value: String, maxLength: Int = Int.MAX_VALUE, hint: String = "", input: Boolean = true, enabled: Boolean = true, singleLine: Boolean = false, onValueChange: (String) -> Unit) {
+fun RwInputTextWithLength(
+    modifier: Modifier = Modifier, value: String,
+    maxLength: Int = Int.MAX_VALUE, hint: String = "",
+    input: Boolean = true, enabled: Boolean = true,
+    singleLine: Boolean = false, showLength: Boolean = true, onValueChange: (String) -> Unit,
+) {
     Row(modifier = modifier.then(other = UiUtils.modifierSpace), verticalAlignment = Alignment.CenterVertically) {
         InputText(Modifier.weight(1.0f).fillMaxHeight(), value, hint = hint, input = input, enabled = enabled, singleLine = singleLine, onValueChange)
-        LengthText(value.length, maxLength)
+        if (showLength) LengthText(value.length, maxLength)
     }
 }
 

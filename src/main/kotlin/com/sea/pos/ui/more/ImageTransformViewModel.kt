@@ -1,5 +1,6 @@
 package com.sea.pos.ui.more
 
+import androidx.compose.ui.graphics.asSkiaBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
 import com.pos.encode.utils.ByteUtils
 import com.sea.pos.algorithm.DataFormat
@@ -8,6 +9,11 @@ import com.sea.pos.ui.BaseViewModel
 import com.sea.pos.ui.widget.overlay.AppDialog
 import com.sea.pos.ui.widget.overlay.DialogManager
 import com.sea.pos.utils.Base64Utils
+import io.github.vinceglb.filekit.FileKit
+import io.github.vinceglb.filekit.dialogs.FileKitType
+import io.github.vinceglb.filekit.dialogs.openFilePicker
+import io.github.vinceglb.filekit.readBytes
+import org.jetbrains.skia.EncodedImageFormat
 import org.jetbrains.skia.Image
 import qrcode.QRCode
 import qrcode.color.Colors
@@ -20,11 +26,31 @@ class ImageTransformViewModel : BaseViewModel<ImageTransformState, Any>() {
 
     fun dispatch(intent: ImageTransformIntent) {
         when (intent) {
+            ImageTransformIntent.Reset -> reset()
+            ImageTransformIntent.ImagePicker -> imagePicker()
+            ImageTransformIntent.ImageToBase64 -> imageToBase64()
             ImageTransformIntent.Base64ToImage -> base64ToImage()
             ImageTransformIntent.GenerateQRCode -> generateQRCode()
             is ImageTransformIntent.InputData -> inputData(intent)
             is ImageTransformIntent.SwitchFormat -> switchFormat(intent)
             is ImageTransformIntent.SwitchFeature -> switchFeature(intent)
+        }
+    }
+
+    private fun imageToBase64() {
+        val imageBitmap = state.value.bitmap ?: return
+        launch {
+            val string = io {
+                val skiaBitmap = imageBitmap.asSkiaBitmap()
+                val skiaImage = Image.makeFromBitmap(skiaBitmap)
+                val data = skiaImage.encodeToData(EncodedImageFormat.PNG, 100)
+                if (data != null) {
+                    Base64Utils.bytesToBase64(data.bytes) ?: "Conversion error"
+                } else {
+                    "Conversion error"
+                }
+            }
+            setState { copy(inputData = string) }
         }
     }
 
@@ -64,6 +90,21 @@ class ImageTransformViewModel : BaseViewModel<ImageTransformState, Any>() {
             }
             setState { copy(bitmap = imageBitmap) }
         }
+    }
+
+    private fun imagePicker() {
+        launch {
+            val imageFile = FileKit.openFilePicker(type = FileKitType.Image)
+            if (imageFile != null) {
+                val bytes = imageFile.readBytes()
+                val imageBitmap = Image.makeFromEncoded(bytes).toComposeImageBitmap()
+                setState { copy(bitmap = imageBitmap) }
+            }
+        }
+    }
+
+    private fun reset() {
+        setState { copy(inputData = "", bitmap = null) }
     }
 
     private fun inputData(intent: ImageTransformIntent.InputData) {

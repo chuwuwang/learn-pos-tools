@@ -29,7 +29,15 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.bouncycastle:bcprov-jdk15on:1.70")
 
+    // qrcode
     implementation("io.github.g0dkar:qrcode-kotlin:4.5.0")
+
+    // file selector
+    var fileKit = "0.12.0"
+    implementation("io.github.vinceglb:filekit-coil:$fileKit")
+    implementation("io.github.vinceglb:filekit-core:$fileKit")
+    implementation("io.github.vinceglb:filekit-dialogs:$fileKit")
+    implementation("io.github.vinceglb:filekit-dialogs-compose:$fileKit")
 }
 
 tasks.withType<KotlinCompile> {
@@ -42,7 +50,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Exe)
             packageName = "com.sea.pos.tools"
-            packageVersion = "1.1.1"
+            packageVersion = "1.1.21"
             macOS {
                 signing { bundleID = "com.sea.pos.tools" }
                 // val launcher = project.file("icon.ic" + "ns")

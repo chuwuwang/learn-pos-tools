@@ -8,4 +8,8 @@ object Base64Utils {
         return Base64.getDecoder().decode(base64)
     }
 
+    fun bytesToBase64(bytes: ByteArray): String ? {
+        return Base64.getEncoder().encodeToString(bytes)
+    }
+
 }

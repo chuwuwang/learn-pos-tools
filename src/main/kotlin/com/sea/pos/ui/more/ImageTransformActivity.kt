@@ -2,6 +2,8 @@ package com.sea.pos.ui.more
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -30,6 +32,8 @@ fun ImageTransformActivity() {
             GenerateQRCodeView(vm, state)
         } else if ("Base64 to Image" == state.feature) {
             Base64ToImageView(vm, state)
+        } else if ("Image to Base64" == state.feature) {
+            ImageToBase64View(vm, state)
         }
 
         RwVertical(height = Dimens.space_xxx)
@@ -67,7 +71,7 @@ private fun Base64ToImageView(vm: ImageTransformViewModel, state: ImageTransform
 
     RwSubtitleText("Input Data")
 
-    RwInputTextWithLength(modifier = UiUtils.modifierInput, value = state.inputData, maxLength = Int.MAX_VALUE, hint = "Remove the 'data:image/png;base64' prefix") {
+    RwInputTextWithLength(modifier = UiUtils.modifierInput, value = state.inputData, maxLength = Int.MAX_VALUE, hint = "Remove the 'data:image/png;base64' prefix", showLength = false) {
         val intent = ImageTransformIntent.InputData(it)
         vm.dispatch(intent)
     }
@@ -79,5 +83,33 @@ private fun Base64ToImageView(vm: ImageTransformViewModel, state: ImageTransform
 
     RwTextCheckedButton(modifier = UiUtils.modifierSpace_xxx, text = "DONE") {
         vm.dispatch(intent = ImageTransformIntent.Base64ToImage)
+    }
+}
+
+@Composable
+private fun ColumnScope.ImageToBase64View(vm: ImageTransformViewModel, state: ImageTransformState) {
+    Row(modifier = UiUtils.modifierSpace_xxx) {
+        RwTextButton(text = "Select Image") {
+            vm.dispatch(intent = ImageTransformIntent.ImagePicker)
+        }
+
+        RwHorizontal(Dimens.space_x)
+
+        val imageBitmap = state.bitmap
+        if (imageBitmap != null) Image(bitmap = imageBitmap, contentDescription = null)
+    }
+
+    RwSubtitleText("Output Data")
+
+    RwInputTextWithLength(modifier = UiUtils.modifierOutput.weight(1f), value = state.inputData, input = true, showLength = false) {
+
+    }
+
+    Row(modifier = UiUtils.modifierSpace_xxx) {
+        RwTextCheckedButton(text = "DONE") { vm.dispatch(intent = ImageTransformIntent.ImageToBase64) }
+
+        RwHorizontal(width = Dimens.space_x)
+
+        RwErrorButton(text = "RESET") { vm.dispatch(intent = ImageTransformIntent.Reset) }
     }
 }

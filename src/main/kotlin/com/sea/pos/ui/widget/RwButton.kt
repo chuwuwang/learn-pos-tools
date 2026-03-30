@@ -35,7 +35,7 @@ fun RwDecryptButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
 
 @Composable
 fun RwTextButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit) {
-    Button(modifier = modifier.size(width, height), colors = RwButton.ButtonColors, onClick = onClick) {
+    Button(modifier = modifier.height(height).defaultMinSize(minWidth = width), colors = RwButton.ButtonColors, onClick = onClick) {
         Text(text = text, style = RwButton.ButtonTextStyle)
     }
 }
@@ -49,7 +49,7 @@ fun RwTextCheckedButton(modifier: Modifier = Modifier, text: String, onClick: ()
 
 @Composable
 fun RwErrorButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit) {
-    Button(modifier = modifier.size(width, height), colors = RwButton.ErrorButtonColors, onClick = onClick) {
+    Button(modifier = modifier.height(height).defaultMinSize(minWidth = width), colors = RwButton.ErrorButtonColors, onClick = onClick) {
         Text(text = text, style = RwButton.ButtonCheckedTextStyle)
     }
 }
