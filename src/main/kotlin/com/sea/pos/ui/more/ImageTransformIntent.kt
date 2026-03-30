@@ -1,11 +1,17 @@
 package com.sea.pos.ui.more
 
+import com.sea.pos.algorithm.DataFormat
+
 sealed class ImageTransformIntent {
 
-    class SwitchFeature(val feature: String) : ImageTransformIntent()
+    object Base64ToImage : ImageTransformIntent()
+
+    object GenerateQRCode : ImageTransformIntent()
 
     class InputData(val data: String) : ImageTransformIntent()
 
-    object GenerateQRCode : ImageTransformIntent()
+    class SwitchFeature(val feature: String) : ImageTransformIntent()
+
+    class SwitchFormat(val format: DataFormat) : ImageTransformIntent()
 
 }
