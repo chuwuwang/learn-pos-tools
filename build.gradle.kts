@@ -49,12 +49,15 @@ compose.desktop {
         mainClass = "MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Exe)
-            packageName = "com.sea.pos.tools"
-            packageVersion = "1.1.21"
+            packageName = "POS Tools"
+            packageVersion = "1.1.22"
             macOS {
                 signing { bundleID = "com.sea.pos.tools" }
-                // val launcher = project.file("icon.ic" + "ns")
-                // iconFile.set(launcher)
+                iconFile.set( project.file("src/main/resources/icons/app.icns") )
+                runtimeEntitlementsFile.set( project.file("runtime-entitlements.plist") )
+            }
+            windows {
+                iconFile.set( project.file("src/main/resources/icons/app.ico") )
             }
             includeAllModules = true
         }
