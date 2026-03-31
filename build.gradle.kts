@@ -27,7 +27,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.8.1")
 
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("org.bouncycastle:bcprov-jdk15on:1.70")
+
+    // Source: https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk18on
+    // implementation("org.bouncycastle:bcprov-jdk18on:1.80")
 
     // qrcode
     implementation("io.github.g0dkar:qrcode-kotlin:4.5.0")
@@ -46,7 +48,7 @@ tasks.withType<KotlinCompile> {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "com.sea.pos.MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Exe)
             packageName = "POS Tools"
