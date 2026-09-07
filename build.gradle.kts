@@ -40,6 +40,17 @@ dependencies {
     implementation("io.github.vinceglb:filekit-core:$fileKit")
     implementation("io.github.vinceglb:filekit-dialogs:$fileKit")
     implementation("io.github.vinceglb:filekit-dialogs-compose:$fileKit")
+
+    // Ktor Client
+    val ktorVersion = "2.3.12"
+    implementation("io.ktor:ktor-client-cio:$ktorVersion")
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-logging:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-gson:$ktorVersion")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+
+    // SLF4J (Ktor logging 需要)
+    implementation("org.slf4j:slf4j-simple:2.0.16")
 }
 
 tasks.withType<KotlinCompile> {
@@ -52,7 +63,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Exe)
             packageName = "POS Tools"
-            packageVersion = "1.1.22"
+            packageVersion = "1.2.23"
             macOS {
                 signing { bundleID = "com.sea.pos.tools" }
                 iconFile.set( project.file("src/main/resources/icons/app.icns") )
