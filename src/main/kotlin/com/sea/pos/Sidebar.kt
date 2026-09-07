@@ -66,6 +66,12 @@ fun Sidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
             onClick(Sidebar.MENU_IMAGE_TRANSFORM)
         }
 
+        resourcePath = "images/ic_logo_pmx.svg"
+        tint = UiUtils.IconColor(index, Sidebar.MENU_PMX)
+        ItemView("PayerMax", tint = tint, resourcePath = resourcePath) {
+            onClick(Sidebar.MENU_PMX)
+        }
+
         Footer()
     }
 }
@@ -104,5 +110,7 @@ object Sidebar {
     const val MENU_TLV_DECODE = 11
     const val MENU_TAG_DECODE = 12
     const val MENU_IMAGE_TRANSFORM = 13
+
+    const val MENU_PMX = 20
 
 }

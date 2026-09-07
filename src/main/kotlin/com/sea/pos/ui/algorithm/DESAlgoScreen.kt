@@ -16,7 +16,7 @@ import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.widget.*
 
 @Composable
-fun DESAlgoActivity() {
+fun DESAlgoScreen() {
     val formats = listOf(DataFormat.Hex, DataFormat.Raw)
     val algos = listOf(SymmetricEncryption.DES, SymmetricEncryption.TripleDES)
     val paddings = listOf(

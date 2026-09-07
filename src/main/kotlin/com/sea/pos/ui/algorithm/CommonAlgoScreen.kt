@@ -12,7 +12,7 @@ import com.sea.pos.ui.widget.*
 import com.sea.pos.utils.I18nUtils
 
 @Composable
-fun CommonAlgoActivity() {
+fun CommonAlgoScreen() {
     val algos = listOf(
         I18nUtils.string(key = "common_algo_xor"),
         I18nUtils.string(key = "common_algo_xor_bitwise"),

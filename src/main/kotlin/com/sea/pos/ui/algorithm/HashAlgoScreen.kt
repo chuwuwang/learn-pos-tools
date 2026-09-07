@@ -11,7 +11,7 @@ import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.widget.*
 
 @Composable
-fun HashAlgoActivity() {
+fun HashAlgoScreen() {
     val formats = listOf(DataFormat.Hex, DataFormat.Raw)
     val algos = listOf(Hash.MD2, Hash.MD4, Hash.MD5, Hash.SHA1, Hash.SHA224, Hash.SHA256, Hash.SHA384, Hash.SHA512)
 

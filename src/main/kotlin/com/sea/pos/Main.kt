@@ -18,13 +18,14 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import com.sea.pos.ui.algorithm.CommonAlgoActivity
-import com.sea.pos.ui.algorithm.DESAlgoActivity
-import com.sea.pos.ui.algorithm.HashAlgoActivity
+import com.sea.pos.ui.algorithm.CommonAlgoScreen
+import com.sea.pos.ui.algorithm.DESAlgoScreen
+import com.sea.pos.ui.algorithm.HashAlgoScreen
 import com.sea.pos.ui.emv.Bitmap8583Activity
 import com.sea.pos.ui.emv.TLVDecodeActivity
 import com.sea.pos.ui.emv.TagDecodeActivity
 import com.sea.pos.ui.more.ImageTransformActivity
+import com.sea.pos.ui.pmx.PMXScreen
 import com.sea.pos.ui.theme.AppTheme
 import com.sea.pos.ui.theme.SeaTheme
 import com.sea.pos.ui.widget.overlay.OverlayHost
@@ -61,11 +62,11 @@ fun App() {
 @Composable
 private fun SwitchScreen(index: MutableState<Int>, controller: AppController) {
     if (index.value == Sidebar.MENU_ALGO_HASH) {
-        HashAlgoActivity()
+        HashAlgoScreen()
     } else if (index.value == Sidebar.MENU_ALGO_DES) {
-        DESAlgoActivity()
+        DESAlgoScreen()
     } else if (index.value == Sidebar.MENU_ALGO_COMMON) {
-        CommonAlgoActivity()
+        CommonAlgoScreen()
     } else if (index.value == Sidebar.MENU_ISO8583) {
         Bitmap8583Activity(controller = controller)
     } else if (index.value == Sidebar.MENU_TLV_DECODE) {
@@ -74,5 +75,7 @@ private fun SwitchScreen(index: MutableState<Int>, controller: AppController) {
         TagDecodeActivity(controller = controller)
     } else if (index.value == Sidebar.MENU_IMAGE_TRANSFORM) {
         ImageTransformActivity()
+    } else if (index.value == Sidebar.MENU_PMX) {
+        PMXScreen()
     }
 }
