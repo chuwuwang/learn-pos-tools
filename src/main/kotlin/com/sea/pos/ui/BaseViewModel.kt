@@ -56,6 +56,14 @@ abstract class BaseViewModel<S : Any, E : Any> : CoroutineScope {
         }
     }
 
+    /**
+     * 在 IO 线程执行网络请求，完成后自动切换回主线程
+     * 网络请求应该用这个方法
+     */
+    fun launchNetwork(block: suspend CoroutineScope.() -> Unit): Job = launch {
+        withContext(Dispatchers.IO) { block() }
+    }
+
     fun launchIO(block: suspend CoroutineScope.() -> Unit): Job = launch {
         withContext(Dispatchers.IO) { block() }
     }

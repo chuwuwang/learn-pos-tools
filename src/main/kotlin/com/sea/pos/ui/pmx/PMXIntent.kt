@@ -8,10 +8,6 @@ internal sealed class PMXIntent {
 
     class InputActiveParameter(val req: ActivateReq) : PMXIntent()
 
-    class OutputPublicKey(val text: String) : PMXIntent()
-
-    class OutputPrivateKey(val text: String) : PMXIntent()
-
     object Active : PMXIntent()
 
 }

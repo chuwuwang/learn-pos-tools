@@ -52,16 +52,16 @@ private fun ActiveScreen(vm: PMXViewModel, state: PMXState) {
         Row(modifier = modifier) {
             SubtitleText("Device Model")
             RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.activateReq.model, singleLine = true, showLength = false) {
-                state.activateReq.model = it
-                val intent = PMXIntent.InputActiveParameter(state.activateReq)
+                val newReq = state.activateReq.copy(model = it)
+                val intent = PMXIntent.InputActiveParameter(newReq)
                 vm.dispatch(intent)
             }
         }
         Row(modifier = modifier) {
             SubtitleText("Device Vendor")
-            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.requestUrl, singleLine = true, showLength = false) {
-                state.activateReq.vendor = it
-                val intent = PMXIntent.InputActiveParameter(state.activateReq)
+            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.activateReq.vendor, singleLine = true, showLength = false) {
+                val newReq = state.activateReq.copy(vendor = it)
+                val intent = PMXIntent.InputActiveParameter(newReq)
                 vm.dispatch(intent)
             }
         }
@@ -71,17 +71,18 @@ private fun ActiveScreen(vm: PMXViewModel, state: PMXState) {
         val modifier = Modifier.weight(1f)
         Row(modifier = modifier) {
             SubtitleText("Device SN")
-            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.requestUrl, singleLine = true, showLength = false) {
-                state.activateReq.serialNumber = it
-                val intent = PMXIntent.InputActiveParameter(state.activateReq)
+            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.activateReq.serialNumber, singleLine = true, showLength = false) {
+                val newReq = state.activateReq.copy(serialNumber = it)
+                val intent = PMXIntent.InputActiveParameter(newReq)
                 vm.dispatch(intent)
             }
 
         }
         Row(modifier = modifier) {
             SubtitleText("Active Code")
-            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.requestUrl, singleLine = true, showLength = false) {
-                val intent = PMXIntent.InputRequestUrl(text = it)
+            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.activateReq.encryptedPin, singleLine = true, showLength = false) {
+                val newReq = state.activateReq.copy(encryptedPin = it)
+                val intent = PMXIntent.InputActiveParameter(newReq)
                 vm.dispatch(intent)
             }
         }
@@ -99,19 +100,16 @@ private fun ActiveScreen(vm: PMXViewModel, state: PMXState) {
         vm.dispatch(intent = PMXIntent.Active)
     }
 
-    RwSubtitleText("RSA PublicKey")
-
-    RwInputTextWithLength(modifier = UiUtils.modifierOutput, value = state.publicKey, showLength = false) {
-        val intent = PMXIntent.OutputPublicKey(text = it)
-        vm.dispatch(intent)
+    Row {
+        SubtitleText("DeviceId")
+        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.activateInfo.deviceId ?: "", enabled = false, singleLine = true, showLength = false) {}
     }
+
+    RwSubtitleText("RSA PublicKey")
+    RwInputTextWithLength(modifier = UiUtils.modifierOutput, value = state.publicKey, enabled = false, showLength = false) {}
 
     RwSubtitleText("RSA PrivateKey")
-
-    RwInputTextWithLength(modifier = UiUtils.modifierOutput, value = state.privateKey, showLength = false) {
-        val intent = PMXIntent.OutputPrivateKey(text = it)
-        vm.dispatch(intent)
-    }
+    RwInputTextWithLength(modifier = UiUtils.modifierOutput, value = state.privateKey, enabled = false, showLength = false) {}
 
 }
 

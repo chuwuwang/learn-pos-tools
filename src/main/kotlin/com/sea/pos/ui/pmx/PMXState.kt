@@ -7,4 +7,5 @@ internal data class PMXState(
 
     val publicKey: String = "",
     val privateKey: String = "",
+    val activateInfo: ActivateInfo = ActivateInfo(),
 )
