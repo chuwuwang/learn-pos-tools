@@ -56,14 +56,6 @@ abstract class BaseViewModel<S : Any, E : Any> : CoroutineScope {
         }
     }
 
-    /**
-     * 在 IO 线程执行网络请求，完成后自动切换回主线程
-     * 网络请求应该用这个方法
-     */
-    fun launchNetwork(block: suspend CoroutineScope.() -> Unit): Job = launch {
-        withContext(Dispatchers.IO) { block() }
-    }
-
     fun launchIO(block: suspend CoroutineScope.() -> Unit): Job = launch {
         withContext(Dispatchers.IO) { block() }
     }
@@ -74,6 +66,20 @@ abstract class BaseViewModel<S : Any, E : Any> : CoroutineScope {
 
     suspend fun <T> main(block: suspend () -> T): T {
         return withContext(Dispatchers.Main) { block() }
+    }
+
+    fun showLoadingDialog(title: String = "Loading...") {
+        launch {
+            val dialog = AppDialog.Loading(title)
+            DialogManager.show(dialog)
+        }
+    }
+
+    fun showErrorDialog(title: String = "", message: String) {
+        launch {
+            val dialog = AppDialog.Error(title = title, message = message)
+            DialogManager.show(dialog)
+        }
     }
 
 }

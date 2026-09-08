@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
@@ -37,10 +39,12 @@ private fun InputText(modifier: Modifier, value: String, hint: String, input: Bo
         unfocusedBorderColor = AppTheme.AppColors.divider,
         focusedBorderColor = AppTheme.AppColors.textChecked,
     )
+    val scrollState = rememberScrollState()
+    val other = Modifier.verticalScroll(scrollState)
     if (enabled) {
-        OutlinedTextField(modifier = modifier, value = value, colors = colors, enabled = input, singleLine = singleLine, placeholder = PlaceholderText(hint), onValueChange = onValueChange, textStyle = RwInput.InputTextStyle)
+        OutlinedTextField(modifier = modifier.then(other), value = value, colors = colors, enabled = input, singleLine = singleLine, placeholder = PlaceholderText(hint), onValueChange = onValueChange, textStyle = RwInput.InputTextStyle)
     } else {
-        OutlinedTextField(modifier = modifier.background(color = AppTheme.AppColors.textDisabled), value = value, colors = colors, enabled = false, singleLine = singleLine, placeholder = PlaceholderText(hint), onValueChange = onValueChange, textStyle = RwInput.DisabledTextStyle)
+        OutlinedTextField(modifier = modifier.then(other).background(color = AppTheme.AppColors.textDisabled), value = value, colors = colors, enabled = false, singleLine = singleLine, placeholder = PlaceholderText(hint), onValueChange = onValueChange, textStyle = RwInput.DisabledTextStyle)
     }
 }
 

@@ -16,10 +16,10 @@ fun OverlayHost(content: @Composable () -> Unit) {
 
     Box {
         content()
-
         when (dialog) {
             is AppDialog.Error -> RwErrorDialog(dialog = dialog)
-            else -> { }
+            is AppDialog.Loading -> RwLoadingDialog(dialog = dialog)
+            else -> {}
         }
     }
 

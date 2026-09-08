@@ -11,6 +11,11 @@ sealed class AppDialog(
 
     object None : AppDialog()
 
+    class Loading(
+        title: String = "Loading...",
+        message: String = "Please wait",
+    ) : AppDialog(title, message)
+
     class Error(
         title: String = "",
         message: String,

@@ -106,10 +106,10 @@ private fun ActiveScreen(vm: PMXViewModel, state: PMXState) {
     }
 
     RwSubtitleText("RSA PublicKey")
-    RwInputTextWithLength(modifier = UiUtils.modifierOutput, value = state.publicKey, enabled = false, showLength = false) {}
+    RwInputTextWithLength(modifier = Modifier.height(144.dp), value = state.publicKey, enabled = false, showLength = false) {}
 
     RwSubtitleText("RSA PrivateKey")
-    RwInputTextWithLength(modifier = UiUtils.modifierOutput, value = state.privateKey, enabled = false, showLength = false) {}
+    RwInputTextWithLength(modifier = Modifier.height(240.dp), value = state.privateKey, enabled = false, showLength = false) {}
 
 }
 

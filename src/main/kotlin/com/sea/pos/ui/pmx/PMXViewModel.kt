@@ -1,6 +1,7 @@
 package com.sea.pos.ui.pmx
 
 import com.sea.pos.ui.BaseViewModel
+import com.sea.pos.ui.widget.overlay.DialogManager
 import java.math.BigInteger
 import java.security.KeyPair
 import java.security.KeyPairGenerator
@@ -34,30 +35,37 @@ internal class PMXViewModel : BaseViewModel<PMXState, Any>() {
     }
 
     private fun active() {
-        launchNetwork {
-            val keyPair = generateKeyPair()
-            val publicKey = (keyPair.public as RSAPublicKey).encoded
-            val privateKey = (keyPair.private as RSAPrivateKey).encoded
-            val publicKeyString = Base64.getEncoder().encodeToString(publicKey)
-            val privateKeyString = Base64.getEncoder().encodeToString(privateKey)
+        showLoadingDialog("Processing...")
+        launchIO {
+            try {
+                val keyPair = generateKeyPair()
+                val publicKey = (keyPair.public as RSAPublicKey).encoded
+                val privateKey = (keyPair.private as RSAPrivateKey).encoded
+                val publicKeyString = Base64.getEncoder().encodeToString(publicKey)
+                val privateKeyString = Base64.getEncoder().encodeToString(privateKey)
 
-            val req = state.value.activateReq
-            req.clientPublicKey = publicKeyString
-            req.encryptedPin = sha256Hex(req.encryptedPin)
+                val req = state.value.activateReq
+                req.clientPublicKey = publicKeyString
+                req.encryptedPin = sha256Hex(req.encryptedPin)
 
-            val onSuccess: (ActiveResponse) -> Unit = {
-                val data = it.data
-                if (data != null) {
-                    setState { copy(activateInfo = data, publicKey = publicKeyString, privateKey = privateKeyString) }
-                } else {
-
+                val onSuccess: (ActiveResponse) -> Unit = { response ->
+                    val data = response.data
+                    if (data != null) {
+                        setState {
+                            copy(activateInfo = data, publicKey = publicKeyString, privateKey = privateKeyString)
+                        }
+                    } else {
+                        showErrorDialog(response.code ?: "Active failed", response.msg ?: "")
+                    }
                 }
+                val onFailure: (Throwable) -> Unit = { e ->
+                    showErrorDialog("Request failed", e.message ?: "")
+                }
+                val result = PMXFacade.active(state.value.requestUrl, state.value.activateReq)
+                result.onSuccess(onSuccess).onFailure(onFailure)
+            } finally {
+                DialogManager.dismiss()
             }
-            val onFailure: (Throwable) -> Unit = {
-
-            }
-            val result = PMXFacade.active(state.value.requestUrl, state.value.activateReq)
-            result.onSuccess(onSuccess).onFailure(onFailure)
         }
     }
 
