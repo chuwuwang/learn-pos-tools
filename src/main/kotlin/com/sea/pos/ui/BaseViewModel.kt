@@ -43,7 +43,7 @@ abstract class BaseViewModel<S : Any, E : Any> : CoroutineScope {
     }
 
     open fun onError(e: Throwable) {
-        val dialog = AppDialog.Error(message = "Unknown error - " + e.message)
+        val dialog = AppDialog.Error(title = "Unknown Error", message = e.message ?: "")
         DialogManager.show(dialog)
     }
 

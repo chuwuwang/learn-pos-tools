@@ -21,7 +21,7 @@ import com.sea.pos.ui.viewModel
 import com.sea.pos.ui.widget.*
 
 @Composable
-fun TagDecodeActivity(controller: AppController) {
+fun TagDecodeScreen(controller: AppController) {
     val vm = viewModel(container = controller) {
         TagDecodeViewModel()
     }

@@ -13,7 +13,7 @@ import com.sea.pos.ui.resource.Dimens
 import com.sea.pos.ui.widget.*
 
 @Composable
-fun ImageTransformActivity() {
+fun ImageTransformScreen() {
     val features = listOf("QRCode Generate", "Base64 to Image", "Image to Base64")
 
     val vm = remember { ImageTransformViewModel() }

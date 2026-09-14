@@ -21,10 +21,10 @@ import androidx.compose.ui.window.application
 import com.sea.pos.ui.algorithm.CommonAlgoScreen
 import com.sea.pos.ui.algorithm.DESAlgoScreen
 import com.sea.pos.ui.algorithm.HashAlgoScreen
-import com.sea.pos.ui.emv.Bitmap8583Activity
-import com.sea.pos.ui.emv.TLVDecodeActivity
-import com.sea.pos.ui.emv.TagDecodeActivity
-import com.sea.pos.ui.more.ImageTransformActivity
+import com.sea.pos.ui.emv.Bitmap8583Screen
+import com.sea.pos.ui.emv.TLVDecodeScreen
+import com.sea.pos.ui.emv.TagDecodeScreen
+import com.sea.pos.ui.more.ImageTransformScreen
 import com.sea.pos.ui.pmx.PMXScreen
 import com.sea.pos.ui.theme.AppTheme
 import com.sea.pos.ui.theme.SeaTheme
@@ -68,13 +68,13 @@ private fun SwitchScreen(index: MutableState<Int>, controller: AppController) {
     } else if (index.value == Sidebar.MENU_ALGO_COMMON) {
         CommonAlgoScreen()
     } else if (index.value == Sidebar.MENU_ISO8583) {
-        Bitmap8583Activity(controller = controller)
+        Bitmap8583Screen(controller = controller)
     } else if (index.value == Sidebar.MENU_TLV_DECODE) {
-        TLVDecodeActivity(controller = controller)
+        TLVDecodeScreen(controller = controller)
     } else if (index.value == Sidebar.MENU_TAG_DECODE) {
-        TagDecodeActivity(controller = controller)
+        TagDecodeScreen(controller = controller)
     } else if (index.value == Sidebar.MENU_IMAGE_TRANSFORM) {
-        ImageTransformActivity()
+        ImageTransformScreen()
     } else if (index.value == Sidebar.MENU_PMX) {
         PMXScreen()
     }

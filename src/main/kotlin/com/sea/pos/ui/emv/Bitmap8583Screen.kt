@@ -27,7 +27,7 @@ import com.sea.pos.ui.viewModel
 import com.sea.pos.ui.widget.*
 
 @Composable
-fun Bitmap8583Activity(controller: AppController) {
+fun Bitmap8583Screen(controller: AppController) {
     val vm = viewModel(container = controller) {
         Bitmap8583ViewModel()
     }

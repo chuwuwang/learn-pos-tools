@@ -29,7 +29,7 @@ import com.sea.pos.ui.viewModel
 import com.sea.pos.ui.widget.*
 
 @Composable
-fun TLVDecodeActivity(controller: AppController) {
+fun TLVDecodeScreen(controller: AppController) {
     val vm = viewModel(container = controller) {
         TLVDecodeViewModel()
     }
