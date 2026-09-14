@@ -88,8 +88,8 @@ internal class PMXViewModel : BaseViewModel<PMXState, Any>() {
             CoordinateConverterUtils.LatLng(lat = lat, lon = lon)
         }
         val wgs84 = CoordinateConverterUtils.gcj02ToWgs84(gcjLat = gcj02.lat, gcjLon = gcj02.lon)
-        val outputGcj02 = "lat: " + gcj02.lat + ", lon: " + gcj02.lon
-        val outputWgs84 = "lat: " + wgs84.lat + ", lon: " + wgs84.lon
+        val outputGcj02 = "lon: " + gcj02.lon + ", lat: " + gcj02.lat
+        val outputWgs84 = "lon: " + wgs84.lon + ", lat: " + wgs84.lat
         setState { copy(outputGcj02 = outputGcj02, outputWgs84 = outputWgs84) }
     }
 

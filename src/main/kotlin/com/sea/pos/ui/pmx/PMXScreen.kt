@@ -125,15 +125,15 @@ private fun CoordinateScreen(vm: PMXViewModel, state: PMXState) {
     Row {
         val modifier = Modifier.weight(1f)
         Row(modifier = modifier) {
-            SubtitleText("Latitude")
-            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.inputLat, singleLine = true, showLength = false) {
-                vm.dispatch(intent = PMXIntent.InputLat(it))
-            }
-        }
-        Row(modifier = modifier) {
             SubtitleText("Longitude")
             RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.inputLon, singleLine = true, showLength = false) {
                 vm.dispatch(intent = PMXIntent.InputLon(it))
+            }
+        }
+        Row(modifier = modifier) {
+            SubtitleText("Latitude")
+            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.inputLat, singleLine = true, showLength = false) {
+                vm.dispatch(intent = PMXIntent.InputLat(it))
             }
         }
     }
