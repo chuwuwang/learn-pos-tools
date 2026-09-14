@@ -10,4 +10,13 @@ internal sealed class PMXIntent {
 
     object Active : PMXIntent()
 
+
+    class SwitchCoordinateType(val type: CoordinateType) : PMXIntent()
+
+    class InputLat(val text: String) : PMXIntent()
+
+    class InputLon(val text: String) : PMXIntent()
+
+    object ConvertCoordinate : PMXIntent()
+
 }

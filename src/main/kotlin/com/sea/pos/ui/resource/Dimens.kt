@@ -13,7 +13,7 @@ object Dimens {
     val space_xxxx = 32.dp
 
     val item_sm = 48.dp
-    val item_norm = 56.dp
+    val item_norm = 60.dp
     val item_lg = 64.dp
 
     val divider = 1.dp

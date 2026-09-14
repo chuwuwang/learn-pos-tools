@@ -38,7 +38,7 @@ fun PMXScreen() {
         if (state.feature == PMXFeature.ACTIVE) {
             ActiveScreen(vm, state)
         } else if (state.feature == PMXFeature.GPS_COORDINATE) {
-
+            CoordinateScreen(vm, state)
         }
 
     }
@@ -76,7 +76,6 @@ private fun ActiveScreen(vm: PMXViewModel, state: PMXState) {
                 val intent = PMXIntent.InputActiveParameter(newReq)
                 vm.dispatch(intent)
             }
-
         }
         Row(modifier = modifier) {
             SubtitleText("Active Code")
@@ -110,6 +109,50 @@ private fun ActiveScreen(vm: PMXViewModel, state: PMXState) {
 
     RwSubtitleText("RSA PrivateKey")
     RwInputTextWithLength(modifier = Modifier.height(240.dp), value = state.privateKey, enabled = false, showLength = false) {}
+
+}
+
+@Composable
+private fun CoordinateScreen(vm: PMXViewModel, state: PMXState) {
+    val types = listOf(CoordinateType.BD09, CoordinateType.GCJ02)
+    val selectedType = types.indexOf(state.coordinateType)
+    RwRadioGroup(list = types.map { it.code }, label = "Coordinate Type", selected = selectedType) { code ->
+        val item = types.find { it.code == code } ?: CoordinateType.BD09
+        val intent = PMXIntent.SwitchCoordinateType(item)
+        vm.dispatch(intent)
+    }
+
+    Row {
+        val modifier = Modifier.weight(1f)
+        Row(modifier = modifier) {
+            SubtitleText("Latitude")
+            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.inputLat, singleLine = true, showLength = false) {
+                vm.dispatch(intent = PMXIntent.InputLat(it))
+            }
+        }
+        Row(modifier = modifier) {
+            SubtitleText("Longitude")
+            RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.inputLon, singleLine = true, showLength = false) {
+                vm.dispatch(intent = PMXIntent.InputLon(it))
+            }
+        }
+    }
+
+    RwTextCheckedButton(modifier = UiUtils.modifierSpace_xxx, text = "CONVERT") {
+        vm.dispatch(intent = PMXIntent.ConvertCoordinate)
+    }
+
+    RwVertical(Dimens.space_xxx)
+
+    Row {
+        SubtitleText("GCJ-02")
+        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.outputGcj02, enabled = false, singleLine = true, showLength = false) {}
+    }
+
+    Row {
+        SubtitleText("WGS-84")
+        RwInputTextWithLength(modifier = Modifier.height(Dimens.item_norm), value = state.outputWgs84, enabled = false, singleLine = true, showLength = false) {}
+    }
 
 }
 

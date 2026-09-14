@@ -2,6 +2,7 @@ package com.sea.pos.ui.pmx
 
 import com.sea.pos.ui.BaseViewModel
 import com.sea.pos.ui.widget.overlay.DialogManager
+import com.sea.pos.utils.CoordinateConverterUtils
 import java.math.BigInteger
 import java.security.KeyPair
 import java.security.KeyPairGenerator
@@ -25,6 +26,11 @@ internal class PMXViewModel : BaseViewModel<PMXState, Any>() {
             is PMXIntent.InputRequestUrl -> inputRequestUrl(intent)
             is PMXIntent.InputActiveParameter -> inputActiveParameter(intent)
             PMXIntent.Active -> active()
+
+            is PMXIntent.SwitchCoordinateType -> switchCoordinateType(intent)
+            is PMXIntent.InputLat -> inputLat(intent)
+            is PMXIntent.InputLon -> inputLon(intent)
+            PMXIntent.ConvertCoordinate -> convertCoordinate()
         }
     }
 
@@ -61,6 +67,42 @@ internal class PMXViewModel : BaseViewModel<PMXState, Any>() {
                 DialogManager.dismiss()
             }
         }
+    }
+
+    private fun convertCoordinate() {
+        var lat: Double ? = null
+        var lon: Double ? = null
+        try {
+            lat = state.value.inputLat.toDoubleOrNull()
+            lon = state.value.inputLon.toDoubleOrNull()
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+        if (lat == null || lon == null) {
+            showErrorDialog("Data error", "Latitude/Longitude must be valid numbers")
+            return
+        }
+        val gcj02 = if (state.value.coordinateType == CoordinateType.BD09) {
+            CoordinateConverterUtils.bd09ToGcj02(bdLat = lat, bdLon = lon)
+        } else {
+            CoordinateConverterUtils.LatLng(lat = lat, lon = lon)
+        }
+        val wgs84 = CoordinateConverterUtils.gcj02ToWgs84(gcjLat = gcj02.lat, gcjLon = gcj02.lon)
+        val outputGcj02 = "lat: " + gcj02.lat + ", lon: " + gcj02.lon
+        val outputWgs84 = "lat: " + wgs84.lat + ", lon: " + wgs84.lon
+        setState { copy(outputGcj02 = outputGcj02, outputWgs84 = outputWgs84) }
+    }
+
+    private fun switchCoordinateType(intent: PMXIntent.SwitchCoordinateType) {
+        setState { copy(coordinateType = intent.type) }
+    }
+
+    private fun inputLat(intent: PMXIntent.InputLat) {
+        setState { copy(inputLat = intent.text) }
+    }
+
+    private fun inputLon(intent: PMXIntent.InputLon) {
+        setState { copy(inputLon = intent.text) }
     }
 
     private fun switchFeature(intent: PMXIntent.SwitchFeature) {
