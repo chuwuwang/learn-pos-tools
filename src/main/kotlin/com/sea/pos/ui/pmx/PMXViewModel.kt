@@ -15,13 +15,7 @@ import java.util.*
 internal class PMXViewModel : BaseViewModel<PMXState, Any>() {
 
     override fun initialState(): PMXState {
-        val state = PMXState(
-            feature = PMXFeature.ACTIVE,
-            activateReq = ActivateReq(
-                serialNumber = "NISHENZHOU", model = "P3HD", vendor = "SUNMI", encryptedPin = "921354"
-            ),
-            requestUrl = "https://pay-gate-test-new.payermax.com/aggregate-pay/api/gateway/posActivate",
-        )
+        val state = PMXState(feature = PMXFeature.ACTIVE)
         return state
     }
 

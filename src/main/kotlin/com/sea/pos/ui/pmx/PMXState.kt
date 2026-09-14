@@ -3,8 +3,7 @@ package com.sea.pos.ui.pmx
 internal data class PMXState(
     val feature: PMXFeature,
     val requestUrl: String = "",
-    val activateReq: ActivateReq,
-
+    val activateReq: ActivateReq = ActivateReq(),
     val publicKey: String = "",
     val privateKey: String = "",
     val activateInfo: ActivateInfo = ActivateInfo(),
